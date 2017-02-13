@@ -1,0 +1,19 @@
+{
+  "name": "proven",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Proven Suite",
+  "devDependencies": {
+    "solc": "^0.4.4",
+    "mkdirp": "^0.5.1"
+  },
+  "license": "AGPL-3.0",
+  "scripts": {
+    "build": "node build.js",
+    "deploy": "node deploy.js",
+    "clean": "rm -rf output"
+  },
+  "dependencies": {
+    "web3": "^0.17.0-beta"
+  }
+}
