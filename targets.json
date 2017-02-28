@@ -1,11 +1,7 @@
 [
     {
-        "name": "Client",
-        "source": "client.sol"
-    },
-    {
-        "name": "Server",
-        "source": "server.sol"
+        "name": "ProvenRelay",
+        "source": "proven_relay.sol"
     },
     {
         "name": "ProvenRegistry",
@@ -18,25 +14,5 @@
     {
         "name": "Proven",
         "source": "proven.sol"
-    },
-    {
-        "name": "VerifierRegistry",
-        "source": "verifier_registry.sol"
-    },
-    {
-        "name": "VerifierDb",
-        "source": "verifier_db.sol"
-    },
-    {
-        "name": "Verifier",
-        "source": "verifier.sol"
-    },
-    {
-        "name": "BondHolderRegistry",
-        "source": "bondholder_registry.sol"
-    },
-    {
-        "name": "BondHolder",
-        "source": "bondholder.sol"
     }
 ]

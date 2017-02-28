@@ -15,6 +15,7 @@ function findImports(path) {
 var allTargets = targets.map(function(e) {
     var element = {};
     element.name = e.name;
+    element.filename = e.source;
     element.input = {};
     element.input[e.source] = fs.readFileSync(e.source, 'utf8');
     return element;
@@ -24,6 +25,7 @@ for (var i = 0; i < allTargets.length; i++) {
 
     var contractName = allTargets[i].name;
     var buildInput = allTargets[i].input;
+    let keyName = allTargets[i].filename + ':' + contractName;
 
     console.log('Compiling ' + contractName + '...');
     var output = solc.compile({sources: buildInput}, 1, findImports);
@@ -36,17 +38,18 @@ for (var i = 0; i < allTargets.length; i++) {
     }
 
     //console.log(output);
+    //console.log(output.formal);
 
     const mkdirp = require('mkdirp');
     mkdirp.sync(outputPath);
 
     console.log('  Writing bytecode...');
-    fs.writeFileSync(outputPath + contractName + '.bin', '0x' + output.contracts[contractName].bytecode);
+    fs.writeFileSync(outputPath + contractName + '.bin', '0x' + output.contracts[keyName].bytecode);
 
     console.log('  Writing ABI...');
-    fs.writeFileSync(outputPath + contractName + '.abi', output.contracts[contractName].interface);
+    fs.writeFileSync(outputPath + contractName + '.abi', output.contracts[keyName].interface);
 
     console.log('  Writing assembly...');
-    fs.writeFileSync(outputPath + contractName + '.S', output.contracts[contractName].opcodes);
+    fs.writeFileSync(outputPath + contractName + '.S', output.contracts[keyName].opcodes);
 }
 console.log("Done");

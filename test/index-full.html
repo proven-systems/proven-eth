@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head> 
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Proven Admin</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <!--<script src="https://raw.githubusercontent.com/ethereum/web3.js/0.16.0/dist/web3.min.js"></script>-->
+    <script src="../node_modules/web3/dist/web3.js"></script>
+  </head>
+
+  <body>
+    <div class="container theme-showcase" role="main">
+
+      <div class="jumbotron">
+        <h1>Proven Admin</h1>
+      </div>
+     
+      <div class="row">
+        <div class="col-md-8">
+
+          <div class="row">
+            <div class="col-md-12">
+              <h2>Accounts</h2>
+              <p><form action="#"><select id="accounts"></select></form></p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <h2>Proven Registry</h2>
+              <table class="table">
+                <tr>
+                  <td>Address</td>
+                  <td id="registry_address"></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Owner</td>
+                  <td id="registry_owner"></td>
+                  <td>
+                    <input id="registry_owner_field" type="text"/><button id="registry_owner_button" type="button" class="btn btn-default">Set</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Proven</td>
+                  <td id="registry_proven"></td>
+                  <td>
+                    <input id="registry_proven_field" type="text"/><button id="registry_proven_button" type="button" class="btn btn-default">Set</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>DB</td>
+                  <td id="registry_db"></td>
+                  <td>
+                    <input id="registry_db_field" type="text"/><button id="registry_db_button" type="button" class="btn btn-default">Set</button>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <h2>Proven</h2>
+              <table class="table">
+                <tr>
+                  <td>Address</td>
+                  <td id="proven_address"></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Owner</td>
+                  <td id="proven_owner"></td>
+                  <td>
+                    <input id="proven_owner_field" type="text"/><button id="proven_owner_button" type="button" class="btn btn-default">Set</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Registry</td>
+                  <td id="proven_registry_address"></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Publish Deposition</td>
+                  <td>
+                    <input id="ipfs_hash" type="text"/><button id="publish_deposition_button" type="button" class="btn btn-default">Publish</button>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <h2>Proven DB</h2>
+              <table class="table">
+                <tr>
+                  <td>Address</td>
+                  <td id="proven_db_address"></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Owner</td>
+                  <td id="proven_db_owner"></td>
+                  <td>
+                    <input id="proven_db_owner_field" type="text"/><button id="proven_db_owner_button" type="button" class="btn btn-default">Set</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Registry</td>
+                  <td id="proven_db_registry_address"></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Depositions</td>
+                  <td>
+                    <input id="deposition_receipt" type="text"/><button id="lookup_deposition_button" type="button" class="btn btn-default">Look Up</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Deposition IPFS Hash</td>
+                  <td id="lookup_ipfs_hash"></td>
+                </tr>
+                <tr>
+                  <td>Deponent</td>
+                  <td id="lookup_deponent"></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <h2>Verifier Registry</h2>
+              <table class="table">
+                <tr>
+                  <td>Address</td>
+                  <td id="verifier_registry_address"></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Owner</td>
+                  <td id="verifier_registry_owner"></td>
+                  <td>
+                    <input id="verifier_registry_owner_field" type="text"/><button id="verifier_registry_owner_button" type="button" class="btn btn-default">Set</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Proven</td>
+                  <td id="verifier_registry_proven"></td>
+                  <td>
+                    <input id="verifier_registry_proven_field" type="text"/><button id="verifier_registry_proven_button" type="button" class="btn btn-default">Set</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Verifier</td>
+                  <td id="verifier_registry_verifier"></td>
+                  <td>
+                    <input id="verifier_registry_verifier_field" type="text"/><button id="verifier_registry_verifier_button" type="button" class="btn btn-default">Set</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>DB</td>
+                  <td id="verifier_registry_db"></td>
+                  <td>
+                    <input id="verifier_registry_db_field" type="text"/><button id="verifier_registry_db_button" type="button" class="btn btn-default">Set</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Bond Holder</td>
+                  <td id="verifier_registry_bondholder"></td>
+                  <td>
+                    <input id="verifier_registry_bondholder_field" type="text"/><button id="verifier_registry_bondholder_button" type="button" class="btn btn-default">Set</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Oracle</td>
+                  <td id="verifier_registry_oracle"></td>
+                  <td>
+                    <input id="verifier_registry_oracle_field" type="text"/><button id="verifier_registry_oracle_button" type="button" class="btn btn-default">Set</button>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <h2>Verifier</h2>
+              <table class="table">
+                <tr>
+                  <td>Address</td>
+                  <td id="verifier_address"></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Owner</td>
+                  <td id="verifier_owner"></td>
+                  <td>
+                    <input id="verifier_owner_field" type="text"/><button id="verifier_owner_button" type="button" class="btn btn-default">Set</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Registry</td>
+                  <td id="verifier_registry"></td>
+                  <td>
+                    <input id="verifier_registry_field" type="text"/><button id="verifier_registry_button" type="button" class="btn btn-default">Set</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Fee</td>
+                  <td id="verifier_fee"></td>
+                  <td>
+                    <input id="verifier_fee_field" type="text"/><button id="verifier_fee_button" type="button" class="btn btn-default">Set</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Timeout Block Count</td>
+                  <td id="verifier_timeout_block_count"></td>
+                  <td>
+                    <input id="verifier_timeout_block_count_field" type="text"/><button id="verifier_timeout_block_count_button" type="button" class="btn btn-default">Set</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Required Bond Amount</td>
+                  <td id="verifier_required_bond_amount"></td>
+                  <td>
+                    <input id="verifier_required_bond_amount_field" type="text"/><button id="verifier_required_bond_amount_button" type="button" class="btn btn-default">Set</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Publish Deposition</td>
+                  <td>
+                    <input id="verifier_ipfs_hash" type="text"/><input id="verifier_fee_field" type="text"/>
+                    <button id="verifier_publish_button" type="button" class="btn btn-default">Publish</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Verify Deposition</td>
+                  <td>
+                    <input id="verifier_verify_id" type="text"/><button id="verifier_verify_button" type="button" class="btn btn-default">Verify</button>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <h2>Verifier DB</h2>
+              <table class="table">
+                <tr>
+                  <td>Address</td>
+                  <td id="verifier_db_address"></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Owner</td>
+                  <td id="verifier_db_owner"></td>
+                  <td>
+                    <input id="verifier_db_owner_field" type="text"/><button id="verifier_db_owner_button" type="button" class="btn btn-default">Set</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Registry</td>
+                  <td id="verifier_db_registry_address"></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Depositions</td>
+                  <td>
+                    <input id="verifier_deposition_receipt" type="text"/><button id="verifier_lookup_deposition_button" type="button" class="btn btn-default">Look Up</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Deposition State</td>
+                  <td id="verifier_lookup_state"></td>
+                </tr>
+                <tr>
+                  <td>Deposition Bounty</td>
+                  <td id="verifier_lookup_bounty"></td>
+                </tr>
+                <tr>
+                  <td>Deposition Verifier</td>
+                  <td id="verifier_lookup_verifier"></td>
+                </tr>
+                <tr>
+                  <td>Deposition Verified In Block</td>
+                  <td id="verifier_lookup_verified_in_block"></td>
+                </tr>
+                <tr>
+                  <td>Deposition Challenger</td>
+                  <td id="verifier_lookup_challenger"></td>
+                </tr>
+                <tr>
+                  <td>Deposition Challenged In Block</td>
+                  <td id="verifier_lookup_challenged_in_block"></td>
+                </tr>
+                <tr>
+                  <td>Deposition Bond Amount</td>
+                  <td id="verifier_lookup_bond_amount"></td>
+                </tr>
+                <tr>
+                  <td>Deposition Contestor</td>
+                  <td id="verifier_lookup_contestor"></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <h2>Bond Holder Registry</h2>
+              <table class="table">
+                <tr>
+                  <td>Address</td>
+                  <td id="bondholder_registry_address"></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Owner</td>
+                  <td id="bondholder_registry_owner"></td>
+                  <td>
+                    <input id="bondholder_registry_owner_field" type="text"/><button id="bondholder_registry_owner_button" type="button" class="btn btn-default">Set</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Bond Holder</td>
+                  <td id="bondholder_registry_bondholder"></td>
+                  <td>
+                    <input id="bondholder_registry_bondholder_field" type="text"/><button id="bondholder_registry_bondholder_button" type="button" class="btn btn-default">Set</button>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <h2>Bond Holder</h2>
+              <table class="table">
+                <tr>
+                  <td>Address</td>
+                  <td id="bondholder_address"></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Owner</td>
+                  <td id="bondholder_owner"></td>
+                  <td>
+                    <input id="bondholder_owner_field" type="text"/><button id="bondholder_owner_button" type="button" class="btn btn-default">Set</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Registry</td>
+                  <td id="bondholder_registry"></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Beneficiary</td>
+                  <td id="bondholder_beneficiary"></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Bond Count</td>
+                  <td id="bondholder_bond_count"></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Withdrawals</td>
+                  <td>
+                    <input id="bondholder_withdrawal_field" type="text"/><button id="bondholder_withdrawal_button" type="button" class="btn btn-default">Look Up</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Available</td>
+                  <td id="bondholder_withdrawal_available"></td>
+                </tr>
+                <tr>
+                  <td>Deposit</td>
+                  <td>
+                    <input id="bondholder_deposit_amount_field" type="text"/><button id="bondholder_deposit_button" type="button" class="btn btn-default">Deposit</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Release</td>
+                  <td>
+                    <input id="bondholder_release_amount_field" type="text"/><button id="bondholder_release_button" type="button" class="btn btn-default">Release</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Withdraw</td>
+                  <td>
+                    <input id="bondholder_withdraw_amount_field" type="text"/><button id="bondholder_withdraw_button" type="button" class="btn btn-default">Withdraw</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Bond</td>
+                  <td>
+                    <input id="bondholder_bonded_field" type="text"/><button id="bondholder_bonded_button" type="button" class="btn btn-default">Look Up</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Balance</td>
+                  <td id="bondholder_bonded_balance"></td>
+                </tr>
+                <tr>
+                  <td>Locked Amount</td>
+                  <td id="bondholder_bonded_lockedAmount"></td>
+                </tr>
+                <tr>
+                  <td>Lock Bond</td>
+                  <td>
+                    <input id="bondholder_lock_bonded_field" type="text"/><input id="bondholder_lock_amount_field" type="text"/>
+                    <button id="bondholder_lock_button" type="button" class="btn btn-default">Lock</button>
+                    <button id="bondholder_unlock_button" type="button" class="btn btn-default">Unlock</button>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div id="proven_log">
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="./app.js"></script>
+    <script src="../output/ProvenRegistry.js"></script>
+    <script src="../output/Proven.js"></script>
+    <script src="../output/ProvenDb.js"></script>
+    <script src="../output/VerifierRegistry.js"></script>
+    <script src="../output/Verifier.js"></script>
+    <script src="../output/VerifierDb.js"></script>
+    <script src="../output/BondHolderRegistry.js"></script>
+    <script src="../output/BondHolder.js"></script>
+  </body>
+
+</html>

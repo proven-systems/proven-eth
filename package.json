@@ -4,8 +4,8 @@
   "private": true,
   "description": "Proven Suite",
   "devDependencies": {
-    "solc": "^0.4.4",
-    "mkdirp": "^0.5.1"
+    "mkdirp": "^0.5.1",
+    "solc": "^0.4.9"
   },
   "license": "AGPL-3.0",
   "scripts": {

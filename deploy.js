@@ -4,6 +4,14 @@ const web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 
 const inputPath = 'output/';
 
+var sleep = function(timeout) {
+    return new Promise(function(resolve, reject) {
+        setTimeout(function() {
+            resolve();
+        }, timeout);
+    });
+};
+
 function namethize(name) {
     return name.substr(0, 1).toLowerCase() + name.substr(1);
 }
@@ -64,21 +72,28 @@ function deploy(contractName, options, ...parameters) {
     });
 }
 
-const deployingAccount = "0x0061b257BC2985c93868416f6543f76359AC1072";
-const oracleAccount = "0x20b9cCb06cf1178f354F706e69AD1Fc86C1E94b3";
+//const deployingAccount = "0x0061b257BC2985c93868416f6543f76359AC1072";
+const deployingAccount = "0x00F28F9B9692E00feAB5A53469FC3e2972574619"; //ropsten
+//const deployingAccount = "0x00a329c0648769a73afac7f9381e08fb43dbea72"; // dev
+//const oracleAccount = "0x20b9cCb06cf1178f354F706e69AD1Fc86C1E94b3";
 
 var contracts = {}
-deploy("Server", {from: deployingAccount, gas: 3000000}).then(function(contract) {
-    return deploy("Client", {from: deployingAccount, gas: 3000000}, contract.address);
-}).then(function(contract) {
-    return deploy("ProvenRegistry", {from: deployingAccount, gas: 400000});
+deploy("ProvenRelay", {from: deployingAccount}).then(function(contract) {
+    contracts["ProvenRelay"] = contract;
+    return deploy("ProvenRegistry", {from: deployingAccount});
 }).then(function(contract) {
     contracts["ProvenRegistry"] = contract;
-    return deploy("ProvenDb", {from: deployingAccount, gas: 500000}, contracts["ProvenRegistry"].address);
+    return sleep(5000).then(function() {
+        return deploy("ProvenDb", {from: deployingAccount, gas: 800000}, contracts["ProvenRegistry"].address);
+    });
 }).then(function(contract) {
     contracts["ProvenDb"] = contract;
-    return deploy("Proven", {from: deployingAccount, gas: 400000}, contracts["ProvenRegistry"].address);
+    return sleep(500).then(function() {
+        return deploy("Proven", {from: deployingAccount, gas: 800000}, contracts["ProvenRegistry"].address);
+    });
 }).then(function(contract) {
+});
+/*
     contracts["Proven"] = contract;
     return deploy("VerifierRegistry", {from: deployingAccount, gas: 400000});
 }).then(function(contract) {
@@ -96,4 +111,5 @@ deploy("Server", {from: deployingAccount, gas: 3000000}).then(function(contract)
 }).catch(function(err) {
     console.log('Error deploying: ' + err);
 });
+*/
 

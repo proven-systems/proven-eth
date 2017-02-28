@@ -465,21 +465,25 @@ $(function() {
     var provenRegistry = new ProvenRegistry(provenRegistryAddress, provenRegistryAbi);
     var proven = new Proven(provenAddress, provenAbi);
     var provenDb = new ProvenDb(provenDbAddress, provenDbAbi);
+    /*
     var verifierRegistry = new VerifierRegistry(verifierRegistryAddress, verifierRegistryAbi);
     var verifier = new Verifier(verifierAddress, verifierAbi);
     var verifierDb = new VerifierDb(verifierDbAddress, verifierDbAbi);
     var bondHolderRegistry = new BondHolderRegistry(bondHolderRegistryAddress, bondHolderRegistryAbi);
     var bondHolder = new BondHolder(bondHolderAddress, bondHolderAbi);
+    */
 
     loadEthereumAccounts(web3);
     updateProvenRegistryValues(provenRegistry);
     updateProvenValues(proven);
     updateProvenDbValues(provenDb);
+    /*
     updateVerifierRegistryValues(verifierRegistry);
     updateVerifierValues(verifier);
     updateVerifierDbValues(verifierDb);
     updateBondHolderRegistryValues(bondHolderRegistry);
     updateBondHolderValues(bondHolder);
+    */
 
     function setValueFromField(source, callback) {
         return function() {
@@ -547,6 +551,7 @@ $(function() {
         });
     });
 
+    /*
     /// VerifierRegistry
     $('#verifier_registry_owner_button').click(function() {
         verifierRegistry.transferOwnership($('#verifier_registry_owner_field').val(), optionsFromAccounts(), function() {
@@ -732,4 +737,5 @@ $(function() {
     bondHolder.watchBondLocked(logBondEvent('Bond Locked'));
     bondHolder.watchBondUnlocked(logBondEvent('Bond Unlocked'));
     bondHolder.watchBondDistributed(logBondDistributed());
+    */
 })
