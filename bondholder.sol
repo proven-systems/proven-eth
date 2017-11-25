@@ -28,37 +28,32 @@ contract BondHolder is Owned {
     event BondDistributed(address bonded, uint amount, address recipient1, address recipient2);
 
     modifier onlyBeneficiary() {
-        if (msg.sender != beneficiary)
-            throw;
+        require(msg.sender == beneficiary);
         _;
     }
 
     modifier onlyBonded() {
-        if (!isBonded(msg.sender))
-            throw;
+        require(isBonded(msg.sender));
         _;
     }
 
     modifier onlyWithNoBonds() {
-        if (bondCount != 0)
-            throw;
+        require(bondCount == 0);
         _;
     }
 
-    function BondHolder(address _registry, address _beneficiary) {
+    function BondHolder(address _registry, address _beneficiary) public {
         registry = BondHolderRegistry(_registry);
         beneficiary = _beneficiary;
     }
 
     function withdraw(uint _amount) public {
 
-        if (withdrawals[msg.sender] < _amount)
-            throw;
+        require(withdrawals[msg.sender] >= _amount);
 
         withdrawals[msg.sender] -= _amount;
 
-        if (!msg.sender.send(_amount))
-            throw;
+        assert(msg.sender.send(_amount));
 
         BondWithdrawn(msg.sender, _amount);
 
@@ -67,8 +62,7 @@ contract BondHolder is Owned {
     }
 
     function depositBond() public payable {
-        if (msg.value == 0)
-            throw;
+        require(msg.value > 0);
 
         if (bonds[msg.sender].balance == 0)
             bondCount += 1;
@@ -86,8 +80,8 @@ contract BondHolder is Owned {
         if (lockedAmount < balance) {
             available = balance - lockedAmount;
         }
-        if (_amount > available)
-            throw;
+
+        require(_amount <= available);
 
         bonds[msg.sender].balance -= _amount;
         withdrawals[msg.sender] += _amount;
@@ -103,8 +97,7 @@ contract BondHolder is Owned {
     function lockBond(address _bonded, uint _amount) public onlyBeneficiary {
 
         // cannot lock more than bonded has on deposit
-        if (bonds[msg.sender].lockedAmount + _amount > bonds[msg.sender].balance)
-            throw;
+        require((bonds[msg.sender].lockedAmount + _amount) <= bonds[msg.sender].balance);
 
         bonds[msg.sender].lockedAmount += _amount;
 
@@ -128,12 +121,10 @@ contract BondHolder is Owned {
     function distributeBond(address _from, uint _amount, address _recipient1, address _recipient2) public onlyBeneficiary {
 
         // cannot distribute funds that don't exist
-        if (_amount > bonds[_from].balance)
-            throw;
+        require(_amount <= bonds[_from].balance);
 
         // sanity check on locked amount
-        if (_amount > bonds[_from].lockedAmount)
-            throw;
+        require(_amount <= bonds[_from].lockedAmount);
 
         // remove bond from bondee
         bonds[_from].balance -= _amount;

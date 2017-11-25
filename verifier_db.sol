@@ -38,18 +38,17 @@ contract VerifierDb is Owned {
     event Contested(bytes32 deposition, address contestor);
 
     modifier onlyVerifier() {
-        if (msg.sender != registry.verifier())
-            throw;
+        require (msg.sender == registry.verifier());
         _;
     }
 
-    function VerifierDb(address _registry) {
+    function VerifierDb(address _registry) public {
         registry = VerifierRegistry(_registry);
     }
 
     function getDetails(bytes32 _deposition) public constant onlyVerifier returns(State state, uint bounty, address verifier, uint verifiedInBlock, address challenger, uint challengedInBlock, uint bondAmount, address contestor) {
 
-        Verification v = verifications[_deposition];
+        Verification storage v = verifications[_deposition];
 
         state = v.state;
         bounty = v.bounty;
@@ -63,7 +62,7 @@ contract VerifierDb is Owned {
 
     function initialize(bytes32 _deposition, uint _bounty) public onlyVerifier {
 
-        Verification v = verifications[_deposition];
+        Verification storage v = verifications[_deposition];
 
         v.state = State.Initialized;
         v.bounty = _bounty;
@@ -73,7 +72,7 @@ contract VerifierDb is Owned {
 
     function verify(bytes32 _deposition, address _verifier, uint _bondAmount) public onlyVerifier {
 
-        Verification v = verifications[_deposition];
+        Verification storage v = verifications[_deposition];
 
         v.state = State.Verified;
         v.verifier = _verifier;
@@ -85,7 +84,7 @@ contract VerifierDb is Owned {
 
     function prove(bytes32 _deposition) public onlyVerifier {
 
-        Verification v = verifications[_deposition];
+        Verification storage v = verifications[_deposition];
 
         v.state = State.Proven;
 
@@ -94,7 +93,7 @@ contract VerifierDb is Owned {
 
     function challenge(bytes32 _deposition, address _challenger, uint _bondAmount) public onlyVerifier {
 
-        Verification v = verifications[_deposition];
+        Verification storage v = verifications[_deposition];
 
         v.state = State.Challenged;
         v.challenger = _challenger;
@@ -106,7 +105,7 @@ contract VerifierDb is Owned {
 
     function disprove(bytes32 _deposition) public onlyVerifier {
 
-        Verification v = verifications[_deposition];
+        Verification storage v = verifications[_deposition];
 
         v.state = State.Disproven;
 
@@ -115,7 +114,7 @@ contract VerifierDb is Owned {
 
     function contest(bytes32 _deposition, address _contestor) public onlyVerifier {
 
-        Verification v = verifications[_deposition];
+        Verification storage v = verifications[_deposition];
 
         v.state = State.Contested;
         v.contestor = _contestor;

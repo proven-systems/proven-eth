@@ -30,7 +30,7 @@ contract ProvenRelay is Owned {
     event DepositionPublished(address _deponent, bytes _ipfs_hash);
 
     /// Constructor must be passed a backend
-    function ProvenRelay() {
+    function ProvenRelay() public {
     }
 
     /// Publish a deposition

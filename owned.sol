@@ -28,21 +28,19 @@ contract Owned
     address public owner;
 
     /// Constructor: initializes owner
-    function Owned() {
+    function Owned() public {
         owner = msg.sender;
     }
 
     /// Ensure that only the owner can call a function
     modifier onlyOwner {
-        if (msg.sender != owner)
-            throw;
+        require(msg.sender == owner);
         _;
     }
 
     /// Ensure address is set to something relatively sane
     modifier onlyValidRecipient(address _recipient) {
-        if (_recipient == address(0))
-            throw;
+        require(_recipient != address(0));
         _;
     }
 

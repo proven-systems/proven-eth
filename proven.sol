@@ -34,7 +34,7 @@ contract Proven is Owned {
     event DepositionPublished(bytes32 _deposition, address _deponent, bytes _ipfs_hash);
 
     /// Constructor must be passed a backend
-    function Proven(address _registry) {
+    function Proven(address _registry) public {
         registry = ProvenRegistry(_registry);
     }
 

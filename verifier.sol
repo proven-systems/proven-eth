@@ -21,12 +21,11 @@ contract Verifier is Owned {
     event DepositionContested(bytes32 deposition, address contestor);
 
     modifier onlyWithFee() {
-        if (msg.value != fee)
-            throw;
+        require(msg.value == fee);
         _;
     }
 
-    function Verifier(address _registry, uint _fee, uint _timeoutBlockCount, uint _requiredBondAmount) {
+    function Verifier(address _registry, uint _fee, uint _timeoutBlockCount, uint _requiredBondAmount) public {
         registry = VerifierRegistry(_registry);
         fee = _fee;
         timeoutBlockCount = _timeoutBlockCount;
@@ -50,11 +49,9 @@ contract Verifier is Owned {
     }
 
     function withdraw(uint _amount) public onlyOwner {
-        if (_amount > this.balance)
-            throw;
+        require(_amount <= this.balance);
 
-        if (!msg.sender.send(_amount))
-            throw;
+        assert(msg.sender.send(_amount));
     }
 
     function publishDeposition(bytes _ipfs_hash) public payable onlyWithFee returns (bytes32) {
@@ -76,14 +73,12 @@ contract Verifier is Owned {
 
         BondHolder bondHolder = BondHolder(registry.bondHolder());
 
-        if (!bondHolder.isBonded(msg.sender))
-            throw;
+        require(bondHolder.isBonded(msg.sender));
 
         VerifierDb db = VerifierDb(registry.db());
 
         var (state,,,,,,,) = db.getDetails(_deposition);
-        if (state != VerifierDb.State.Initialized)
-            throw;
+        require(state == VerifierDb.State.Initialized);
 
         db.verify(_deposition, msg.sender, requiredBondAmount);
 
@@ -97,12 +92,9 @@ contract Verifier is Owned {
         VerifierDb db = VerifierDb(registry.db());
 
         var (state, bounty, verifier, verifiedInBlock,,, bondAmount,) = db.getDetails(_deposition);
-        if (state != VerifierDb.State.Verified)
-            throw;
-        if (block.number < verifiedInBlock + timeoutBlockCount)
-            throw;
-        if (verifier != msg.sender)
-            throw;
+        require(state == VerifierDb.State.Verified);
+        require(block.number >= verifiedInBlock + timeoutBlockCount);
+        require(verifier == msg.sender);
 
         db.prove(_deposition);
 
@@ -110,9 +102,7 @@ contract Verifier is Owned {
 
         bondHolder.unlockBond(msg.sender, bondAmount);
 
-        if (!msg.sender.send(bounty)) {
-            throw;
-        }
+        assert(msg.sender.send(bounty));
 
         DepositionProven(_deposition, msg.sender);
     }
@@ -121,14 +111,12 @@ contract Verifier is Owned {
 
         BondHolder bondHolder = BondHolder(registry.bondHolder());
 
-        if (!bondHolder.isBonded(msg.sender))
-            throw;
+        require(bondHolder.isBonded(msg.sender));
 
         VerifierDb db = VerifierDb(registry.db());
 
         var (state,,,,,,,) = db.getDetails(_deposition);
-        if (state != VerifierDb.State.Initialized)
-            throw;
+        require(state == VerifierDb.State.Initialized);
 
         db.challenge(_deposition, msg.sender, requiredBondAmount);
 
@@ -142,12 +130,9 @@ contract Verifier is Owned {
         VerifierDb db = VerifierDb(registry.db());
 
         var (state, bounty,,, challenger, challengedInBlock, bondAmount,) = db.getDetails(_deposition);
-        if (state != VerifierDb.State.Challenged)
-            throw;
-        if (block.number < challengedInBlock + timeoutBlockCount)
-            throw;
-        if (challenger != msg.sender)
-            throw;
+        require(state == VerifierDb.State.Challenged);
+        require(block.number >= challengedInBlock + timeoutBlockCount);
+        require(challenger == msg.sender);
 
         db.disprove(_deposition);
         
@@ -155,9 +140,7 @@ contract Verifier is Owned {
 
         bondHolder.unlockBond(msg.sender, bondAmount);
 
-        if (!msg.sender.send(bounty)) {
-            throw;
-        }
+        assert(msg.sender.send(bounty));
 
         DepositionDisproven(_deposition, msg.sender);
     }
@@ -167,14 +150,12 @@ contract Verifier is Owned {
         VerifierDb db = VerifierDb(registry.db());
 
         var (state,,,,,, bondAmount,) = db.getDetails(_deposition);
-        if (state != VerifierDb.State.Verified)
-            throw;
+        require(state == VerifierDb.State.Verified);
 
         BondHolder bondHolder = BondHolder(registry.bondHolder());
 
         // does the caller have enough bond on deposit?
-        if (bondHolder.availableBond(msg.sender) < bondAmount)
-            throw;
+        require(bondHolder.availableBond(msg.sender) >= bondAmount);
 
         contest(db, bondHolder, bondAmount, _deposition, msg.sender);
     }
@@ -184,14 +165,12 @@ contract Verifier is Owned {
         VerifierDb db = VerifierDb(registry.db());
 
         var (state,,,,,, bondAmount,) = db.getDetails(_deposition);
-        if (state != VerifierDb.State.Challenged)
-            throw;
+        require(state == VerifierDb.State.Challenged);
 
         BondHolder bondHolder = BondHolder(registry.bondHolder());
 
         // does the caller have enough bond on deposit?
-        if (bondHolder.availableBond(msg.sender) < bondAmount)
-            throw;
+        require(bondHolder.availableBond(msg.sender) >= bondAmount);
 
         contest(db, bondHolder, bondAmount, _deposition, msg.sender);
     }
@@ -210,11 +189,9 @@ contract Verifier is Owned {
         VerifierDb db = VerifierDb(registry.db());
 
         var (state,, verifier,, challenger,, bondAmount, contestor) = db.getDetails(_deposition);
-        if (state != VerifierDb.State.Contested)
-            throw;
+        require(state == VerifierDb.State.Contested);
         address oracle = registry.oracle();
-        if (msg.sender != oracle)
-            throw;
+        require(msg.sender == oracle);
 
         if (verifier != address(0)) {
             if (_proven) {
