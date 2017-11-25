@@ -1,4 +1,5 @@
-pragma solidity ^0.4.4;
+pragma solidity ^0.4.18;
+
 contract Server{ 
     bool public alive = true;
     function homicide(){

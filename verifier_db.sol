@@ -1,7 +1,7 @@
-pragma solidity ^0.4.4;
+pragma solidity ^0.4.18;
 
-import "owned.sol";
-import "verifier_registry.sol";
+import "./owned.sol";
+import "./verifier_registry.sol";
 
 contract VerifierDb is Owned {
 

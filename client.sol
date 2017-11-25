@@ -1,5 +1,7 @@
-pragma solidity ^0.4.4;
-import "server.sol";
+pragma solidity ^0.4.18;
+
+import "./server.sol";
+
 contract Client{
     Server public server;
     function Client(address _server) {

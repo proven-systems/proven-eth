@@ -18,11 +18,11 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-pragma solidity ^0.4.4;
+pragma solidity ^0.4.18;
 
-import "owned.sol";
-import "proven_registry.sol";
-import "proven_db.sol";
+import "./owned.sol";
+import "./proven_registry.sol";
+import "./proven_db.sol";
 
 /// Proven
 /// Allows callers to prove the provenance of a chain of hashed files stored in IPFS.
