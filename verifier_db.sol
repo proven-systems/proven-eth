@@ -74,7 +74,7 @@ contract VerifierDb is Owned {
 
     function verify(bytes32 _deposition, address _verifier, uint _bondAmount) public onlyVerifier {
 
-        Verification storage v = verifications[_deposition];
+        Verification memory v = verifications[_deposition];
 
         v.state = State.Verified;
         v.verifier = _verifier;
