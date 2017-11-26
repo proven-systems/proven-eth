@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+  - "6"
+install:
+  - npm install -g truffle
+  - npm install
+script:
+  - truffle compile
+  - truffle test
