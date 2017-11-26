@@ -48,7 +48,7 @@ contract VerifierDb is Owned {
 
     function getDetails(bytes32 _deposition) public constant onlyVerifier returns(State state, uint bounty, address verifier, uint verifiedInBlock, address challenger, uint challengedInBlock, uint bondAmount, address contestor) {
 
-        Verification storage v = verifications[_deposition];
+        Verification memory v = verifications[_deposition];
 
         state = v.state;
         bounty = v.bounty;
@@ -62,10 +62,12 @@ contract VerifierDb is Owned {
 
     function initialize(bytes32 _deposition, uint _bounty) public onlyVerifier {
 
-        Verification storage v = verifications[_deposition];
+        Verification memory v = verifications[_deposition];
 
         v.state = State.Initialized;
         v.bounty = _bounty;
+
+        verifications[_deposition] = v;
 
         Stored(_deposition, _bounty);
     }
@@ -79,45 +81,55 @@ contract VerifierDb is Owned {
         v.verifiedInBlock = block.number;
         v.bondAmount = _bondAmount;
 
+        verifications[_deposition] = v;
+
         Verified(_deposition, _verifier);
     }
 
     function prove(bytes32 _deposition) public onlyVerifier {
 
-        Verification storage v = verifications[_deposition];
+        Verification memory v = verifications[_deposition];
 
         v.state = State.Proven;
+
+        verifications[_deposition] = v;
 
         Proven(_deposition);
     }
 
     function challenge(bytes32 _deposition, address _challenger, uint _bondAmount) public onlyVerifier {
 
-        Verification storage v = verifications[_deposition];
+        Verification memory v = verifications[_deposition];
 
         v.state = State.Challenged;
         v.challenger = _challenger;
         v.challengedInBlock = block.number;
         v.bondAmount = _bondAmount;
 
+        verifications[_deposition] = v;
+
         Challenged(_deposition, _challenger);
     }
 
     function disprove(bytes32 _deposition) public onlyVerifier {
 
-        Verification storage v = verifications[_deposition];
+        Verification memory v = verifications[_deposition];
 
         v.state = State.Disproven;
+
+        verifications[_deposition] = v;
 
         Disproven(_deposition);
     }
 
     function contest(bytes32 _deposition, address _contestor) public onlyVerifier {
 
-        Verification storage v = verifications[_deposition];
+        Verification memory v = verifications[_deposition];
 
         v.state = State.Contested;
         v.contestor = _contestor;
+
+        verifications[_deposition] = v;
 
         Contested(_deposition, _contestor);
     }
