@@ -41,19 +41,17 @@ contract ProvenDb is Owned
     }
 
     modifier onlyProven() {
-        if (msg.sender != registry.proven())
-            throw;
+        require(msg.sender == registry.proven());
         _;
     }
 
     modifier onlyNewReceipt(bytes32 _id) {
-        if (depositions[_id].deponent != 0)
-            throw;
+        require(depositions[_id].deponent == 0);
         _;
     }
 
     /// Constructor
-    function ProvenDb(address _registry) {
+    function ProvenDb(address _registry) public {
         registry = ProvenRegistry(_registry);
     }
 
