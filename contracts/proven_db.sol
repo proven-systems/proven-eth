@@ -58,7 +58,7 @@ contract ProvenDb is Owned
     function storeDeposition(address _deponent, bytes _ipfs_hash) public onlyProven returns (bytes32) {
 
         // generate hash to send back to caller
-        bytes32 id = sha3(msg.data, block.number);
+        bytes32 id = keccak256(msg.data, block.number);
 
         store(id, _deponent, _ipfs_hash);
 

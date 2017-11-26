@@ -1,18 +1,10 @@
 Proven Contracts
 
-# Prerequisites
-`npm install`
+This project uses the [Truffle](http://truffleframework.com/) framework.
 
-# Building
-`npm run build`
+Commands:
 
-... produces ABI, binary, and assembly in the `./output` directory.
+  Compile:        truffle compile
+  Migrate:        truffle migrate
+  Test contracts: truffle test
 
-# Deployment
-Requires a local Ethereum node (such as [Parity](https://github.com/ethcore/parity) running on port 8545:
-`parity --geth`
-
-`npm run deploy`
-
-# Testing
-`firefox test/index.html`

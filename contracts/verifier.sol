@@ -188,7 +188,7 @@ contract Verifier is Owned {
 
         VerifierDb db = VerifierDb(registry.db());
 
-        var (state,, verifier,, challenger,, bondAmount, contestor) = db.getDetails(_deposition);
+        var (state,, verifier,,,, bondAmount, contestor) = db.getDetails(_deposition);
         require(state == VerifierDb.State.Contested);
         address oracle = registry.oracle();
         require(msg.sender == oracle);
