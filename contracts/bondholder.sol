@@ -1,9 +1,9 @@
 pragma solidity ^0.4.18;
 
-import "./owned.sol";
+import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 import "./bondholder_registry.sol";
 
-contract BondHolder is Owned {
+contract BondHolder is Ownable {
 
     BondHolderRegistry public registry;
 

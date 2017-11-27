@@ -20,11 +20,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 pragma solidity ^0.4.18;
 
-import "./owned.sol";
+import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 
 /// ProvenRelay
 /// Logs IPFS hashes to the blockchain so indexers can find them.
-contract ProvenRelay is Owned {
+contract ProvenRelay is Ownable {
 
     /// Logged when this occurs
     event DepositionPublished(address _deponent, bytes _ipfs_hash);

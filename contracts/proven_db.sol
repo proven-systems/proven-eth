@@ -20,13 +20,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 pragma solidity ^0.4.18;
 
-import "./owned.sol";
+import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 import "./proven_registry.sol";
 
 /// ProvenDb
 /// Back-end storage contract for the Proven app.
 
-contract ProvenDb is Owned
+contract ProvenDb is Ownable
 {
     event DepositionStored(bytes32 _deposition, address _deponent, bytes _ipfs_hash);
 

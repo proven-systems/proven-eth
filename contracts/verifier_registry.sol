@@ -20,13 +20,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 pragma solidity ^0.4.18;
 
-import "./owned.sol";
+import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 
 /// VerifierRegistry
 /// Allows separation of the contract implementation from the interface so
 /// things like mobile clients only need a single access point, and internal
 /// contracts don't need to store dependents.
-contract VerifierRegistry is Owned {
+contract VerifierRegistry is Ownable {
 
     address public proven;
     address public verifier;

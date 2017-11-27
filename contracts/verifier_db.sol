@@ -1,9 +1,9 @@
 pragma solidity ^0.4.18;
 
-import "./owned.sol";
+import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 import "./verifier_registry.sol";
 
-contract VerifierDb is Owned {
+contract VerifierDb is Ownable {
 
     VerifierRegistry public registry;
 
