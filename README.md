@@ -1,6 +1,6 @@
 Proven Contracts
 
-This project uses the [Truffle](http://truffleframework.com/) framework.
+This project uses the [Truffle](http://truffleframework.com/) framework and [openzeppelin](https://openzeppelin.org/) smart contracts.
 
 Commands:
 
