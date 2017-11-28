@@ -4,18 +4,26 @@
   "private": true,
   "description": "Proven Suite",
   "devDependencies": {
-    "mkdirp": "^0.5.1",
-    "solc": "^0.4.9"
+    "truffle": "^4.0.1",
+    "zeppelin-solidity": "^1.4.0",
+    "npm-watch": "^0.2.0"
   },
   "license": "AGPL-3.0",
   "scripts": {
     "build": "node build.js",
     "deploy": "node deploy.js",
-    "clean": "rm -rf output"
+    "clean": "rm -rf output",
+    "test": "truffle test",
+    "watch": "npm-watch"
   },
-  "dependencies": {
-    "truffle": "^4.0.1",
-    "web3": "^0.17.0-beta",
-    "zeppelin-solidity": "^1.4.0"
+  "watch": {
+    "test": {
+      "patterns": [
+        "truffle",
+        "test",
+        "contracts"
+      ],
+      "extensions": "js,json,sol"
+    }
   }
 }
