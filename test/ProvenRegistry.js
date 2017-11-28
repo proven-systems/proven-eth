@@ -8,6 +8,7 @@ contract('ProvenRegistry', function(accounts) {
 	let provenRegistry;
 	let provenDb;
 	let proven;
+	let depositor = accounts[1];
 
 	beforeEach(async function(){
 		provenRegistry = await ProvenRegistry.new();
@@ -22,13 +23,15 @@ contract('ProvenRegistry', function(accounts) {
 		assert.isFalse(provenDb.address === proven.address);
 	});
 
-//	it('should set the proven and db', async function(){
-//		assert.isTrue(provenRegistry.proven === proven.address);
-//		assert.isTrue(provenRegistry.db === provenDb.address);
-//	});
+	it('should publish an anonymous deposition', async function(){
+		var result = await proven.publishDeposition("Qmb7Uwc39Q7YpPsfkWj54S2rMgdV6D845Sgr75GyxZfV4V");
+		assert('DepositionPublished' === result.logs[0].event);
+	});
 
-//	describe('construction', function(){
-//	});
+	it('should publish a deposition from an account', async function(){
+		var result = await proven.publishDeposition(depositor.address, "Qmb7Uwc39Q7YpPsfkWj54S2rMgdV6D845Sgr75GyxZfV4V");
+		assert('DepositionPublished' === result.logs[0].event);
+	});
 });
 
 /*
