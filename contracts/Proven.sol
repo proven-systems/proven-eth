@@ -21,8 +21,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 pragma solidity ^0.4.18;
 
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
-import "./proven_registry.sol";
-import "./proven_db.sol";
+import "./ProvenRegistry.sol";
+import "./ProvenDb.sol";
 
 /// Proven
 /// Allows callers to prove the provenance of a chain of hashed files stored in IPFS.

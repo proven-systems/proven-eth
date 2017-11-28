@@ -1,10 +1,10 @@
 pragma solidity ^0.4.18;
 
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
-import "./verifier_registry.sol";
-import "./verifier_db.sol";
-import "./proven.sol";
-import "./bondholder.sol";
+import "./VerifierRegistry.sol";
+import "./VerifierDb.sol";
+import "./Proven.sol";
+import "./BondHolder.sol";
 
 contract Verifier is Ownable {
 

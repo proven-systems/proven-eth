@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 pragma solidity ^0.4.18;
 
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
-import "./proven_registry.sol";
+import "./ProvenRegistry.sol";
 
 /// ProvenDb
 /// Back-end storage contract for the Proven app.
