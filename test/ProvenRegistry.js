@@ -10,7 +10,7 @@ contract('ProvenRegistry', function(accounts) {
 	let proven;
 	let depositor = accounts[1];
 
-	beforeEach(async function(){
+	before(async function(){
 		provenRegistry = await ProvenRegistry.new();
 		proven = await Proven.new( provenRegistry.address );
 		await provenRegistry.setProven( proven.address );
