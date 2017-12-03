@@ -24,32 +24,33 @@ import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 import "./ProvenRegistry.sol";
 import "./ProvenDb.sol";
 
+
 /// Proven
 /// Allows callers to prove the provenance of a chain of hashed files stored in IPFS.
 contract Proven is Ownable {
 
-    ProvenRegistry public registry;
+  ProvenRegistry public registry;
 
-    /// Logged when this occurs
-    event DepositionPublished(bytes32 _deposition, address _deponent, bytes _ipfs_hash);
+  /// Logged when this occurs
+  event DepositionPublished(bytes32 _deposition, address _deponent, bytes _ipfsHash);
 
-    /// Constructor must be passed a backend
-    function Proven(address _registry) public {
-        registry = ProvenRegistry(_registry);
-    }
+  /// Constructor must be passed a backend
+  function Proven(address _registry) public {
+    registry = ProvenRegistry(_registry);
+  }
 
-    /// Publish a deposition
-    function publishDeposition(bytes _ipfs_hash) public returns (bytes32) {
-        return publishDeposition(msg.sender, _ipfs_hash);
-    }
+  /// Publish a deposition
+  function publishDeposition(bytes _ipfsHash) public returns (bytes32) {
+    return publishDeposition(msg.sender, _ipfsHash);
+  }
 
-    function publishDeposition(address _owner, bytes _ipfs_hash) public returns (bytes32) {
+  function publishDeposition(address _owner, bytes _ipfsHash) public returns (bytes32) {
 
-        ProvenDb db = ProvenDb(registry.db());
-        bytes32 id = db.storeDeposition(_owner, _ipfs_hash);
+    ProvenDb db = ProvenDb(registry.db());
+    bytes32 id = db.storeDeposition(_owner, _ipfsHash);
 
-        DepositionPublished(id, _owner, _ipfs_hash);
+    DepositionPublished(id, _owner, _ipfsHash);
 
-        return id;
-    }
+    return id;
+  }
 }

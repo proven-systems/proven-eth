@@ -22,20 +22,21 @@ pragma solidity ^0.4.18;
 
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 
+
 /// Registry
 /// Allows separation of the contract implementation from the interface so
 /// things like mobile clients only need a single access point, and internal
 /// contracts don't need to store dependents.
 contract ProvenRegistry is Ownable {
 
-    address public proven;
-    address public db;
+  address public proven;
+  address public db;
 
-    function setProven(address _proven) public onlyOwner {
-        proven = _proven;
-    }
+  function setProven(address _proven) public onlyOwner {
+    proven = _proven;
+  }
 
-    function setDb(address _db) public onlyOwner {
-        db = _db;
-    }
+  function setDb(address _db) public onlyOwner {
+    db = _db;
+  }
 }

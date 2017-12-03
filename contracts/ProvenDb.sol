@@ -23,55 +23,56 @@ pragma solidity ^0.4.18;
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 import "./ProvenRegistry.sol";
 
+
 /// ProvenDb
 /// Back-end storage contract for the Proven app.
 
-contract ProvenDb is Ownable
-{
-    event DepositionStored(bytes32 _deposition, address _deponent, bytes _ipfs_hash);
+contract ProvenDb is Ownable {
 
-    ProvenRegistry public registry;
+  event DepositionStored(bytes32 _deposition, address _deponent, bytes _ipfsHash);
 
-    /// Collection of all depositions
-    mapping(bytes32 => Deposition) public depositions;
+  ProvenRegistry public registry;
 
-    struct Deposition {
-        address deponent;
-        bytes ipfs_hash;
-    }
+  /// Collection of all depositions
+  mapping(bytes32 => Deposition) public depositions;
 
-    modifier onlyProven() {
-        require(msg.sender == registry.proven());
-        _;
-    }
+  struct Deposition {
+    address deponent;
+    bytes ipfsHash;
+  }
 
-    modifier onlyNewReceipt(bytes32 _id) {
-        require(depositions[_id].deponent == 0);
-        _;
-    }
+  modifier onlyProven() {
+    require(msg.sender == registry.proven());
+    _;
+  }
 
-    /// Constructor
-    function ProvenDb(address _registry) public {
-        registry = ProvenRegistry(_registry);
-    }
+  modifier onlyNewReceipt(bytes32 _id) {
+    require(depositions[_id].deponent == 0);
+    _;
+  }
 
-    function storeDeposition(address _deponent, bytes _ipfs_hash) public onlyProven returns (bytes32) {
+  /// Constructor
+  function ProvenDb(address _registry) public {
+    registry = ProvenRegistry(_registry);
+  }
 
-        // generate hash to send back to caller
-        bytes32 id = keccak256(msg.data, block.number);
+  function storeDeposition(address _deponent, bytes _ipfsHash) public onlyProven returns (bytes32) {
 
-        store(id, _deponent, _ipfs_hash);
+    // generate hash to send back to caller
+    bytes32 id = keccak256(msg.data, block.number);
 
-        return id;
-    }
+    store(id, _deponent, _ipfsHash);
 
-    function store(bytes32 _id, address _deponent, bytes _ipfs_hash) internal onlyNewReceipt(_id) {
+    return id;
+  }
 
-        var deposition = depositions[_id];
+  function store(bytes32 _id, address _deponent, bytes _ipfsHash) internal onlyNewReceipt(_id) {
 
-        deposition.deponent = _deponent;
-        deposition.ipfs_hash = _ipfs_hash;
+    var deposition = depositions[_id];
 
-        DepositionStored(_id, _deponent, _ipfs_hash);
-    }
+    deposition.deponent = _deponent;
+    deposition.ipfsHash = _ipfsHash;
+
+    DepositionStored(_id, _deponent, _ipfsHash);
+  }
 }
