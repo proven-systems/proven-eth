@@ -36,6 +36,7 @@ contract('ProvenRegistry', function(accounts) {
     await verifierRegistry.setDb( verifierDb.address );
     verifier = await Verifier.new( verifierRegistry.address, 10, 10, 10 );
     await verifierRegistry.setVerifier( verifier1 );
+    await verifierRegistry.setOracle( oracle );
     bondHolderRegistry = await BondHolderRegistry.new();
     bondHolder = await BondHolder.new( bondHolderRegistry.address, beneficiary );
     await bondHolderRegistry.setBondHolder( bondHolder.address );
