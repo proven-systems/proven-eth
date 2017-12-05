@@ -10,22 +10,26 @@ var BondHolder = artifacts.require('../contracts/BondHolder.sol');
 var BondHolderRegistry = artifacts.require('../contracts/BondHolderRegistry.sol');
 
 contract('ProvenRegistry', function(accounts) {
-	let provenRegistry;
-	let provenDb;
-	let proven;
-	let verifierRegistry;
-	let verifierDb;
-	let verifier;
+  let provenRegistry;
+  let provenDb;
+  let proven;
+  let verifierRegistry;
+  let verifierDb;
+  let verifier;
   let bondHolder;
   let bondHolderRegistry;
-	let depositor1 = accounts[1];
-	let depositor2 = accounts[2];
-	let verifier1 = accounts[3];
-	let verifier2 = accounts[4];
-  let oracle = accounts[5];
-  let beneficiary = accounts[6];
+  let deposition1;
+  let deposition2;
+  let deposition3;
+  let depositor1 = accounts[1];
+  let depositor2 = accounts[2];
+  let depositor3 = accounts[3];
+  let verifier1 = accounts[4];
+  let verifier2 = accounts[5];
+  let oracle = accounts[6];
+  let beneficiary = accounts[7];
 
-	before(async function(){
+  before(async function(){
     provenRegistry = await ProvenRegistry.new();
     proven = await Proven.new( provenRegistry.address );
     await provenRegistry.setProven( proven.address );
@@ -42,23 +46,37 @@ contract('ProvenRegistry', function(accounts) {
     await bondHolderRegistry.setBondHolder( bondHolder.address );
 	});
 
-	it('should have addresses', async function(){
+  it('should have addresses', async function(){
     assert.isFalse(provenRegistry.address === proven.address);
     assert.isFalse(provenDb.address === proven.address);
     assert.isFalse(verifierRegistry.address === verifier.address);
     assert.isFalse(verifier.Db === verifier.address);
     assert.isFalse(bondHolderRegistry.address === bondHolder.address);
-	});
+  });
 
-	it('should publish an anonymous deposition', async function(){
+  // Publish a deposition without specifying the depositor
+  it('should publish an anonymous deposition', async function(){
     var result = await proven.publishDeposition("Qmb7Uwc39Q7YpPsfkWj54S2rMgdV6D845Sgr75GyxZfV4V");
+    deposition1 = result.tx;
+    assert(depositor1 != result.logs[0].args['_deponent']);
     assert('DepositionPublished' === result.logs[0].event);
-	});
+  });
 
-	it('should publish a deposition from an account', async function(){
-    var result = await proven.publishDeposition(depositor1.address, "Qmb7Uwc39Q7YpPsfkWj54S2rMgdV6D845Sgr75GyxZfV4V");
+  // Publish a deposition specifying the depositor
+  it('should publish a deposition from an account', async function(){
+    var result = await proven.publishDeposition(depositor2.address, "Qmb7Uwc39Q7YpPsfkWj54S2rMgdV6D845Sgr75GyxZfV4V");
+    deposition2 = result.tx;
+    assert(depositor2 != result.logs[0].args['_deponent']);
     assert('DepositionPublished' === result.logs[0].event);
-	});
+  });
+
+  // Publish a deposition directly from the depositor
+  it('should publish a deposition made directly by a specific depositor', async function(){
+    var result = await proven.publishDeposition(depositor3.address, "Qmb7Uwc39Q7YpPsfkWj54S2rMgdV6D845Sgr75GyxZfV4V", {from: depositor3});
+    deposition3 = result.tx;
+    assert(depositor3 === result.logs[0].args['_deponent']);
+    assert('DepositionPublished' === result.logs[0].event);
+  });
 
   // // there should be more than one depositor
   // the depositor and the verifier should be different entities
