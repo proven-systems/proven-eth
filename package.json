@@ -5,7 +5,8 @@
   "description": "Proven Suite",
   "devDependencies": {
     "mkdirp": "^0.5.1",
-    "solc": "^0.4.9"
+    "solc": "^0.4.9",
+    "solidity-coverage": "^0.4.2"
   },
   "license": "AGPL-3.0",
   "scripts": {
