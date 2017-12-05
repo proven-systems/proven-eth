@@ -60,16 +60,17 @@ contract('ProvenRegistry', function(accounts) {
     assert('DepositionPublished' === result.logs[0].event);
 	});
 
-  // there should be more than one depositor
-  // the verifier and the depositor should be different entities
+  // // there should be more than one depositor
+  // the depositor and the verifier should be different entities
   // // there should be more than one verifier
   // the verifier should be able to set a bond
   // the verifier should pick up the deposition and verify it
   // the verification should appear on the blockchain
-  // I should be able to look up the verification based on the IPFS hash
-  // I should be able to look up the verification based on the SHA1 hash
-  // I should be able to look up the verification based on the SHA256 hash
-  // someone hould be able to challenge the verification falsely and lose her money
+  // the depositor should be able to look up the verification:
+  // based on the IPFS hash
+  // based on the SHA1 hash
+  // based on the SHA256 hash
+  // someone should be able to challenge the verification falsely and lose her money
   // the challenger should be able to challenge the verification truthfully and win her money
   // the verifier should be able to answer the the verification challenge and keep her money
   // the challenger should get the money when the verifier does not answer the challenge
