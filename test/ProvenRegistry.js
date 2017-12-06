@@ -9,6 +9,7 @@ var VerifierRegistry = artifacts.require('../contracts/VerifierRegistry.sol');
 var BondHolder = artifacts.require('../contracts/BondHolder.sol');
 var BondHolderRegistry = artifacts.require('../contracts/BondHolderRegistry.sol');
 
+
 contract('ProvenRegistry', function(accounts) {
   let provenRegistry;
   let provenDb;
@@ -82,6 +83,15 @@ contract('ProvenRegistry', function(accounts) {
   // the depositor and the verifier should be different entities
   // // there should be more than one verifier
   // the verifier should be able to set a bond
+  it('should let a verifier set up a bond', async function(){
+    assert( ! (await bondHolder.isBonded( verifier1 )));
+    var amount = new web3.BigNumber(web3.toWei(11, 'ether'));
+    var result = await bondHolder.depositBond({ from: verifier1, to: bondHolder.address, value: amount });
+    assert(verifier1.address === result.logs[0].args['address']);
+    assert('BondDeposited' === result.logs[0].event);
+    assert( await bondHolder.isBonded( verifier1 ));
+  });
+
   // the verifier should pick up the deposition and verify it
   // the verification should appear on the blockchain
   // the depositor should be able to look up the verification:
