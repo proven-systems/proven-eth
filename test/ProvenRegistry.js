@@ -79,9 +79,6 @@ contract('ProvenRegistry', function(accounts) {
     assert('DepositionPublished' === result.logs[0].event);
   });
 
-  // // there should be more than one depositor
-  // the depositor and the verifier should be different entities
-  // // there should be more than one verifier
   // the verifier should be able to set a bond
   it('should let a verifier set up a bond', async function(){
     assert( ! (await bondHolder.isBonded( verifier1 )));
@@ -90,6 +87,8 @@ contract('ProvenRegistry', function(accounts) {
     assert(verifier1.address === result.logs[0].args['address']);
     assert('BondDeposited' === result.logs[0].event);
     assert( await bondHolder.isBonded( verifier1 ));
+    result = await bondHolder.availableBond( verifier1 );
+    assert( amount === result );
   });
 
   // the verifier should pick up the deposition and verify it
