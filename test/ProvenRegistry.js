@@ -81,14 +81,21 @@ contract('ProvenRegistry', function(accounts) {
 
   // the verifier should be able to set a bond
   it('should let a verifier set up a bond', async function(){
+    // there should be no bond to start
     assert( ! (await bondHolder.isBonded( verifier1 )));
     var amount = new web3.BigNumber(web3.toWei(11, 'ether'));
     var result = await bondHolder.depositBond({ from: verifier1, to: bondHolder.address, value: amount });
     assert(verifier1.address === result.logs[0].args['address']);
     assert('BondDeposited' === result.logs[0].event);
+    // there should now be a bond
     assert( await bondHolder.isBonded( verifier1 ));
+    // The bond should be what we set it to
+    //    { [String: '11000000000000000000'] s: 1, e: 19, c: [ 110000 ] }
     result = await bondHolder.availableBond( verifier1 );
-    assert( amount === result );
+    assert( amount[0] === result[0] );
+    assert( amount.s === result.s );
+    assert( amount.e === result.e );
+    assert( amount.c[0] === result.c[0] );
   });
 
   // the verifier should pick up the deposition and verify it
