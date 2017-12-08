@@ -1,7 +1,7 @@
 /*
-Proven Relay contract
+Registry contract
 Part of the Proven suite of software
-Copyright (C) 2017 "The Partnership"
+Copyright (C) 2016 "The Partnership"
 (Ethereum 0x12B0621D90c69867957A836d677C64c46EC4291D)
 
 This program is free software: you can redistribute it and/or modify
@@ -20,25 +20,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 pragma solidity ^0.4.18;
 
-import "./owned.sol";
+import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 
-/// ProvenRelay
-/// Logs IPFS hashes to the blockchain so indexers can find them.
-contract ProvenRelay is Owned {
 
-    /// Logged when this occurs
-    event DepositionPublished(address _deponent, bytes _ipfs_hash);
+/// Registry
+/// Allows separation of the contract implementation from the interface so
+/// things like mobile clients only need a single access point, and internal
+/// contracts don't need to store dependents.
+contract ProvenRegistry is Ownable {
 
-    /// Constructor must be passed a backend
-    function ProvenRelay() public {
-    }
+  address public proven;
+  address public db;
 
-    /// Publish a deposition
-    function publishDeposition(bytes _ipfs_hash) public {
-        publishDeposition(msg.sender, _ipfs_hash);
-    }
+  function setProven(address _proven) public onlyOwner {
+    proven = _proven;
+  }
 
-    function publishDeposition(address _owner, bytes _ipfs_hash) public {
-        DepositionPublished(_owner, _ipfs_hash);
-    }
+  function setDb(address _db) public onlyOwner {
+    db = _db;
+  }
 }
