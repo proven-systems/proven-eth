@@ -23,7 +23,8 @@ contract('ProvenRegistry', function(accounts) {
   let deposition2;
   let deposition3;
   let deposition4;
-  let verification1;
+  let deposition5;
+  let verification1, verification2, verification3;
   let depositor1 = accounts[1];
   let depositor2 = accounts[2];
   let depositor3 = accounts[3];
@@ -108,7 +109,6 @@ contract('ProvenRegistry', function(accounts) {
   it('should let a verifier publish a deposition through the verifier', async function(){
 
     var amount = new web3.BigNumber(web3.toWei(.01, 'ether'));
-    // starting with a new deposition
     deposition4 = await verifier.publishDeposition("QmVpYa8krJAdwDEcHcWVwyg2vznS3MoAXycaLHmqPWkn8j", {from: verifier1, value: amount});
     assert(deposition4.logs[0].event === 'DepositionPublished');
   });
@@ -122,41 +122,38 @@ contract('ProvenRegistry', function(accounts) {
     assert(verification1.logs[0].args.deposition === depoId);
   });
 
-/*
-  // an unbonded verifier should not be able to publish a verification
-  it('should not let an unbonded verifier publish a verification', async function(){
-    // starting with a new deposition
-    var depo = await verifier.publishDeposition("QmVpYa8krJAdwDEcHcWVwyg2vznS3MoAXycaLHmqPWkn8j", {from: verifier2});
-    console.log(depo);
+  // an unbonded verifier should be able to publish a deposition
+  it('should let an unbonded verifier publish a verification', async function(){
+    assert( !(await bondHolder.isBonded( verifier2 )));
+    var amount = new web3.BigNumber(web3.toWei(.01, 'ether'));
+    deposition5 = await verifier.publishDeposition("QmTbhNNgnSzDnQj8mLELcxqZKwUwbzpnHj2iMeqscjpDEF", {from: verifier2, value: amount});
+    assert(deposition5.logs[0].event === 'DepositionPublished');
   });
 
-  // a bonded verifier should be able to verify a deposition
-  it('should let a bonded verifier publish a verification', async function(){
-    var depoId = deposition1.logs[0].args._deposition;
-    var amount = new web3.BigNumber(web3.toWei(4, 'ether'));
-    var result = await bondHolder.depositBond({ from: verifier1, to: whale, value: amount });
-    console.log('whale');
-    console.log(whale);
-    console.log('verifier1');
-    console.log(verifier1);
+  // but the unbonded verifier should not be able to verify it
+  it('should not let the unbonded verifier verify the deposition', async function(){
+    assert( !(await bondHolder.isBonded( verifier2 )));
+    var failure = false;
+    var depoId = deposition5.logs[0].args.deposition;
+    // would be better to use OpenZeppelin's expectThrow but I can't figure out how
+    // https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/test/helpers/expectThrow.js
+    try {
+      await verifier.verifyDeposition( depoId, {from: verifier2});
+    } catch (error) {
+      failure = true;
+    }
+    assert(failure);
+  });
+
+  // a bonded verifier should be able to verify the deposition
+  // made by an unbonded verifier
+  it('should allow verification by a different verifier', async function(){
     assert( await bondHolder.isBonded( verifier1 ));
-    console.log(await bondHolder.availableBond( verifier1 ));
-    var veri = await verifier.verifyDeposition( depoId, {from: verifier1});
-    console.log(veri);
-    console.log(veri.logs);
+    var depoId = deposition5.logs[0].args.deposition;
+    verification3 = await verifier.verifyDeposition( depoId, {from: verifier1});
+    assert(verification3.logs[0].event === 'DepositionVerified');
+    assert(verification3.logs[0].args.deposition === depoId);
   });
-
-  // not sure why this is possible or desirable?
-  it('should publish a deposition from the verifier', async function(){
-    var amount = new web3.BigNumber(web3.toWei(1, 'ether'));
-    var result = await verifier.publishDeposition("QmV5jC9fhg12UvYj3XQYmXcfy4DMuuqCn3yVR8Mn31BVro", {from: verifier1, to: verifier1, value: amount});
-    var depoId = deposition1.logs[0].args._deposition;
-    console.log(depoId);
-    var veri = await verifier.verifyDeposition( depoId, {from: verifier1, to: verifier1 });
-    console.log(veri);
-  });
-
-*/
 
   // the verification should appear on the blockchain
 
