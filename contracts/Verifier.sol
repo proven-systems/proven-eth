@@ -75,6 +75,7 @@ contract Verifier is Ownable {
     BondHolder bondHolder = BondHolder(registry.bondHolder());
 
     require(bondHolder.isBonded(msg.sender));
+    require((bondHolder.availableBond(msg.sender) - requiredBondAmount) >= 0);
 
     VerifierDb db = VerifierDb(registry.db());
 

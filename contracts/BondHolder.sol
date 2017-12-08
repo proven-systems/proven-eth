@@ -98,19 +98,19 @@ contract BondHolder is Ownable {
   function lockBond(address _bonded, uint _amount) public onlyBeneficiary {
 
     // cannot lock more than bonded has on deposit
-    require((bonds[msg.sender].lockedAmount + _amount) <= bonds[msg.sender].balance);
+    require((bonds[_bonded].lockedAmount + _amount) <= bonds[_bonded].balance);
 
-    bonds[msg.sender].lockedAmount += _amount;
+    bonds[_bonded].lockedAmount += _amount;
 
     BondLocked(_bonded, _amount);
   }
 
   function unlockBond(address _bonded, uint _amount) public onlyBeneficiary {
 
-    if (_amount > bonds[msg.sender].lockedAmount) {
-      bonds[msg.sender].lockedAmount = 0;
+    if (_amount > bonds[_bonded].lockedAmount) {
+      bonds[_bonded].lockedAmount = 0;
     } else {
-      bonds[msg.sender].lockedAmount -= _amount;
+      bonds[_bonded].lockedAmount -= _amount;
     }
 
     BondUnlocked(_bonded, _amount);
