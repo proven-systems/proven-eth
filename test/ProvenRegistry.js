@@ -155,7 +155,15 @@ contract('ProvenRegistry', function(accounts) {
     assert(verification3.logs[0].args.deposition === depoId);
   });
 
-  // the verification should appear on the blockchain
+  // when someone challenges the verification falsely she loses her money
+
+  // the challenger should be able to challenge the verification and win her money
+
+  // the verifier should be able to answer the the verification challenge and keep her money
+
+  // the challenger should get the money when the verifier does not answer the challenge
+
+  // the challenger should get her money when the block count expires
 
   // the depositor should be able to look up the verification:
 
@@ -164,14 +172,6 @@ contract('ProvenRegistry', function(accounts) {
   // based on the SHA1 hash
 
   // based on the SHA256 hash
-
-  // someone should be able to challenge the verification falsely and lose her money
-
-  // the challenger should be able to challenge the verification truthfully and win her money
-
-  // the verifier should be able to answer the the verification challenge and keep her money
-
-  // the challenger should get the money when the verifier does not answer the challenge
 
 });
 /*
