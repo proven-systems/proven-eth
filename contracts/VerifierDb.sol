@@ -106,7 +106,7 @@ contract VerifierDb is Ownable {
 
     verifications[_deposition] = v;
 
-    if( _ipfsHash.length != 0 ){
+    if (_ipfsHash.length != 0) {
       depositionsFromIPFSHash[_ipfsHash] = _deposition;
     }
 
