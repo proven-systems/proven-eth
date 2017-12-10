@@ -179,12 +179,12 @@ contract Verifier is Ownable {
 
   function decideChallenge(bytes32 _deposition, bool _proven) public {
 
-    VerifierDb db = VerifierDb(registry.db());
-
-    var (state,, verifier,,,, bondAmount, contestor) = db.getDetails(_deposition);
-    require(state == VerifierDb.State.Contested);
     address oracle = registry.oracle();
     require(msg.sender == oracle);
+
+    VerifierDb db = VerifierDb(registry.db());
+    var (state,, verifier,,,, bondAmount, contestor) = db.getDetails(_deposition);
+    require(state == VerifierDb.State.Contested);
 
     if (_proven) {
       db.prove(_deposition);
