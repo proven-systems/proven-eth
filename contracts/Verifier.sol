@@ -186,26 +186,14 @@ contract Verifier is Ownable {
     address oracle = registry.oracle();
     require(msg.sender == oracle);
 
-    if (verifier != address(0)) {
-      if (_proven) {
-        db.prove(_deposition);
-        distributeContestReward(verifier, bondAmount, contestor, oracle);
-        DepositionProven(_deposition, verifier);
-      } else {
-        db.disprove(_deposition);
-        distributeContestReward(contestor, bondAmount, verifier, oracle);
-        DepositionDisproven(_deposition, contestor);
-      }
+    if (_proven) {
+      db.prove(_deposition);
+      distributeContestReward(verifier, bondAmount, contestor, oracle);
+      DepositionProven(_deposition, verifier);
     } else {
-      if (_proven) {
-        db.prove(_deposition);
-        distributeContestReward(verifier, bondAmount, contestor, oracle);
-        DepositionProven(_deposition, verifier);
-      } else {
-        db.disprove(_deposition);
-        distributeContestReward(contestor, bondAmount, verifier, oracle);
-        DepositionDisproven(_deposition, contestor);
-      }
+      db.disprove(_deposition);
+      distributeContestReward(contestor, bondAmount, verifier, oracle);
+      DepositionDisproven(_deposition, contestor);
     }
   }
 
