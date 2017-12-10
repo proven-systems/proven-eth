@@ -23,6 +23,7 @@ contract VerifierDb is Ownable {
   struct Verification {
     State state;
     uint bounty;
+//    uint deposedInBlock;
     address verifier;
     uint verifiedInBlock;
     address challenger;
