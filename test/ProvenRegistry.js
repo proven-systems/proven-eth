@@ -33,6 +33,11 @@ contract('ProvenRegistry', function(accounts) {
   let oracle = accounts[6];
   let beneficiary = accounts[7];
   let whale = accounts[8];
+  let ipfsPic1 = "Qmb7Uwc39Q7YpPsfkWj54S2rMgdV6D845Sgr75GyxZfV4V";
+  let ipfsPic2 = "Qmb7Uwc39Q7YpPsfkWj54S2rMgdV6D845Sgr75GyxZfV4V";
+  let ipfsPic3 = "Qmb7Uwc39Q7YpPsfkWj54S2rMgdV6D845Sgr75GyxZfV4V";
+  let ipfsPic4 = "QmVpYa8krJAdwDEcHcWVwyg2vznS3MoAXycaLHmqPWkn8j";
+  let ipfsPic5 = "QmTbhNNgnSzDnQj8mLELcxqZKwUwbzpnHj2iMeqscjpDEF";
 
   before(async function(){
     provenRegistry = await ProvenRegistry.new();
@@ -64,7 +69,7 @@ contract('ProvenRegistry', function(accounts) {
 
   // Publish a deposition without specifying the depositor
   it('should publish an anonymous deposition', async function(){
-    var result = await proven.publishDeposition("Qmb7Uwc39Q7YpPsfkWj54S2rMgdV6D845Sgr75GyxZfV4V");
+    var result = await proven.publishDeposition(ipfsPic1);
     deposition1 = result;
     assert(depositor1 != result.logs[0].args['_deponent']);
     assert('DepositionPublished' === result.logs[0].event);
@@ -72,7 +77,7 @@ contract('ProvenRegistry', function(accounts) {
 
   // Publish a deposition specifying the depositor
   it('should publish a deposition from an account', async function(){
-    var result = await proven.publishDeposition(depositor2.address, "Qmb7Uwc39Q7YpPsfkWj54S2rMgdV6D845Sgr75GyxZfV4V");
+    var result = await proven.publishDeposition(depositor2.address, ipfsPic2);
     deposition2 = result;
     assert(depositor2 != result.logs[0].args['_deponent']);
     assert('DepositionPublished' === result.logs[0].event);
@@ -80,7 +85,7 @@ contract('ProvenRegistry', function(accounts) {
 
   // Publish a deposition directly from the depositor
   it('should publish a deposition made directly by a specific depositor', async function(){
-    var result = await proven.publishDeposition(depositor3.address, "Qmb7Uwc39Q7YpPsfkWj54S2rMgdV6D845Sgr75GyxZfV4V", {from: depositor3});
+    var result = await proven.publishDeposition(depositor3.address, ipfsPic3, {from: depositor3});
     deposition3 = result;
     assert(depositor3 === result.logs[0].args['_deponent']);
     assert('DepositionPublished' === result.logs[0].event);
@@ -109,7 +114,7 @@ contract('ProvenRegistry', function(accounts) {
   it('should let a verifier publish a deposition through the verifier', async function(){
 
     var amount = new web3.BigNumber(web3.toWei(.01, 'ether'));
-    deposition4 = await verifier.publishDeposition("QmVpYa8krJAdwDEcHcWVwyg2vznS3MoAXycaLHmqPWkn8j", {from: verifier1, value: amount});
+    deposition4 = await verifier.publishDeposition(ipfsPic4, {from: verifier1, value: amount});
     assert(deposition4.logs[0].event === 'DepositionPublished');
   });
 
@@ -126,7 +131,7 @@ contract('ProvenRegistry', function(accounts) {
   it('should let an unbonded verifier publish a verification', async function(){
     assert( !(await bondHolder.isBonded( verifier2 )));
     var amount = new web3.BigNumber(web3.toWei(.01, 'ether'));
-    deposition5 = await verifier.publishDeposition("QmTbhNNgnSzDnQj8mLELcxqZKwUwbzpnHj2iMeqscjpDEF", {from: verifier2, value: amount});
+    deposition5 = await verifier.publishDeposition(ipfsPic5, {from: verifier2, value: amount});
     assert(deposition5.logs[0].event === 'DepositionPublished');
   });
 
@@ -167,12 +172,20 @@ contract('ProvenRegistry', function(accounts) {
 
   // the depositor should be able to look up the verification:
 
+  it('should retrieve the IPFS status from the deposition ID', async function(){
+    var depoId = deposition5.logs[0].args.deposition;
+    var results = await verifier.query(depoId);
+    console.log(results);
+//    getDetails(bytes32 _deposition) public constant onlyVerifier returns(State state, uint bounty, address verifier, uint verifiedInBlock, address challenger, uint challengedInBlock, uint bondAmount, address contestor)
+  });
+
   // based on the IPFS hash
 
   // based on the SHA1 hash
 
   // based on the SHA256 hash
 
+  // Should be able to see when the IPFS asset was first deposed ("proven")
 });
 /*
     var watcher = bondHolder.Debug();
