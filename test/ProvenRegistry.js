@@ -170,20 +170,15 @@ contract('ProvenRegistry', function(accounts) {
 
   // the challenger should get her money when the block count expires
 
-  // the depositor should be able to look up the verification:
 
-  it('should retrieve the IPFS status from the deposition ID', async function(){
-    var depoId = deposition5.logs[0].args.deposition;
-    var results = await verifier.query(depoId);
-    console.log(results);
+  // the depositor should be able to look up the verification:
+  // based on the IPFS hash
+  it('should retrieve the deposition ID from the IPFS hash', async function(){
+    var depoId = await verifier.getDepositionFromIPFSHash(ipfsPic5);
+    assert( deposition5.logs[0].args.deposition === depoId );
+
 //    getDetails(bytes32 _deposition) public constant onlyVerifier returns(State state, uint bounty, address verifier, uint verifiedInBlock, address challenger, uint challengedInBlock, uint bondAmount, address contestor)
   });
-
-  // based on the IPFS hash
-
-  // based on the SHA1 hash
-
-  // based on the SHA256 hash
 
   // Should be able to see when the IPFS asset was first deposed ("proven")
 });

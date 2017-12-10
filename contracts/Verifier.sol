@@ -55,6 +55,9 @@ contract Verifier is Ownable {
     assert(msg.sender.send(_amount));
   }
 
+  // Called by the verifier when it is directly creating a new deposition,
+  // instead of mining one that's already in the chain's logs
+  // (like those created from Proven.publishDeposition).
   function publishDeposition(bytes _ipfsHash) public payable onlyWithFee returns (bytes32) {
 
     Proven proven = Proven(registry.proven());
@@ -63,14 +66,26 @@ contract Verifier is Ownable {
 
     VerifierDb db = VerifierDb(registry.db());
 
-    db.initialize(id, msg.value);
+    db.initialize(id, _ipfsHash, msg.value);
 
     DepositionPublished(id, msg.sender, _ipfsHash, msg.value);
 
     return id;
   }
 
+  // This is called to verify a published deposition that already exists.
+  // If the IPFS hash is not provided the verification won't be retrievable
+  // by a smart contract or by a user who wants to check its verification without
+  // downloading the full blockchain and scanning the logs, etc. It's not a great
+  // idea but it does save some gas.
   function verifyDeposition(bytes32 _deposition) public {
+
+    verifyDeposition(_deposition, "");
+  }
+
+  // This is called to verify a published deposition that already exists, either
+  // from publishDeposition() above or Proven.publishDeposition.
+  function verifyDeposition(bytes32 _deposition, bytes _ipfsHash) public {
 
     BondHolder bondHolder = BondHolder(registry.bondHolder());
 
@@ -82,11 +97,16 @@ contract Verifier is Ownable {
     var (state,,,,,,,) = db.getDetails(_deposition);
     require(state == VerifierDb.State.Initialized);
 
-    db.verify(_deposition, msg.sender, requiredBondAmount);
+    db.verify(_deposition, _ipfsHash, msg.sender, requiredBondAmount);
 
     bondHolder.lockBond(msg.sender, requiredBondAmount);
 
     DepositionVerified(_deposition, msg.sender);
+  }
+
+  function getDepositionFromIPFSHash(bytes _ipfsHash) public view returns (bytes32) {
+    VerifierDb db = VerifierDb(registry.db());
+    return db.getDepositionFromIPFSHash(_ipfsHash);
   }
 
   function claimVerificationReward(bytes32 _deposition) public {

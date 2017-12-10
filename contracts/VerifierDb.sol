@@ -9,6 +9,9 @@ contract VerifierDb is Ownable {
   VerifierRegistry public registry;
 
   mapping(bytes32 => Verification) public verifications;
+  // This cannot be public because it produces "Internal compiler error:
+  // Accessors for mapping with dynamically-sized keys not yet implemented."
+  mapping(bytes => bytes32) internal depositionsFromIPFSHash;
 
   enum State {
     Unset,
@@ -44,8 +47,15 @@ contract VerifierDb is Ownable {
     _;
   }
 
+  // Constructor
   function VerifierDb(address _registry) public {
     registry = VerifierRegistry(_registry);
+  }
+
+  // Using the IPFS hash, find out the deposition ID. This is important for a
+  // contract or end user who wants to find out if an IPFS image is verified. 
+  function getDepositionFromIPFSHash(bytes _ipfsHash) public view returns(bytes32) {
+    return(depositionsFromIPFSHash[_ipfsHash]);
   }
 
   function getDetails(bytes32 _deposition) public constant onlyVerifier returns(State state, uint bounty, address verifier, uint verifiedInBlock, address challenger, uint challengedInBlock, uint bondAmount, address contestor) {
@@ -62,19 +72,30 @@ contract VerifierDb is Ownable {
     contestor = v.contestor;
   }
 
-  function initialize(bytes32 _deposition, uint _bounty) public onlyVerifier {
+  // Called by the verifier when it is directly creating a new deposition,
+  // instead of mining one that's already in the chain's logs
+  // (like those created from Proven.publishDeposition).
+  // Thus, the IPFS hash must be known at this point.
+  function initialize(bytes32 _deposition, bytes _ipfsHash, uint _bounty) public onlyVerifier {
 
+    require(_ipfsHash.length != 0);
     Verification memory v = verifications[_deposition];
 
     v.state = State.Initialized;
     v.bounty = _bounty;
 
     verifications[_deposition] = v;
+    depositionsFromIPFSHash[_ipfsHash] = _deposition;
 
     Stored(_deposition, _bounty);
   }
 
-  function verify(bytes32 _deposition, address _verifier, uint _bondAmount) public onlyVerifier {
+  // This is called to verify a published deposition that already exists either
+  // from Verifier.publishDeposition or from Proven.publishDeposition.
+  // If the IPFS hash is not provided the verification won't be retrievable
+  // by a smart contract or by a user who wants to check its verification without
+  // downloading the full blockchain and scanning the logs, etc.
+  function verify(bytes32 _deposition, bytes _ipfsHash, address _verifier, uint _bondAmount) public onlyVerifier {
 
     Verification memory v = verifications[_deposition];
 
@@ -84,6 +105,10 @@ contract VerifierDb is Ownable {
     v.bondAmount = _bondAmount;
 
     verifications[_deposition] = v;
+
+    if( _ipfsHash.length != 0 ){
+      depositionsFromIPFSHash[_ipfsHash] = _deposition;
+    }
 
     Verified(_deposition, _verifier);
   }
