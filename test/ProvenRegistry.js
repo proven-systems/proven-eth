@@ -10,7 +10,7 @@ var BondHolder = artifacts.require('../contracts/BondHolder.sol');
 var BondHolderRegistry = artifacts.require('../contracts/BondHolderRegistry.sol');
 
 
-contract('ProvenRegistry', function(accounts) {
+contract('Proven', function(accounts) {
   let provenRegistry;
   let provenDb;
   let proven;
@@ -32,7 +32,8 @@ contract('ProvenRegistry', function(accounts) {
   let verifier2 = accounts[5];
   let oracle = accounts[6];
   let beneficiary = accounts[7];
-  let whale = accounts[8];
+  let challenger1 = accounts[8];
+  let challenger2 = accounts[9];
   let ipfsPic1 = "Qmb7Uwc39Q7YpPsfkWj54S2rMgdV6D845Sgr75GyxZfV4V";
   let ipfsPic2 = "Qmb7Uwc39Q7YpPsfkWj54S2rMgdV6D845Sgr75GyxZfV4V";
   let ipfsPic3 = "Qmb7Uwc39Q7YpPsfkWj54S2rMgdV6D845Sgr75GyxZfV4V";
@@ -160,17 +161,6 @@ contract('ProvenRegistry', function(accounts) {
     assert(verification3.logs[0].args.deposition === depoId);
   });
 
-  // when someone challenges the verification falsely she loses her money
-
-  // the challenger should be able to challenge the verification and win her money
-
-  // the verifier should be able to answer the the verification challenge and keep her money
-
-  // the challenger should get the money when the verifier does not answer the challenge
-
-  // the challenger should get her money when the block count expires
-
-
   // the depositor should be able to look up the verification:
   // based on the IPFS hash
   it('should retrieve the deposition ID from the IPFS hash', async function(){
@@ -192,6 +182,17 @@ contract('ProvenRegistry', function(accounts) {
   });
 
   // Should be able to see when the IPFS asset was first deposed ("proven")
+
+  // Scenario: anonymous deposition, unchallenged verification, proven
+
+  // Scenario: anon depo, verified by Alice, challenged by Bob, Alice wins, takes bond.
+
+  // Scenario: anon depo, verified by Alice, challenged by Bob, Alice responds, Bob wins
+
+  // Scenario: Alice verifies a new depo, Bob challenges, Alice responds, Bob wins
+
+  // Scenario: Alice verifies a new depo, Bob challenges, Alice does not respond, Bob wins
+
 });
 /*
     var watcher = bondHolder.Debug();
