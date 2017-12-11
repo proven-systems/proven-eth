@@ -57,7 +57,8 @@ contract Verifier is Ownable {
 
   // Called by the verifier when it is directly creating a new deposition,
   // instead of mining one that's already in the chain's logs
-  // (like those created from Proven.publishDeposition).
+  // (like those created from Proven.publishDeposition). Requires a fee
+  // which is paid as a bounty to the verifier.
   function publishDeposition(bytes _ipfsHash) public payable onlyWithFee returns (bytes32) {
 
     Proven proven = Proven(registry.proven());

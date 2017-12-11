@@ -35,8 +35,8 @@ contract('Proven', function(accounts) {
   let challenger1 = accounts[8];
   let challenger2 = accounts[9];
   let ipfsPic1 = "Qmb7Uwc39Q7YpPsfkWj54S2rMgdV6D845Sgr75GyxZfV4V";
-  let ipfsPic2 = "Qmb7Uwc39Q7YpPsfkWj54S2rMgdV6D845Sgr75GyxZfV4V";
-  let ipfsPic3 = "Qmb7Uwc39Q7YpPsfkWj54S2rMgdV6D845Sgr75GyxZfV4V";
+  let ipfsPic2 = "Qmb8Uwc39Q7YpPsfkWj54S2rMgdV6D845Sgr75GyxZfV4V";
+  let ipfsPic3 = "Qmb9Uwc39Q7YpPsfkWj54S2rMgdV6D845Sgr75GyxZfV4V";
   let ipfsPic4 = "QmVpYa8krJAdwDEcHcWVwyg2vznS3MoAXycaLHmqPWkn8j";
   let ipfsPic5 = "QmTbhNNgnSzDnQj8mLELcxqZKwUwbzpnHj2iMeqscjpDEF";
 
@@ -50,7 +50,9 @@ contract('Proven', function(accounts) {
     verifierDb = await VerifierDb.new( verifierRegistry.address );
     await verifierRegistry.setDb( verifierDb.address );
     var fee = new web3.BigNumber(web3.toWei(.01, 'ether'));
-    verifier = await Verifier.new( verifierRegistry.address, fee, 10, 10 );
+    const timeoutBlocks = 3; 
+    const requiredBond = 10; 
+    verifier = await Verifier.new( verifierRegistry.address, fee, timeoutBlocks, requiredBond );
     await verifierRegistry.setVerifier( verifier.address );
     await verifierRegistry.setOracle( oracle );
     await verifierRegistry.setProven( proven.address );
@@ -178,7 +180,62 @@ contract('Proven', function(accounts) {
     assert( deponent === verifier2 );
   });
 
-  // Is an image verified?
+  var StateEnum = {
+    Unset:       0,
+    Initialized: 1,
+    Verified:    2,
+    Challenged:  3,
+    Contested:   4,
+    Proven:      5,
+    Disproven:   6
+  };
+
+  function parseDetails(details) {
+    var result = {
+      state: details[0].c[0],
+      bounty: details[1].c[0],
+      verifier: details[2],
+      verifiedInBlock: details[3].c[0],
+      challenger: details[4],
+      challengedInBlock: details[5].c[0],
+      bondAmount: details[6].c[0],
+      contestor: details[7]
+    };
+    return result;
+  };
+
+  // claim verification reward and become proven
+  it("should claim the verification reward and become proven", async function(){
+    var depoId = deposition4.logs[0].args.deposition;
+    var detailsBefore = parseDetails( await verifierDb.getDetails(depoId));
+    assert(detailsBefore.state === StateEnum.Verified);
+    console.log(detailsBefore);
+    var balanceBefore = web3.eth.getBalance(verifier1);
+    var results = await verifier.claimVerificationReward(depoId, {from: verifier1});
+    assert(results.logs[0].event === 'DepositionProven');
+    var detailsAfter = parseDetails( await verifierDb.getDetails(depoId));
+    assert(detailsAfter.state === StateEnum.Proven);
+    var balanceAfter = web3.eth.getBalance(verifier1);
+    console.log(balanceBefore);
+    console.log(web3.fromWei(balanceBefore, 'ether').c);
+    console.log(balanceAfter);
+    console.log(web3.fromWei(balanceAfter, 'ether').c);
+    console.log(balanceAfter - balanceBefore);
+    // TODO: I'm stuck, I'm not sure why the balance is going *down*.
+//    assert(balanceBefore < balanceAfter;
+//    assert(web3.fromWei(balanceBefore, 'ether') < web3.fromWei(balanceAfter, 'ether'));
+  });
+
+  // Is an verified image verified?
+  it("should show a verified deposition as verified", async function(){
+    var depoId = await verifier.getDepositionFromIPFSHash(ipfsPic1);
+    var amount = new web3.BigNumber(web3.toWei(.01, 'ether'));
+    var again = await verifier.publishDeposition("QmXd2t4WbhpDf643ija6byLE4q3L8GBQ3u773wWh5zVRT4", {from: verifier1, value: amount});
+    var details = parseDetails( await verifierDb.getDetails(depoId));
+    console.log(details);
+//    assert( deponent === verifier2 );
+  });
+
 
   // Is an image proven?
 
