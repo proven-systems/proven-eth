@@ -176,8 +176,19 @@ contract('ProvenRegistry', function(accounts) {
   it('should retrieve the deposition ID from the IPFS hash', async function(){
     var depoId = await verifier.getDepositionFromIPFSHash(ipfsPic5);
     assert( deposition5.logs[0].args.deposition === depoId );
+  });
 
-//    getDetails(bytes32 _deposition) public constant onlyVerifier returns(State state, uint bounty, address verifier, uint verifiedInBlock, address challenger, uint challengedInBlock, uint bondAmount, address contestor)
+  // Should be able to get the IFPS hash from the deposition ID
+  it("should return the IPFS hash from the deposition ID", async function(){
+    var ipfsHash = await provenDb.getIPFSHash(deposition5.logs[0].args.deposition);
+    assert( web3.toAscii(ipfsHash) === ipfsPic5 );
+  });
+
+  // Should be able to get the deponent from the deposition ID
+  // This is important because it is exercising a lot of integrations.
+  it("should return the deponent from the deposition ID", async function(){
+    var deponent = await provenDb.getDeponent(deposition5.logs[0].args.deposition);
+    assert( deponent === verifier2 );
   });
 
   // Should be able to see when the IPFS asset was first deposed ("proven")
@@ -186,9 +197,6 @@ contract('ProvenRegistry', function(accounts) {
     var watcher = bondHolder.Debug();
     watcher.watch((err, e) => {
       console.log('******* debug *******');
-      console.log('for account:');
-      console.log(verifier1)
-      console.log('******* contents *******');
       console.log(err);
       console.log(e);
     });
