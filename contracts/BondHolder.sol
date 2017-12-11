@@ -139,11 +139,11 @@ contract BondHolder is Ownable {
     BondDistributed(_from, _amount, _recipient1, _recipient2);
   }
 
-  function availableBond(address _bonded) public constant returns (uint) {
+  function availableBond(address _bonded) public view returns (uint) {
     return bonds[_bonded].balance - bonds[_bonded].lockedAmount;
   }
 
-  function isBonded(address _bonded) public constant returns (bool) {
+  function isBonded(address _bonded) public view returns (bool) {
     return bonds[_bonded].balance != 0;
   }
 

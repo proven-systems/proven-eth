@@ -58,7 +58,7 @@ contract VerifierDb is Ownable {
     return(depositionsFromIPFSHash[_ipfsHash]);
   }
 
-  function getDetails(bytes32 _deposition) public constant onlyVerifier returns(State state, uint bounty, address verifier, uint verifiedInBlock, address challenger, uint challengedInBlock, uint bondAmount, address contestor) {
+  function getDetails(bytes32 _deposition) public view onlyVerifier returns(State state, uint bounty, address verifier, uint verifiedInBlock, address challenger, uint challengedInBlock, uint bondAmount, address contestor) {
 
     Verification memory v = verifications[_deposition];
 
