@@ -70,26 +70,23 @@ contract('Proven', function(accounts) {
 
   // Publish a deposition without specifying the depositor
   it('should publish an anonymous deposition', async function(){
-    var result = await proven.publishDeposition(ipfsPic1);
-    deposition1 = result;
-    assert(depositor1 != result.logs[0].args['_deponent']);
-    assert('DepositionPublished' === result.logs[0].event);
+    deposition1 = await proven.publishDeposition(ipfsPic1);
+    assert(depositor1 != deposition1.logs[0].args['_deponent']);
+    assert('DepositionPublished' === deposition1.logs[0].event);
   });
 
   // Publish a deposition specifying the depositor
   it('should publish a deposition from an account', async function(){
-    var result = await proven.publishDeposition(depositor2.address, ipfsPic2);
-    deposition2 = result;
-    assert(depositor2 != result.logs[0].args['_deponent']);
-    assert('DepositionPublished' === result.logs[0].event);
+    deposition2 = await proven.publishDeposition(depositor2.address, ipfsPic2);
+    assert(depositor2 != deposition2.logs[0].args['_deponent']);
+    assert('DepositionPublished' === deposition2.logs[0].event);
   });
 
   // Publish a deposition directly from the depositor
   it('should publish a deposition made directly by a specific depositor', async function(){
-    var result = await proven.publishDeposition(depositor3.address, ipfsPic3, {from: depositor3});
-    deposition3 = result;
-    assert(depositor3 === result.logs[0].args['_deponent']);
-    assert('DepositionPublished' === result.logs[0].event);
+    deposition3 = await proven.publishDeposition(depositor3.address, ipfsPic3, {from: depositor3});
+    assert(depositor3 === deposition3.logs[0].args['_deponent']);
+    assert('DepositionPublished' === deposition3.logs[0].event);
   });
 
   // the verifier should be able to set a bond
@@ -180,6 +177,10 @@ contract('Proven', function(accounts) {
     var deponent = await provenDb.getDeponent(deposition5.logs[0].args.deposition);
     assert( deponent === verifier2 );
   });
+
+  // Is an image verified?
+
+  // Is an image proven?
 
   // Should be able to see when the IPFS asset was first deposed ("proven")
 

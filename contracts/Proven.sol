@@ -53,10 +53,4 @@ contract Proven is Ownable {
 
     return id;
   }
-
-  /// Retrieve the status of a deposition
-//  function isDepositionVerified(bytes _ipfsHash) public view returns (bool) {
-  // TODO
-//  }
-
 }
