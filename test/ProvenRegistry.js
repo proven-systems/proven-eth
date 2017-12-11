@@ -35,8 +35,8 @@ contract('Proven', function(accounts) {
   let challenger1 = accounts[8];
   let challenger2 = accounts[9];
   let ipfsPic1 = "Qmb7Uwc39Q7YpPsfkWj54S2rMgdV6D845Sgr75GyxZfV4V";
-  let ipfsPic2 = "Qmb8Uwc39Q7YpPsfkWj54S2rMgdV6D845Sgr75GyxZfV4V";
-  let ipfsPic3 = "Qmb9Uwc39Q7YpPsfkWj54S2rMgdV6D845Sgr75GyxZfV4V";
+  let ipfsPic2 = "Qmb7Uwc39Q7YpPsfkWj54S2rMgdV6D845Sgr75GyxZfV4V";
+  let ipfsPic3 = "Qmb7Uwc39Q7YpPsfkWj54S2rMgdV6D845Sgr75GyxZfV4V";
   let ipfsPic4 = "QmVpYa8krJAdwDEcHcWVwyg2vznS3MoAXycaLHmqPWkn8j";
   let ipfsPic5 = "QmTbhNNgnSzDnQj8mLELcxqZKwUwbzpnHj2iMeqscjpDEF";
 
