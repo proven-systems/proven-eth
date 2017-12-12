@@ -39,6 +39,8 @@ contract('Proven', function(accounts) {
   let ipfsPic3 = "Qmb7Uwc39Q7YpPsfkWj54S2rMgdV6D845Sgr75GyxZfV4V";
   let ipfsPic4 = "QmVpYa8krJAdwDEcHcWVwyg2vznS3MoAXycaLHmqPWkn8j";
   let ipfsPic5 = "QmTbhNNgnSzDnQj8mLELcxqZKwUwbzpnHj2iMeqscjpDEF";
+  let ipfsPic6 = "QmXd2t4WbhpDf643ija6byLE4q3L8GBQ3u773wWh5zVRT4";
+  let fee = new web3.BigNumber(web3.toWei(.1, 'ether'));
 
   before(async function(){
     provenRegistry = await ProvenRegistry.new();
@@ -49,7 +51,6 @@ contract('Proven', function(accounts) {
     verifierRegistry = await VerifierRegistry.new();
     verifierDb = await VerifierDb.new( verifierRegistry.address );
     await verifierRegistry.setDb( verifierDb.address );
-    var fee = new web3.BigNumber(web3.toWei(.01, 'ether'));
     const timeoutBlocks = 3; 
     const requiredBond = 10; 
     verifier = await Verifier.new( verifierRegistry.address, fee, timeoutBlocks, requiredBond );
@@ -113,8 +114,7 @@ contract('Proven', function(accounts) {
   // a verifier should be able to publish a deposition through the verifier
   it('should let a verifier publish a deposition through the verifier', async function(){
 
-    var amount = new web3.BigNumber(web3.toWei(.01, 'ether'));
-    deposition4 = await verifier.publishDeposition(ipfsPic4, {from: verifier1, value: amount});
+    deposition4 = await verifier.publishDeposition(ipfsPic4, {from: verifier1, value: fee});
     assert(deposition4.logs[0].event === 'DepositionPublished');
   });
 
@@ -130,8 +130,7 @@ contract('Proven', function(accounts) {
   // an unbonded verifier should be able to publish a deposition
   it('should let an unbonded verifier publish a verification', async function(){
     assert( !(await bondHolder.isBonded( verifier2 )));
-    var amount = new web3.BigNumber(web3.toWei(.01, 'ether'));
-    deposition5 = await verifier.publishDeposition(ipfsPic5, {from: verifier2, value: amount});
+    deposition5 = await verifier.publishDeposition(ipfsPic5, {from: verifier2, value: fee});
     assert(deposition5.logs[0].event === 'DepositionPublished');
   });
 
@@ -209,33 +208,28 @@ contract('Proven', function(accounts) {
     var depoId = deposition4.logs[0].args.deposition;
     var detailsBefore = parseDetails( await verifierDb.getDetails(depoId));
     assert(detailsBefore.state === StateEnum.Verified);
-    console.log(detailsBefore);
     var balanceBefore = web3.eth.getBalance(verifier1);
     var results = await verifier.claimVerificationReward(depoId, {from: verifier1});
     assert(results.logs[0].event === 'DepositionProven');
     var detailsAfter = parseDetails( await verifierDb.getDetails(depoId));
     assert(detailsAfter.state === StateEnum.Proven);
     var balanceAfter = web3.eth.getBalance(verifier1);
-    console.log(balanceBefore);
-    console.log(web3.fromWei(balanceBefore, 'ether').c);
-    console.log(balanceAfter);
-    console.log(web3.fromWei(balanceAfter, 'ether').c);
-    console.log(balanceAfter - balanceBefore);
-    // TODO: I'm stuck, I'm not sure why the balance is going *down*.
-//    assert(balanceBefore < balanceAfter;
-//    assert(web3.fromWei(balanceBefore, 'ether') < web3.fromWei(balanceAfter, 'ether'));
+    assert(balanceBefore < balanceAfter);
   });
-
-  // Is an verified image verified?
+/*
+  // Scenario: based on an IPFS hash, we want to verify the image. It turns
+  // out that it has been published (but not verified). We want it verified.
   it("should show a verified deposition as verified", async function(){
+    // TODO: logical error here
     var depoId = await verifier.getDepositionFromIPFSHash(ipfsPic1);
-    var amount = new web3.BigNumber(web3.toWei(.01, 'ether'));
-    var again = await verifier.publishDeposition("QmXd2t4WbhpDf643ija6byLE4q3L8GBQ3u773wWh5zVRT4", {from: verifier1, value: amount});
     var details = parseDetails( await verifierDb.getDetails(depoId));
+    assert(details.state === StateEnum.Unset);
+    var result = await verifier.verifyDeposition(depoId, ipfsPic1, {from: verifier1});
+    details = parseDetails( await verifierDb.getDetails(depoId));
+    assert(details.state === StateEnum.Verified);
     console.log(details);
-//    assert( deponent === verifier2 );
   });
-
+*/
 
   // Is an image proven?
 
