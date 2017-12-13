@@ -7,7 +7,7 @@ import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 import "./VerifierRegistry.sol";
 
 
-contract VerifierDb is Ownable {
+contract VerifierDB is Ownable {
 
   VerifierRegistry public registry;
 
@@ -51,7 +51,7 @@ contract VerifierDb is Ownable {
   }
 
   // Constructor
-  function VerifierDb(address _registry) public {
+  function VerifierDB(address _registry) public {
     registry = VerifierRegistry(_registry);
   }
 

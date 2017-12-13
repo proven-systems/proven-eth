@@ -7,10 +7,10 @@ import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 import "./ProvenRegistry.sol";
 
 
-/// ProvenDb
+/// ProvenDB
 /// Back-end storage contract for the Proven app.
 
-contract ProvenDb is Ownable {
+contract ProvenDB is Ownable {
 
   event DepositionStored(bytes32 _deposition, address _deponent, bytes _ipfsHash);
 
@@ -35,7 +35,7 @@ contract ProvenDb is Ownable {
   }
 
   /// Constructor
-  function ProvenDb(address _registry) public {
+  function ProvenDB(address _registry) public {
     registry = ProvenRegistry(_registry);
   }
 

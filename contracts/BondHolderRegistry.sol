@@ -15,7 +15,7 @@ contract BondHolderRegistry is Ownable {
     bondHolder = _bondHolder;
   }
 
-  function setDb(address _db) public onlyOwner {
+  function setDB(address _db) public onlyOwner {
     db = _db;
   }
 }

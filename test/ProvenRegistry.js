@@ -1,10 +1,10 @@
 'use strict';
 
 var Proven = artifacts.require('../contracts/Proven.sol');
-var ProvenDb = artifacts.require('../contracts/ProvenDb.sol');
+var ProvenDB = artifacts.require('../contracts/ProvenDB.sol');
 var ProvenRegistry = artifacts.require('../contracts/ProvenRegistry.sol');
 var Verifier = artifacts.require('../contracts/Verifier.sol');
-var VerifierDb = artifacts.require('../contracts/VerifierDb.sol');
+var VerifierDB = artifacts.require('../contracts/VerifierDB.sol');
 var VerifierRegistry = artifacts.require('../contracts/VerifierRegistry.sol');
 var BondHolder = artifacts.require('../contracts/BondHolder.sol');
 var BondHolderRegistry = artifacts.require('../contracts/BondHolderRegistry.sol');
@@ -12,10 +12,10 @@ var BondHolderRegistry = artifacts.require('../contracts/BondHolderRegistry.sol'
 
 contract('Proven', function(accounts) {
   let provenRegistry;
-  let provenDb;
+  let provenDB;
   let proven;
   let verifierRegistry;
-  let verifierDb;
+  let verifierDB;
   let verifier;
   let bondHolder;
   let bondHolderRegistry;
@@ -46,11 +46,11 @@ contract('Proven', function(accounts) {
     provenRegistry = await ProvenRegistry.new();
     proven = await Proven.new( provenRegistry.address );
     await provenRegistry.setProven( proven.address );
-    provenDb = await ProvenDb.new( provenRegistry.address );
-    await provenRegistry.setDb( provenDb.address );
+    provenDB = await ProvenDB.new( provenRegistry.address );
+    await provenRegistry.setDB( provenDB.address );
     verifierRegistry = await VerifierRegistry.new();
-    verifierDb = await VerifierDb.new( verifierRegistry.address );
-    await verifierRegistry.setDb( verifierDb.address );
+    verifierDB = await VerifierDB.new( verifierRegistry.address );
+    await verifierRegistry.setDB( verifierDB.address );
     const timeoutBlocks = 3; 
     const requiredBond = 10; 
     verifier = await Verifier.new( verifierRegistry.address, fee, timeoutBlocks, requiredBond );
@@ -65,9 +65,9 @@ contract('Proven', function(accounts) {
 
   it('should have addresses', async function(){
     assert.isFalse(provenRegistry.address === proven.address);
-    assert.isFalse(provenDb.address === proven.address);
+    assert.isFalse(provenDB.address === proven.address);
     assert.isFalse(verifierRegistry.address === verifier.address);
-    assert.isFalse(verifier.Db === verifier.address);
+    assert.isFalse(verifier.DB === verifier.address);
     assert.isFalse(bondHolderRegistry.address === bondHolder.address);
   });
 
@@ -168,18 +168,18 @@ contract('Proven', function(accounts) {
 
   // Should be able to get the IFPS hash from the deposition ID
   it("should return the IPFS hash from the deposition ID", async function(){
-    var ipfsHash = await provenDb.getIPFSHash(deposition5.logs[0].args.deposition);
+    var ipfsHash = await provenDB.getIPFSHash(deposition5.logs[0].args.deposition);
     assert( web3.toAscii(ipfsHash) === ipfsPic5 );
   });
 
   // Should be able to get the deponent from the deposition ID
   // This is important because it is exercising a lot of integrations.
   it("should return the deponent from the deposition ID", async function(){
-    var deponent = await provenDb.getDeponent(deposition5.logs[0].args.deposition);
+    var deponent = await provenDB.getDeponent(deposition5.logs[0].args.deposition);
     assert( deponent === verifier2 );
   });
 
-  // See ../contracts/VerifierDb.sol
+  // See ../contracts/VerifierDB.sol
   var StateEnum = {
     Unset:       0,
     Initialized: 1,
@@ -190,7 +190,7 @@ contract('Proven', function(accounts) {
     Disproven:   6
   };
 
-  // Helper function for results from ProvenDb.getDetails()
+  // Helper function for results from ProvenDB.getDetails()
   function parseDetails(details) {
     var result = {
       state: details[0].c[0],
@@ -208,12 +208,12 @@ contract('Proven', function(accounts) {
   // claim verification reward and become proven
   it("should claim the verification reward and become proven", async function(){
     var depoId = deposition4.logs[0].args.deposition;
-    var detailsBefore = parseDetails( await verifierDb.getDetails(depoId));
+    var detailsBefore = parseDetails( await verifierDB.getDetails(depoId));
     assert(detailsBefore.state === StateEnum.Verified);
     var balanceBefore = web3.eth.getBalance(verifier1);
     var results = await verifier.claimVerificationReward(depoId, {from: verifier1});
     assert(results.logs[0].event === 'DepositionProven');
-    var detailsAfter = parseDetails( await verifierDb.getDetails(depoId));
+    var detailsAfter = parseDetails( await verifierDB.getDetails(depoId));
     assert(detailsAfter.state === StateEnum.Proven);
     var balanceAfter = web3.eth.getBalance(verifier1);
     assert(balanceBefore < balanceAfter);
@@ -223,7 +223,7 @@ contract('Proven', function(accounts) {
   // It turns out that it has been published (but not verified). We want it verified.
   it("should show a verified deposition as verified", async function(){
     var depoId = await verifier.getDepositionFromIPFSHash(ipfsPic1);
-    // it exists in the Proven log, but not in the VerifierDb nor on-chain.
+    // it exists in the Proven log, but not in the VerifierDB nor on-chain.
     assert('0x0000000000000000000000000000000000000000000000000000000000000000' === depoId);
 
     // we only know the deposition ID and the IPFS hash because we're mining, which
@@ -237,19 +237,19 @@ contract('Proven', function(accounts) {
     assert(depoId == depositionId1);
 
     // Check the state
-    var details = parseDetails( await verifierDb.getDetails(depositionId1));
+    var details = parseDetails( await verifierDB.getDetails(depositionId1));
     assert(details.state === StateEnum.Initialized);
 
     // Now let's verify it
     var verify = await verifier.verifyDeposition(depositionId1, {from: verifier1});
     assert(verify.logs[0].event === 'DepositionVerified');
     assert(verify.logs[0].args.deposition === depositionId1);
-    details = parseDetails( await verifierDb.getDetails(depositionId1));
+    details = parseDetails( await verifierDB.getDetails(depositionId1));
     assert(details.state === StateEnum.Verified);
 
     // and finally: check that image is verified by IPFS hash
     depoId = await verifier.getDepositionFromIPFSHash(ipfsPic1);
-    details = parseDetails( await verifierDb.getDetails(depoId));
+    details = parseDetails( await verifierDB.getDetails(depoId));
     assert(details.state === StateEnum.Verified);
   });
 

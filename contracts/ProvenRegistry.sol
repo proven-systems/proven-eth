@@ -19,7 +19,7 @@ contract ProvenRegistry is Ownable {
     proven = _proven;
   }
 
-  function setDb(address _db) public onlyOwner {
+  function setDB(address _db) public onlyOwner {
     db = _db;
   }
 }

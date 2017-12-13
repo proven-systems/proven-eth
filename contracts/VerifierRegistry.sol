@@ -26,7 +26,7 @@ contract VerifierRegistry is Ownable {
     verifier = _verifier;
   }
 
-  function setDb(address _db) public onlyOwner {
+  function setDB(address _db) public onlyOwner {
     db = _db;
   }
 

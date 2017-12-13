@@ -5,7 +5,7 @@ pragma solidity ^0.4.18;
 
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 import "./ProvenRegistry.sol";
-import "./ProvenDb.sol";
+import "./ProvenDB.sol";
 
 
 /// Proven
@@ -29,7 +29,7 @@ contract Proven is Ownable {
 
   function publishDeposition(address _owner, bytes _ipfsHash) public returns (bytes32) {
 
-    ProvenDb db = ProvenDb(registry.db());
+    ProvenDB db = ProvenDB(registry.db());
     bytes32 id = db.storeDeposition(_owner, _ipfsHash);
 
     DepositionPublished(id, _owner, _ipfsHash);
