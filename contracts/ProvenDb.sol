@@ -56,6 +56,14 @@ contract ProvenDb is Ownable {
     registry = ProvenRegistry(_registry);
   }
 
+  function getDeponent(bytes32 _id) public view returns (address) {
+    return depositions[_id].deponent;
+  }
+
+  function getIPFSHash(bytes32 _id) public view returns (bytes) {
+    return depositions[_id].ipfsHash;
+  }
+
   function storeDeposition(address _deponent, bytes _ipfsHash) public onlyProven returns (bytes32) {
 
     // generate hash to send back to caller
