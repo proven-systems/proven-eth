@@ -121,10 +121,10 @@ contract('Proven', function(accounts) {
   // the verifier should be able to verify the deposition
   it('should verify an existing deposition', async function(){
     assert(await bondHolder.isBonded(verifier1));
-    var depoId = deposition4.logs[0].args.deposition;
-    verification1 = await verifier.verifyDeposition(depoId, {from: verifier1});
+    var depoID = deposition4.logs[0].args.deposition;
+    verification1 = await verifier.verifyDeposition(depoID, {from: verifier1});
     assert(verification1.logs[0].event === 'DepositionVerified');
-    assert(verification1.logs[0].args.deposition === depoId);
+    assert(verification1.logs[0].args.deposition === depoID);
   });
 
   // an unbonded verifier should be able to publish a deposition
@@ -138,11 +138,11 @@ contract('Proven', function(accounts) {
   it('should not let the unbonded verifier verify the deposition', async function(){
     assert(!(await bondHolder.isBonded(verifier2)));
     var failure = false;
-    var depoId = deposition5.logs[0].args.deposition;
+    var depoID = deposition5.logs[0].args.deposition;
     // would be better to use OpenZeppelin's expectThrow but I can't figure out how
     // https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/test/helpers/expectThrow.js
     try {
-      await verifier.verifyDeposition(depoId, {from: verifier2});
+      await verifier.verifyDeposition(depoID, {from: verifier2});
     } catch (error) {
       failure = true;
     }
@@ -153,17 +153,17 @@ contract('Proven', function(accounts) {
   // made by an unbonded verifier
   it('should allow verification by a different verifier', async function(){
     assert(await bondHolder.isBonded(verifier1));
-    var depoId = deposition5.logs[0].args.deposition;
-    verification3 = await verifier.verifyDeposition(depoId, {from: verifier1});
+    var depoID = deposition5.logs[0].args.deposition;
+    verification3 = await verifier.verifyDeposition(depoID, {from: verifier1});
     assert(verification3.logs[0].event === 'DepositionVerified');
-    assert(verification3.logs[0].args.deposition === depoId);
+    assert(verification3.logs[0].args.deposition === depoID);
   });
 
   // the depositor should be able to look up the verification:
   // based on the IPFS hash
   it('should retrieve the deposition ID from the IPFS hash', async function(){
-    var depoId = await verifier.getDepositionFromIPFSHash(ipfsPic5);
-    assert(deposition5.logs[0].args.deposition === depoId);
+    var depoID = await verifier.getDepositionFromIPFSHash(ipfsPic5);
+    assert(deposition5.logs[0].args.deposition === depoID);
   });
 
   // Should be able to get the IFPS hash from the deposition ID
@@ -207,13 +207,13 @@ contract('Proven', function(accounts) {
 
   // claim verification reward and become proven
   it("should claim the verification reward and become proven", async function(){
-    var depoId = deposition4.logs[0].args.deposition;
-    var detailsBefore = parseDetails(await verifierDB.getDetails(depoId));
+    var depoID = deposition4.logs[0].args.deposition;
+    var detailsBefore = parseDetails(await verifierDB.getDetails(depoID));
     assert(detailsBefore.state === StateEnum.Verified);
     var balanceBefore = web3.eth.getBalance(verifier1);
-    var results = await verifier.claimVerificationReward(depoId, {from: verifier1});
+    var results = await verifier.claimVerificationReward(depoID, {from: verifier1});
     assert(results.logs[0].event === 'DepositionProven');
-    var detailsAfter = parseDetails(await verifierDB.getDetails(depoId));
+    var detailsAfter = parseDetails(await verifierDB.getDetails(depoID));
     assert(detailsAfter.state === StateEnum.Proven);
     var balanceAfter = web3.eth.getBalance(verifier1);
     assert(balanceBefore < balanceAfter);
@@ -222,34 +222,34 @@ contract('Proven', function(accounts) {
   // Scenario: mining. based on an IPFS hash, we want to verify the image.
   // It turns out that it has been published (but not verified). We want it verified.
   it("should show a verified deposition as verified", async function(){
-    var depoId = await verifier.getDepositionFromIPFSHash(ipfsPic1);
+    var depoID = await verifier.getDepositionFromIPFSHash(ipfsPic1);
     // it exists in the Proven log, but not in the VerifierDB nor on-chain.
-    assert('0x0000000000000000000000000000000000000000000000000000000000000000' === depoId);
+    assert('0x0000000000000000000000000000000000000000000000000000000000000000' === depoID);
 
     // we only know the deposition ID and the IPFS hash because we're mining, which
     // means whe're watching the Proven log events and responding to them.
-    var depositionId1 = deposition1.logs[0].args._deposition;
-    var init = await verifier.initializeDeposition(depositionId1, ipfsPic1, {from: verifier2, value: fee});
+    var depositionID1 = deposition1.logs[0].args._deposition;
+    var init = await verifier.initializeDeposition(depositionID1, ipfsPic1, {from: verifier2, value: fee});
     assert(init.logs[0].event === 'DepositionPublished');
 
     // Now we should be able to get that deposition ID from the IPFS hash
-    depoId = await verifier.getDepositionFromIPFSHash(ipfsPic1);
-    assert(depoId == depositionId1);
+    depoID = await verifier.getDepositionFromIPFSHash(ipfsPic1);
+    assert(depoID == depositionID1);
 
     // Check the state
-    var details = parseDetails(await verifierDB.getDetails(depositionId1));
+    var details = parseDetails(await verifierDB.getDetails(depositionID1));
     assert(details.state === StateEnum.Initialized);
 
     // Now let's verify it
-    var verify = await verifier.verifyDeposition(depositionId1, {from: verifier1});
+    var verify = await verifier.verifyDeposition(depositionID1, {from: verifier1});
     assert(verify.logs[0].event === 'DepositionVerified');
-    assert(verify.logs[0].args.deposition === depositionId1);
-    details = parseDetails(await verifierDB.getDetails(depositionId1));
+    assert(verify.logs[0].args.deposition === depositionID1);
+    details = parseDetails(await verifierDB.getDetails(depositionID1));
     assert(details.state === StateEnum.Verified);
 
     // and finally: check that image is verified by IPFS hash
-    depoId = await verifier.getDepositionFromIPFSHash(ipfsPic1);
-    details = parseDetails(await verifierDB.getDetails(depoId));
+    depoID = await verifier.getDepositionFromIPFSHash(ipfsPic1);
+    details = parseDetails(await verifierDB.getDetails(depoID));
     assert(details.state === StateEnum.Verified);
   });
 
@@ -257,8 +257,8 @@ contract('Proven', function(accounts) {
   it("should not allow payment of a lower fee", async function(){
     var failure = false;
     try {
-      var depositionId2 = deposition2.logs[0].args._deposition;
-      var init = await verifier.initializeDeposition(depositionId2, ipfsPic2, {from: verifier2, value: (fee/2)});
+      var depositionID2 = deposition2.logs[0].args._deposition;
+      var init = await verifier.initializeDeposition(depositionID2, ipfsPic2, {from: verifier2, value: (fee/2)});
     } catch (error) {
       failure = true;
     }
@@ -267,15 +267,15 @@ contract('Proven', function(accounts) {
 
   // allow over-payment of fees
   it("should allow payment of a higher fee", async function(){
-    var depositionId2 = deposition2.logs[0].args._deposition;
-    var init = await verifier.initializeDeposition(depositionId2, ipfsPic2, {from: verifier2, value: (fee*2)});
+    var depositionID2 = deposition2.logs[0].args._deposition;
+    var init = await verifier.initializeDeposition(depositionID2, ipfsPic2, {from: verifier2, value: (fee*2)});
     assert(init.logs[0].event === 'DepositionPublished');
   });
   
-  // Is an image proven?
+  // Scenario: find out Proven status based only on IFPS hash, with no gas cost.
   it("should determine whether an image is proven solely given the IPFS hash", async function(){
-    var depoId = await verifier.getDepositionFromIPFSHash(ipfsPic4);
-    var details = parseDetails(await verifierDB.getDetails(depoId));
+    var depoID = await verifier.getDepositionFromIPFSHash(ipfsPic4);
+    var details = parseDetails(await verifierDB.getDetails(depoID));
     assert(details.state === StateEnum.Proven);
   });
 
