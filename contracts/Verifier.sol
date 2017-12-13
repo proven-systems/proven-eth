@@ -65,13 +65,19 @@ contract Verifier is Ownable {
 
     bytes32 id = proven.publishDeposition(msg.sender, _ipfsHash);
 
-    VerifierDb db = VerifierDb(registry.db());
-
-    db.initialize(id, _ipfsHash, msg.value);
-
-    DepositionPublished(id, msg.sender, _ipfsHash, msg.value);
+    initializeDeposition(id, _ipfsHash);
 
     return id;
+  }
+
+  // This starts the verification process for a deposition that the verifier
+  // doesn't yet know about, specifically one made with Proven.publishDeposition()
+  function initializeDeposition(bytes32 _deposition, bytes _ipfsHash) public payable onlyWithFee {
+    VerifierDb db = VerifierDb(registry.db());
+
+    db.initialize(_deposition, _ipfsHash, msg.value);
+
+    DepositionPublished(_deposition, msg.sender, _ipfsHash, msg.value);
   }
 
   // This is called to verify a published deposition that already exists.
@@ -85,7 +91,8 @@ contract Verifier is Ownable {
   }
 
   // This is called to verify a published deposition that already exists, either
-  // from publishDeposition() above or Proven.publishDeposition.
+  // from publishDeposition() above or the combination of
+  // Proven.publishDeposition + initizializeDepositon().
   function verifyDeposition(bytes32 _deposition, bytes _ipfsHash) public {
 
     BondHolder bondHolder = BondHolder(registry.bondHolder());

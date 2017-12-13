@@ -179,6 +179,7 @@ contract('Proven', function(accounts) {
     assert( deponent === verifier2 );
   });
 
+  // See ../contracts/VerifierDb.sol
   var StateEnum = {
     Unset:       0,
     Initialized: 1,
@@ -189,6 +190,7 @@ contract('Proven', function(accounts) {
     Disproven:   6
   };
 
+  // Helper function for results from ProvenDb.getDetails()
   function parseDetails(details) {
     var result = {
       state: details[0].c[0],
@@ -216,20 +218,40 @@ contract('Proven', function(accounts) {
     var balanceAfter = web3.eth.getBalance(verifier1);
     assert(balanceBefore < balanceAfter);
   });
-/*
-  // Scenario: based on an IPFS hash, we want to verify the image. It turns
-  // out that it has been published (but not verified). We want it verified.
+
+  // Scenario: mining. based on an IPFS hash, we want to verify the image.
+  // It turns out that it has been published (but not verified). We want it verified.
   it("should show a verified deposition as verified", async function(){
-    // TODO: logical error here
     var depoId = await verifier.getDepositionFromIPFSHash(ipfsPic1);
-    var details = parseDetails( await verifierDb.getDetails(depoId));
-    assert(details.state === StateEnum.Unset);
-    var result = await verifier.verifyDeposition(depoId, ipfsPic1, {from: verifier1});
+    // it exists in the Proven log, but not in the VerifierDb nor on-chain.
+    assert('0x0000000000000000000000000000000000000000000000000000000000000000' === depoId);
+
+    // we only know the deposition ID and the IPFS hash because we're mining, which
+    // means whe're watching the Proven log events and responding to them.
+    var depositionId1 = deposition1.logs[0].args._deposition;
+    var init = await verifier.initializeDeposition(depositionId1, ipfsPic1, {from: verifier2, value: fee});
+    assert(init.logs[0].event === 'DepositionPublished');
+
+    // Now we should be able to get that deposition ID from the IPFS hash
+    depoId = await verifier.getDepositionFromIPFSHash(ipfsPic1);
+    assert(depoId == depositionId1);
+
+    // Check the state
+    var details = parseDetails( await verifierDb.getDetails(depositionId1));
+    assert(details.state === StateEnum.Initialized);
+
+    // Now let's verify it
+    var verify = await verifier.verifyDeposition(depositionId1, {from: verifier1});
+    assert(verify.logs[0].event === 'DepositionVerified');
+    assert(verify.logs[0].args.deposition === depositionId1);
+    details = parseDetails( await verifierDb.getDetails(depositionId1));
+    assert(details.state === StateEnum.Verified);
+
+    // and finally: check that image is verified by IPFS hash
+    depoId = await verifier.getDepositionFromIPFSHash(ipfsPic1);
     details = parseDetails( await verifierDb.getDetails(depoId));
     assert(details.state === StateEnum.Verified);
-    console.log(details);
   });
-*/
 
   // Is an image proven?
 
