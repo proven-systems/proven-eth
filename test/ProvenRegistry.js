@@ -271,9 +271,13 @@ contract('Proven', function(accounts) {
     var init = await verifier.initializeDeposition(depositionId2, ipfsPic2, {from: verifier2, value: (fee*2)});
     assert(init.logs[0].event === 'DepositionPublished');
   });
-
   
   // Is an image proven?
+  it("should determine whether an image is proven solely given the IPFS hash", async function(){
+    var depoId = await verifier.getDepositionFromIPFSHash(ipfsPic4);
+    var details = parseDetails(await verifierDB.getDetails(depoId));
+    assert(details.state === StateEnum.Proven);
+  });
 
   // Should be able to see when the IPFS asset was first deposed ("proven")
 
