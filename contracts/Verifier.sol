@@ -25,7 +25,7 @@ contract Verifier is Ownable {
   event DepositionContested(bytes32 deposition, address contestor);
 
   modifier onlyWithFee() {
-    require(msg.value == fee);
+    require(msg.value >= fee);
     _;
   }
 

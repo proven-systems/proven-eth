@@ -253,6 +253,26 @@ contract('Proven', function(accounts) {
     assert(details.state === StateEnum.Verified);
   });
 
+  // don't allow short-changing on fees
+  it("should not allow payment of a lower fee", async function(){
+    var failure = false;
+    try {
+      var depositionId2 = deposition2.logs[0].args._deposition;
+      var init = await verifier.initializeDeposition(depositionId2, ipfsPic2, {from: verifier2, value: (fee/2)});
+    } catch (error) {
+      failure = true;
+    }
+    assert(failure);
+  });
+
+  // allow over-payment of fees
+  it("should allow payment of a higher fee", async function(){
+    var depositionId2 = deposition2.logs[0].args._deposition;
+    var init = await verifier.initializeDeposition(depositionId2, ipfsPic2, {from: verifier2, value: (fee*2)});
+    assert(init.logs[0].event === 'DepositionPublished');
+  });
+
+  
   // Is an image proven?
 
   // Should be able to see when the IPFS asset was first deposed ("proven")
