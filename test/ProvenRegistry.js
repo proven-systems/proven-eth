@@ -44,23 +44,23 @@ contract('Proven', function(accounts) {
 
   before(async function(){
     provenRegistry = await ProvenRegistry.new();
-    proven = await Proven.new( provenRegistry.address );
-    await provenRegistry.setProven( proven.address );
-    provenDB = await ProvenDB.new( provenRegistry.address );
-    await provenRegistry.setDB( provenDB.address );
+    proven = await Proven.new(provenRegistry.address);
+    await provenRegistry.setProven(proven.address);
+    provenDB = await ProvenDB.new(provenRegistry.address);
+    await provenRegistry.setDB(provenDB.address);
     verifierRegistry = await VerifierRegistry.new();
-    verifierDB = await VerifierDB.new( verifierRegistry.address );
-    await verifierRegistry.setDB( verifierDB.address );
+    verifierDB = await VerifierDB.new(verifierRegistry.address);
+    await verifierRegistry.setDB(verifierDB.address);
     const timeoutBlocks = 3; 
     const requiredBond = 10; 
-    verifier = await Verifier.new( verifierRegistry.address, fee, timeoutBlocks, requiredBond );
-    await verifierRegistry.setVerifier( verifier.address );
-    await verifierRegistry.setOracle( oracle );
-    await verifierRegistry.setProven( proven.address );
+    verifier = await Verifier.new(verifierRegistry.address, fee, timeoutBlocks, requiredBond);
+    await verifierRegistry.setVerifier(verifier.address);
+    await verifierRegistry.setOracle(oracle);
+    await verifierRegistry.setProven(proven.address);
     bondHolderRegistry = await BondHolderRegistry.new();
-    bondHolder = await BondHolder.new( bondHolderRegistry.address, verifier.address );
-    await bondHolderRegistry.setBondHolder( bondHolder.address );
-    await verifierRegistry.setBondHolder( bondHolder.address );
+    bondHolder = await BondHolder.new(bondHolderRegistry.address, verifier.address);
+    await bondHolderRegistry.setBondHolder(bondHolder.address);
+    await verifierRegistry.setBondHolder(bondHolder.address);
 	});
 
   it('should have addresses', async function(){
@@ -95,20 +95,20 @@ contract('Proven', function(accounts) {
   // the verifier should be able to set a bond
   it('should let a verifier set up a bond', async function(){
     // there should be no bond to start
-    assert( ! (await bondHolder.isBonded( verifier1 )));
+    assert(!(await bondHolder.isBonded(verifier1)));
     var amount = new web3.BigNumber(web3.toWei(5, 'ether'));
     var result = await bondHolder.depositBond({ from: verifier1, to: bondHolder.address, value: amount });
     assert(verifier1.address === result.logs[0].args['address']);
     assert('BondDeposited' === result.logs[0].event);
     // there should now be a bond
-    assert( await bondHolder.isBonded( verifier1 ));
+    assert(await bondHolder.isBonded(verifier1));
     // The bond should be what we set it to
     //    { [String: '11000000000000000000'] s: 1, e: 19, c: [ 110000 ] }
-    result = await bondHolder.availableBond( verifier1 );
-    assert( amount[0] === result[0] );
-    assert( amount.s === result.s );
-    assert( amount.e === result.e );
-    assert( amount.c[0] === result.c[0] );
+    result = await bondHolder.availableBond(verifier1);
+    assert(amount[0] === result[0]);
+    assert(amount.s === result.s);
+    assert(amount.e === result.e);
+    assert(amount.c[0] === result.c[0]);
   });
 
   // a verifier should be able to publish a deposition through the verifier
@@ -120,29 +120,29 @@ contract('Proven', function(accounts) {
 
   // the verifier should be able to verify the deposition
   it('should verify an existing deposition', async function(){
-    assert( await bondHolder.isBonded( verifier1 ));
+    assert(await bondHolder.isBonded(verifier1));
     var depoId = deposition4.logs[0].args.deposition;
-    verification1 = await verifier.verifyDeposition( depoId, {from: verifier1});
+    verification1 = await verifier.verifyDeposition(depoId, {from: verifier1});
     assert(verification1.logs[0].event === 'DepositionVerified');
     assert(verification1.logs[0].args.deposition === depoId);
   });
 
   // an unbonded verifier should be able to publish a deposition
   it('should let an unbonded verifier publish a verification', async function(){
-    assert( !(await bondHolder.isBonded( verifier2 )));
+    assert(!(await bondHolder.isBonded(verifier2)));
     deposition5 = await verifier.publishDeposition(ipfsPic5, {from: verifier2, value: fee});
     assert(deposition5.logs[0].event === 'DepositionPublished');
   });
 
   // but the unbonded verifier should not be able to verify it
   it('should not let the unbonded verifier verify the deposition', async function(){
-    assert( !(await bondHolder.isBonded( verifier2 )));
+    assert(!(await bondHolder.isBonded(verifier2)));
     var failure = false;
     var depoId = deposition5.logs[0].args.deposition;
     // would be better to use OpenZeppelin's expectThrow but I can't figure out how
     // https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/test/helpers/expectThrow.js
     try {
-      await verifier.verifyDeposition( depoId, {from: verifier2});
+      await verifier.verifyDeposition(depoId, {from: verifier2});
     } catch (error) {
       failure = true;
     }
@@ -152,9 +152,9 @@ contract('Proven', function(accounts) {
   // a bonded verifier should be able to verify the deposition
   // made by an unbonded verifier
   it('should allow verification by a different verifier', async function(){
-    assert( await bondHolder.isBonded( verifier1 ));
+    assert(await bondHolder.isBonded(verifier1));
     var depoId = deposition5.logs[0].args.deposition;
-    verification3 = await verifier.verifyDeposition( depoId, {from: verifier1});
+    verification3 = await verifier.verifyDeposition(depoId, {from: verifier1});
     assert(verification3.logs[0].event === 'DepositionVerified');
     assert(verification3.logs[0].args.deposition === depoId);
   });
@@ -163,20 +163,20 @@ contract('Proven', function(accounts) {
   // based on the IPFS hash
   it('should retrieve the deposition ID from the IPFS hash', async function(){
     var depoId = await verifier.getDepositionFromIPFSHash(ipfsPic5);
-    assert( deposition5.logs[0].args.deposition === depoId );
+    assert(deposition5.logs[0].args.deposition === depoId);
   });
 
   // Should be able to get the IFPS hash from the deposition ID
   it("should return the IPFS hash from the deposition ID", async function(){
     var ipfsHash = await provenDB.getIPFSHash(deposition5.logs[0].args.deposition);
-    assert( web3.toAscii(ipfsHash) === ipfsPic5 );
+    assert(web3.toAscii(ipfsHash) === ipfsPic5);
   });
 
   // Should be able to get the deponent from the deposition ID
   // This is important because it is exercising a lot of integrations.
   it("should return the deponent from the deposition ID", async function(){
     var deponent = await provenDB.getDeponent(deposition5.logs[0].args.deposition);
-    assert( deponent === verifier2 );
+    assert(deponent === verifier2);
   });
 
   // See ../contracts/VerifierDB.sol
@@ -208,12 +208,12 @@ contract('Proven', function(accounts) {
   // claim verification reward and become proven
   it("should claim the verification reward and become proven", async function(){
     var depoId = deposition4.logs[0].args.deposition;
-    var detailsBefore = parseDetails( await verifierDB.getDetails(depoId));
+    var detailsBefore = parseDetails(await verifierDB.getDetails(depoId));
     assert(detailsBefore.state === StateEnum.Verified);
     var balanceBefore = web3.eth.getBalance(verifier1);
     var results = await verifier.claimVerificationReward(depoId, {from: verifier1});
     assert(results.logs[0].event === 'DepositionProven');
-    var detailsAfter = parseDetails( await verifierDB.getDetails(depoId));
+    var detailsAfter = parseDetails(await verifierDB.getDetails(depoId));
     assert(detailsAfter.state === StateEnum.Proven);
     var balanceAfter = web3.eth.getBalance(verifier1);
     assert(balanceBefore < balanceAfter);
@@ -237,19 +237,19 @@ contract('Proven', function(accounts) {
     assert(depoId == depositionId1);
 
     // Check the state
-    var details = parseDetails( await verifierDB.getDetails(depositionId1));
+    var details = parseDetails(await verifierDB.getDetails(depositionId1));
     assert(details.state === StateEnum.Initialized);
 
     // Now let's verify it
     var verify = await verifier.verifyDeposition(depositionId1, {from: verifier1});
     assert(verify.logs[0].event === 'DepositionVerified');
     assert(verify.logs[0].args.deposition === depositionId1);
-    details = parseDetails( await verifierDB.getDetails(depositionId1));
+    details = parseDetails(await verifierDB.getDetails(depositionId1));
     assert(details.state === StateEnum.Verified);
 
     // and finally: check that image is verified by IPFS hash
     depoId = await verifier.getDepositionFromIPFSHash(ipfsPic1);
-    details = parseDetails( await verifierDB.getDetails(depoId));
+    details = parseDetails(await verifierDB.getDetails(depoId));
     assert(details.state === StateEnum.Verified);
   });
 
