@@ -35,8 +35,8 @@ contract('Proven', function(accounts) {
   let challenger1 = accounts[8];
   let challenger2 = accounts[9];
   let ipfsPic1 = "Qmb7Uwc39Q7YpPsfkWj54S2rMgdV6D845Sgr75GyxZfV4V";
-  let ipfsPic2 = "Qmb7Uwc39Q7YpPsfkWj54S2rMgdV6D845Sgr75GyxZfV4V";
-  let ipfsPic3 = "Qmb7Uwc39Q7YpPsfkWj54S2rMgdV6D845Sgr75GyxZfV4V";
+  let ipfsPic2 = "QmQE3gxEE1EaYK3Bi6rgXLTVHGKRZkai94eEABy7A9repJ";
+  let ipfsPic3 = "QmNjDm89By6jQRNwJ2idbCMWKzew2HAXHhbYKxK6Bn5VoW";
   let ipfsPic4 = "QmVpYa8krJAdwDEcHcWVwyg2vznS3MoAXycaLHmqPWkn8j";
   let ipfsPic5 = "QmTbhNNgnSzDnQj8mLELcxqZKwUwbzpnHj2iMeqscjpDEF";
   let ipfsPic6 = "QmXd2t4WbhpDf643ija6byLE4q3L8GBQ3u773wWh5zVRT4";
@@ -195,12 +195,13 @@ contract('Proven', function(accounts) {
     var result = {
       state: details[0].c[0],
       bounty: details[1].c[0],
-      verifier: details[2],
-      verifiedInBlock: details[3].c[0],
-      challenger: details[4],
-      challengedInBlock: details[5].c[0],
-      bondAmount: details[6].c[0],
-      contestor: details[7]
+      deposedInBlock: details[2].c[0],
+      verifier: details[3],
+      verifiedInBlock: details[4].c[0],
+      challenger: details[5],
+      challengedInBlock: details[6].c[0],
+      bondAmount: details[7].c[0],
+      contestor: details[8]
     };
     return result;
   };
@@ -229,7 +230,7 @@ contract('Proven', function(accounts) {
     // we only know the deposition ID and the IPFS hash because we're mining, which
     // means whe're watching the Proven log events and responding to them.
     var depositionID1 = deposition1.logs[0].args._deposition;
-    var init = await verifier.initializeDeposition(depositionID1, ipfsPic1, {from: verifier2, value: fee});
+    var init = await verifier.initializeDeposition(depositionID1, ipfsPic1, deposition1.receipt.blockNumber, {from: verifier2, value: fee});
     assert(init.logs[0].event === 'DepositionPublished');
 
     // Now we should be able to get that deposition ID from the IPFS hash
@@ -258,7 +259,7 @@ contract('Proven', function(accounts) {
     var failure = false;
     try {
       var depositionID2 = deposition2.logs[0].args._deposition;
-      var init = await verifier.initializeDeposition(depositionID2, ipfsPic2, {from: verifier2, value: (fee/2)});
+      var init = await verifier.initializeDeposition(depositionID2, ipfsPic2, deposition2.receipt.blockNumber, {from: verifier2, value: (fee/2)});
     } catch (error) {
       failure = true;
     }
@@ -268,7 +269,7 @@ contract('Proven', function(accounts) {
   // allow over-payment of fees
   it("should allow payment of a higher fee", async function(){
     var depositionID2 = deposition2.logs[0].args._deposition;
-    var init = await verifier.initializeDeposition(depositionID2, ipfsPic2, {from: verifier2, value: (fee*2)});
+    var init = await verifier.initializeDeposition(depositionID2, ipfsPic2, deposition2.receipt.blockNumber, {from: verifier2, value: (fee*2)});
     assert(init.logs[0].event === 'DepositionPublished');
   });
   
@@ -280,6 +281,17 @@ contract('Proven', function(accounts) {
   });
 
   // Should be able to see when the IPFS asset was first deposed ("proven")
+  it("should record in which block the asset was first deposed", async function(){
+    var depositionID3 = deposition3.logs[0].args._deposition;
+    // Pass in the block number from the original deposition.
+    // The request is being made by the same account that made the deposition.
+    var init = await verifier.initializeDeposition(depositionID3, ipfsPic3, deposition3.receipt.blockNumber, {from: depositor3, value: fee});
+    assert(init.logs[0].event === 'DepositionPublished');
+    var details = parseDetails(await verifierDB.getDetails(depositionID3));
+    assert(details.state === StateEnum.Initialized);
+    assert(details.deposedInBlock === deposition3.receipt.blockNumber);
+  });
+
 
   // Scenario: anonymous deposition, unchallenged verification, proven
 

@@ -29,7 +29,7 @@ contract VerifierDB is Ownable {
   struct Verification {
     State state;
     uint bounty;
-//    uint deposedInBlock; // TODO: add 
+    uint deposedInBlock;
     address verifier;
     uint verifiedInBlock;
     address challenger;
@@ -61,12 +61,13 @@ contract VerifierDB is Ownable {
     return(depositionsFromIPFSHash[_ipfsHash]);
   }
 
-  function getDetails(bytes32 _deposition) public view returns(State state, uint bounty, address verifier, uint verifiedInBlock, address challenger, uint challengedInBlock, uint bondAmount, address contestor) {
+  function getDetails(bytes32 _deposition) public view returns(State state, uint bounty, uint deposedInBlock, address verifier, uint verifiedInBlock, address challenger, uint challengedInBlock, uint bondAmount, address contestor) {
 
     Verification memory v = verifications[_deposition];
 
     state = v.state;
     bounty = v.bounty;
+    deposedInBlock = v.deposedInBlock;
     verifier = v.verifier;
     verifiedInBlock = v.verifiedInBlock;
     challenger = v.challenger;
@@ -79,13 +80,14 @@ contract VerifierDB is Ownable {
   // instead of mining one that's already in the chain's logs
   // (like those created from Proven.publishDeposition).
   // Thus, the IPFS hash must be known at this point.
-  function initialize(bytes32 _deposition, bytes _ipfsHash, uint _bounty) public onlyVerifier {
+  function initialize(bytes32 _deposition, bytes _ipfsHash, uint _bounty, uint _deposedInBlock) public onlyVerifier {
 
     require(_ipfsHash.length != 0);
     Verification memory v = verifications[_deposition];
 
     v.state = State.Initialized;
     v.bounty = _bounty;
+    v.deposedInBlock = _deposedInBlock;
 
     verifications[_deposition] = v;
     depositionsFromIPFSHash[_ipfsHash] = _deposition;
