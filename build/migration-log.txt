@@ -1,37 +1,59 @@
-truffle migrate --network ropsten
+✔  20:37 ~/src/proven-eth [ ropsten L | ✚ 10 ] $ truffle migrate --network ropstenCompiling ./contracts/BondHolder.sol...
+Compiling ./contracts/BondHolderRegistry.sol...
+Compiling ./contracts/Migrations.sol...
+Compiling ./contracts/Proven.sol...
+Compiling ./contracts/ProvenDB.sol...
+Compiling ./contracts/ProvenRegistry.sol...
+Compiling ./contracts/Verifier.sol...
+Compiling ./contracts/VerifierDB.sol...
+Compiling ./contracts/VerifierRegistry.sol...
+Compiling zeppelin-solidity/contracts/ownership/Ownable.sol...
+Writing artifacts to ./build/contracts
+
 Using network 'ropsten'.
 
+Running migration: 1_initial_migration.js
+  Deploying Migrations...
+  ... 0xa477080e2008efe365eaa345670753e3194a292ced450dfdf149e4e51ea2f8ab
+  Migrations: 0x31089c67f02f865984fe90a2ddebee742dccc6c4
+Saving successful migration to network...
+  ... 0xe6ad016d54c623df336b200c158b903467576fc7bbdcfd96ff06cb975426423d
+Saving artifacts...
 Running migration: 2_initial_proven.js
   Deploying Ownable...
-  ... 0xadb94f3e4c6aa2765af0e9c00ce82c0f69da85be6fa0849ca0d730fc3fed824f
-  Ownable: 0x6defdf150128ecd067baa3ca05910865bbe75c4e
+  ... 0x6719cd0bb91b06875358161359338aec4898f9b8bfb1773f7094ce4f849209c7
+  Ownable: 0x6c554f252a832bfb6e16e74e35079bc6bdfb75aa
 Saving successful migration to network...
   Deploying ProvenRegistry...
-  ... 0xd0c5ab3e4df995b0deff49685cc557e38bc83da3a75ff123598ec72db1cc9802
-  ... 0xb974c76c0bf9337482868f92f9a5e9d4cfb03ca28f0aa31dde6ee23af715adf2
+  ... 0xa8ded1e246c7c2eb53ac80501bfbe448c399b6ee7486d5b8f9dea96c1f31429f
+  ... 0xe3fb288ed5191a99c7b2b2f254fb54b57bce6d0aab3a0d2f3a4861ab9dbf3ef4
 Saving artifacts...
-  ProvenRegistry: 0x35e5fc2e5f8e8727f8abf3d671ae6e26afbed64b
+  ProvenRegistry: 0x54971ebe09eb98f305ba3c9592ee8911a0e87d71
   Deploying Proven...
-  ... 0x757f385b5bf15234c4608593ab8e40b73349f5ba06ff165742bc740a8fd2fe38
-  Proven: 0x0261bb1ef179f39121928d0747440ad7264cfd04
+  ... 0xc7ad1f1c453df1390dc737a4d8d44417c6538ebba2abddf96c18e1eeb3f4d184
+  Proven: 0x4f91cbd93308cafbff9935f0489c3fec6847307f
   Deploying ProvenDB...
-  ... 0x8f155883861007fe44a5a9790d57d61ca5921aae7edbdbf2c25dc25c5055fa7b
-  ProvenDB: 0x0cf22aaab2d7652fcf578a4935bb8376add9245a
+  ... 0xfa5eeaf538f3d0fa834c330a54b2473aed2fbb3d7ae4e6e46585037b5fcee528
+  ProvenDB: 0x539a892b16a77a99e6d39e10059ad3c9ca71bc49
+  ... 0xabe6909ab36c9655cbf7a0cbf63b4d64cd3fa39783dd2541f415f4ff322ec620
+  ... 0xb2879ceb4f1d13427a88b2e88cb1830ce88c0faab239837167201ee29e566e66
   Deploying VerifierRegistry...
-  ... 0x5b26e7cffe8ac9298ad59c212b7a9e4e038d04c3a60c1a5355b3403780566b88
-  ... 0x299d847305a2e1398c66a595fcc469193606ea585d5fc6b88539e9995b5934df
-  ... 0x69dd951b1d5cfef2afc6aa03b04316a3b45ac7d5c3239db27c6eb783f9cd2e92
-  VerifierRegistry: 0xb7f86098c9e324d5fb8aea842a242bdd8b2c14aa
+  ... 0x1082bf7ee31cb9e92010d7c12d572dad1a39783c324416b64cd0a23a1fe1c88f
+  VerifierRegistry: 0xe5bc9e957557fd5ced8518ce0a7e3ec996e09bd5
   Deploying VerifierDB...
-  ... 0x1df664cfd2ac1a1c085847dde20af8406407d36d07137806d02c94556bc52b90
-  VerifierDB: 0xf87ba89472fa3546edebe1019c555e13b25ec1a3
+  ... 0xadf2782ce532515af284a21a03a7f7ee095a969c5e5ca2a88083271c418721bd
+  ... 0x6c584be71aeb4a753a91b14215dce3139cf3989aa691f45c9ba59c45c8d5c58d
+  VerifierDB: 0xde8c38f3093f7d10fed6db5b37f02484b48bd9a8
   Deploying Verifier...
-  ... 0xb7f3dd2d38b9f29868598757f418aedb17f00b20b153ec9eb9680372b1d418ab
-  Verifier: 0x5353f2e3c26492c805dd111bf8217cac274106c5
+  ... 0x542677f0120bbc10f59035da2f19fc0c9f3121d46f0d3693de99f262fca27edb
+  ... 0xef9d6039070fb1b5afb761a49c332475c2236ae740fae678196e48629830ba5e
+  Verifier: 0xe973f8d2a3008db214316e8348d88cf04b950efa
   Deploying BondHolderRegistry...
-  ... 0x58983012248b4941253ec1fb5d9e561d9bc90e329a9bb56548dc492ec73556bc
-  BondHolderRegistry: 0x7c22275eb027a7373c1e6d27779b3b7486c1f2dc
+  ... 0x07432d28a838baae1210b278ec374223e3636cd939e43d877bb8b87175d352bb
+  ... 0xcbfd52e2e3b4f71aad843ae7ea0b803d5713c72a7d7ec7660d2ce44dc4850b1d
+  BondHolderRegistry: 0x8f984e0af6a79233b5b259c8993690eae5ded601
   Deploying BondHolder...
-  ... undefined
-(node:6513) UnhandledPromiseRejectionWarning: Unhandled promise rejection (rejection id: 1): Error: insufficient funds for gas * price + value
-(node:6513) DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
+  ... 0xaa1c2088d206f6388db545c76fc468c2d88d28867116bb48a1478b2032a65065
+  BondHolder: 0x1779f3f34afe2e0876301ba7791b01a1b8d1fc5a
+  ... 0x427390326b9826b46b7f4dd3f3b830cb2aa989ace2a91ecf56f9a7f5b6fded53
+  ... 0x60e1a37037564f51b0cb38c67dc636658a3951b75911ea65de1630a4a035ed90
