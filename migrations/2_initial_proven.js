@@ -23,24 +23,24 @@ module.exports = function(deployer) {
           ProvenRegistry.at(ProvenRegistry.address).setDB(ProvenDB.address);
           return deployer.deploy(VerifierRegistry).then(function() {
             deployer.link(Ownable, VerifierRegistry);
+            VerifierRegistry.at(VerifierRegistry.address).setProven(Proven.address);
+//            VerifierRegistry.at(VerifierRegistry.address).setOracle(Proven.address); // still not sure what the Oracle is supposed to do.
             return deployer.deploy(VerifierDB, VerifierRegistry.address).then(function() {
               deployer.link(Ownable, VerifierDB);
               deployer.link(VerifierRegistry, VerifierDB);
+              deployer.link(VerifierRegistry, Proven);
+              VerifierRegistry.at(VerifierRegistry.address).setDB(VerifierDB.address);
               return deployer.deploy(Verifier, VerifierRegistry.address, 0.1, 100, 1).then(function() {
                 deployer.link(Ownable, Verifier);
                 deployer.link(VerifierRegistry, Verifier);
+                VerifierRegistry.at(VerifierRegistry.address).setVerifier(Verifier.address);
                 return deployer.deploy(BondHolderRegistry).then(function() {
                   deployer.link(Ownable, BondHolderRegistry);
                   return deployer.deploy(BondHolder).then(function() {
                     deployer.link(Ownable, BondHolder);
                     deployer.link(BondHolderRegistry, BondHolder);
-                    deployer.link(VerifierRegistry, Proven);
                     BondHolderRegistry.at(BondHolderRegistry.address).setBondHolder(BondHolder.address);
-                    VerifierRegistry.at(VerifierRegistry.address).setDB(VerifierDB.address);
                     VerifierRegistry.at(VerifierRegistry.address).setBondHolder(BondHolder.address);
-                    VerifierRegistry.at(VerifierRegistry.address).setProven(Proven.address);
-                    VerifierRegistry.at(VerifierRegistry.address).setVerifier(Verifier.address);
-//                    VerifierRegistry.at(VerifierRegistry.address).setOracle(Proven.address); // wut
                   })
                 })
               })
