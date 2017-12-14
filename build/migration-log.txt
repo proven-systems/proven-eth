@@ -1,0 +1,37 @@
+truffle migrate --network ropsten
+Using network 'ropsten'.
+
+Running migration: 2_initial_proven.js
+  Deploying Ownable...
+  ... 0xadb94f3e4c6aa2765af0e9c00ce82c0f69da85be6fa0849ca0d730fc3fed824f
+  Ownable: 0x6defdf150128ecd067baa3ca05910865bbe75c4e
+Saving successful migration to network...
+  Deploying ProvenRegistry...
+  ... 0xd0c5ab3e4df995b0deff49685cc557e38bc83da3a75ff123598ec72db1cc9802
+  ... 0xb974c76c0bf9337482868f92f9a5e9d4cfb03ca28f0aa31dde6ee23af715adf2
+Saving artifacts...
+  ProvenRegistry: 0x35e5fc2e5f8e8727f8abf3d671ae6e26afbed64b
+  Deploying Proven...
+  ... 0x757f385b5bf15234c4608593ab8e40b73349f5ba06ff165742bc740a8fd2fe38
+  Proven: 0x0261bb1ef179f39121928d0747440ad7264cfd04
+  Deploying ProvenDB...
+  ... 0x8f155883861007fe44a5a9790d57d61ca5921aae7edbdbf2c25dc25c5055fa7b
+  ProvenDB: 0x0cf22aaab2d7652fcf578a4935bb8376add9245a
+  Deploying VerifierRegistry...
+  ... 0x5b26e7cffe8ac9298ad59c212b7a9e4e038d04c3a60c1a5355b3403780566b88
+  ... 0x299d847305a2e1398c66a595fcc469193606ea585d5fc6b88539e9995b5934df
+  ... 0x69dd951b1d5cfef2afc6aa03b04316a3b45ac7d5c3239db27c6eb783f9cd2e92
+  VerifierRegistry: 0xb7f86098c9e324d5fb8aea842a242bdd8b2c14aa
+  Deploying VerifierDB...
+  ... 0x1df664cfd2ac1a1c085847dde20af8406407d36d07137806d02c94556bc52b90
+  VerifierDB: 0xf87ba89472fa3546edebe1019c555e13b25ec1a3
+  Deploying Verifier...
+  ... 0xb7f3dd2d38b9f29868598757f418aedb17f00b20b153ec9eb9680372b1d418ab
+  Verifier: 0x5353f2e3c26492c805dd111bf8217cac274106c5
+  Deploying BondHolderRegistry...
+  ... 0x58983012248b4941253ec1fb5d9e561d9bc90e329a9bb56548dc492ec73556bc
+  BondHolderRegistry: 0x7c22275eb027a7373c1e6d27779b3b7486c1f2dc
+  Deploying BondHolder...
+  ... undefined
+(node:6513) UnhandledPromiseRejectionWarning: Unhandled promise rejection (rejection id: 1): Error: insufficient funds for gas * price + value
+(node:6513) DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
