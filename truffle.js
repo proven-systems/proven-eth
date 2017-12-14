@@ -9,11 +9,11 @@ module.exports = {
   },
   networks: {
 // for ganache-gui
-    development: {
-      host: "localhost",
-      port: 7545,
-      network_id: "5777" // match any network
-    },
+//    development: {
+//      host: "localhost",
+//      port: 7545,
+//      network_id: "5777" // match any network
+//    },
     localhost: {
       host: "localhost",
       port: 8546,
@@ -22,7 +22,7 @@ module.exports = {
     ropsten: {
       host: "localhost",
       port: 8545,
-      gas: 4712388,
+      gas: 4612388,
       network_id: "3"
     }
   }
