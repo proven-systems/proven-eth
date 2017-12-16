@@ -36,7 +36,7 @@ module.exports = function(deployer) {
                 VerifierRegistry.at(VerifierRegistry.address).setVerifier(Verifier.address);
                 return deployer.deploy(BondHolderRegistry).then(function() {
                   deployer.link(Ownable, BondHolderRegistry);
-                  return deployer.deploy(BondHolder).then(function() {
+                  return deployer.deploy(BondHolder, BondHolderRegistry.address, Verifier.address).then(function() {
                     deployer.link(Ownable, BondHolder);
                     deployer.link(BondHolderRegistry, BondHolder);
                     BondHolderRegistry.at(BondHolderRegistry.address).setBondHolder(BondHolder.address);
