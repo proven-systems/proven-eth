@@ -1,0 +1,1263 @@
+{
+  "contractName": "Proven",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_ipfsHash",
+          "type": "bytes"
+        }
+      ],
+      "name": "publishDeposition",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "registry",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_owner",
+          "type": "address"
+        },
+        {
+          "name": "_ipfsHash",
+          "type": "bytes"
+        }
+      ],
+      "name": "publishDeposition",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "name": "_registry",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "_deposition",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "_deponent",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "_ipfsHash",
+          "type": "bytes"
+        }
+      ],
+      "name": "DepositionPublished",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    }
+  ],
+  "bytecode": "0x6060604052341561000f57600080fd5b6040516020806104e08339810160405280805160008054600160a060020a03338116600160a060020a0319928316179092556001805492909316911617905550506104818061005f6000396000f3006060604052600436106100535763ffffffff60e060020a6000350416631b504a4f81146100585780637b103999146100bb5780638da5cb5b146100ea578063c36a440a146100fd578063f2fde38b1461015c575b600080fd5b341561006357600080fd5b6100a960046024813581810190830135806020601f8201819004810201604051908101604052818152929190602084018383808284375094965061017d95505050505050565b60405190815260200160405180910390f35b34156100c657600080fd5b6100ce61018f565b604051600160a060020a03909116815260200160405180910390f35b34156100f557600080fd5b6100ce61019e565b341561010857600080fd5b6100a960048035600160a060020a03169060446024803590810190830135806020601f820181900481020160405190810160405281815292919060208401838380828437509496506101ad95505050505050565b341561016757600080fd5b61017b600160a060020a03600435166103ba565b005b600061018933836101ad565b92915050565b600154600160a060020a031681565b600054600160a060020a031681565b60015460009081908190600160a060020a0316634d655aff82604051602001526040518163ffffffff1660e060020a028152600401602060405180830381600087803b15156101fb57600080fd5b6102c65a03f1151561020c57600080fd5b5050506040518051925050600160a060020a038216634dbfced986866000604051602001526040518363ffffffff1660e060020a0281526004018083600160a060020a0316600160a060020a0316815260200180602001828103825283818151815260200191508051906020019080838360005b83811015610298578082015183820152602001610280565b50505050905090810190601f1680156102c55780820380516001836020036101000a031916815260200191505b509350505050602060405180830381600087803b15156102e457600080fd5b6102c65a03f115156102f557600080fd5b5050506040518051905090507fb93df28da3008cdac44b3e0552c7e6f6399917170f3371c54b782059b308bd3e818686604051838152600160a060020a038316602082015260606040820181815290820183818151815260200191508051906020019080838360005b8381101561037657808201518382015260200161035e565b50505050905090810190601f1680156103a35780820380516001836020036101000a031916815260200191505b5094505050505060405180910390a1949350505050565b60005433600160a060020a039081169116146103d557600080fd5b600160a060020a03811615156103ea57600080fd5b600054600160a060020a0380831691167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a36000805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a03929092169190911790555600a165627a7a72305820550291c133a9d617c4afdcb5f17beed0ae0b6d04cbfdd905a41ac01e778f74c40029",
+  "deployedBytecode": "0x6060604052600436106100535763ffffffff60e060020a6000350416631b504a4f81146100585780637b103999146100bb5780638da5cb5b146100ea578063c36a440a146100fd578063f2fde38b1461015c575b600080fd5b341561006357600080fd5b6100a960046024813581810190830135806020601f8201819004810201604051908101604052818152929190602084018383808284375094965061017d95505050505050565b60405190815260200160405180910390f35b34156100c657600080fd5b6100ce61018f565b604051600160a060020a03909116815260200160405180910390f35b34156100f557600080fd5b6100ce61019e565b341561010857600080fd5b6100a960048035600160a060020a03169060446024803590810190830135806020601f820181900481020160405190810160405281815292919060208401838380828437509496506101ad95505050505050565b341561016757600080fd5b61017b600160a060020a03600435166103ba565b005b600061018933836101ad565b92915050565b600154600160a060020a031681565b600054600160a060020a031681565b60015460009081908190600160a060020a0316634d655aff82604051602001526040518163ffffffff1660e060020a028152600401602060405180830381600087803b15156101fb57600080fd5b6102c65a03f1151561020c57600080fd5b5050506040518051925050600160a060020a038216634dbfced986866000604051602001526040518363ffffffff1660e060020a0281526004018083600160a060020a0316600160a060020a0316815260200180602001828103825283818151815260200191508051906020019080838360005b83811015610298578082015183820152602001610280565b50505050905090810190601f1680156102c55780820380516001836020036101000a031916815260200191505b509350505050602060405180830381600087803b15156102e457600080fd5b6102c65a03f115156102f557600080fd5b5050506040518051905090507fb93df28da3008cdac44b3e0552c7e6f6399917170f3371c54b782059b308bd3e818686604051838152600160a060020a038316602082015260606040820181815290820183818151815260200191508051906020019080838360005b8381101561037657808201518382015260200161035e565b50505050905090810190601f1680156103a35780820380516001836020036101000a031916815260200191505b5094505050505060405180910390a1949350505050565b60005433600160a060020a039081169116146103d557600080fd5b600160a060020a03811615156103ea57600080fd5b600054600160a060020a0380831691167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a36000805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a03929092169190911790555600a165627a7a72305820550291c133a9d617c4afdcb5f17beed0ae0b6d04cbfdd905a41ac01e778f74c40029",
+  "sourceMap": "375:735:3:-;;;602:89;;;;;;;;;;;;;;;;;;;;;;501:5:9;:18;;-1:-1:-1;;;;;509:10:9;501:18;;-1:-1:-1;;;;;;501:18:9;;;;;;;;650:36:3;;;;;;;;;;;-1:-1:-1;;375:735:3;;;;;;",
+  "deployedSourceMap": "375:735:3:-;;;;;;;;;-1:-1:-1;;;375:735:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;722:127;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;722:127:3;;-1:-1:-1;722:127:3;;-1:-1:-1;;;;;;722:127:3;;;;;;;;;;;;;;;;407:30;;;;;;;;;;;;;;;-1:-1:-1;;;;;407:30:3;;;;;;;;;;;;;;238:20:9;;;;;;;;;;;;853:255:3;;;;;;;;;;;;;-1:-1:-1;;;;;853:255:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;853:255:3;;-1:-1:-1;853:255:3;;-1:-1:-1;;;;;;853:255:3;834:169:9;;;;;;;;;;-1:-1:-1;;;;;834:169:9;;;;;;;722:127:3;782:7;804:40;822:10;834:9;804:17;:40::i;:::-;797:47;722:127;-1:-1:-1;;722:127:3:o;407:30::-;;;-1:-1:-1;;;;;407:30:3;;:::o;238:20:9:-;;;-1:-1:-1;;;;;238:20:9;;:::o;853:255:3:-;968:8;;929:7;;;;;;-1:-1:-1;;;;;968:8:3;:11;929:7;968:13;;;;;;;;;;-1:-1:-1;;;968:13:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;;;1001:18:3;;;1020:6;1028:9;1001:37;;;;;;;;;;;-1:-1:-1;;;1001:37:3;;;;;;;-1:-1:-1;;;;;1001:37:3;-1:-1:-1;;;;;1001:37:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:2;8:100;;;99:1;94:3;90;84:5;71:3;;;64:6;52:2;45:3;8:100;;;12:14;3:109;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;988:50:3;;1045:42;1065:2;1069:6;1077:9;1045:42;;;;;-1:-1:-1;;;;;1045:42:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:2;8:100;;;99:1;94:3;90;84:5;71:3;;;64:6;52:2;45:3;8:100;;;12:14;3:109;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1101:2:3;853:255;-1:-1:-1;;;;853:255:3:o;834:169:9:-;654:5;;640:10;-1:-1:-1;;;;;640:19:9;;;654:5;;640:19;632:28;;;;;;-1:-1:-1;;;;;910:22:9;;;;902:31;;;;;;960:5;;-1:-1:-1;;;;;939:37:9;;;;960:5;939:37;;;;;;;;;;982:5;:16;;-1:-1:-1;;982:16:9;-1:-1:-1;;;;;982:16:9;;;;;;;;;;834:169::o",
+  "source": "// Part of the Proven suite of software\n// Copyright © 2017 \"The Partnership\" (Ethereum 0x12B0621D90c69867957A836d677C64c46EC4291D)\n\npragma solidity ^0.4.18;\n\nimport \"zeppelin-solidity/contracts/ownership/Ownable.sol\";\nimport \"./ProvenRegistry.sol\";\nimport \"./ProvenDB.sol\";\n\n\n/// Proven\n/// Allows callers to prove the provenance of a chain of hashed files stored in IPFS.\ncontract Proven is Ownable {\n\n  ProvenRegistry public registry;\n\n  /// Logged when this occurs\n  event DepositionPublished(bytes32 _deposition, address _deponent, bytes _ipfsHash);\n\n  /// Constructor must be passed a backend\n  function Proven(address _registry) public {\n    registry = ProvenRegistry(_registry);\n  }\n\n  /// Publish a deposition\n  function publishDeposition(bytes _ipfsHash) public returns (bytes32) {\n    return publishDeposition(msg.sender, _ipfsHash);\n  }\n\n  function publishDeposition(address _owner, bytes _ipfsHash) public returns (bytes32) {\n\n    ProvenDB db = ProvenDB(registry.db());\n    bytes32 id = db.storeDeposition(_owner, _ipfsHash);\n\n    DepositionPublished(id, _owner, _ipfsHash);\n\n    return id;\n  }\n}\n",
+  "sourcePath": "/home/cleduc/src/proven-eth/contracts/Proven.sol",
+  "ast": {
+    "attributes": {
+      "absolutePath": "/home/cleduc/src/proven-eth/contracts/Proven.sol",
+      "exportedSymbols": {
+        "Proven": [
+          647
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.4",
+            ".18"
+          ]
+        },
+        "id": 571,
+        "name": "PragmaDirective",
+        "src": "134:24:3"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 2306,
+          "absolutePath": "zeppelin-solidity/contracts/ownership/Ownable.sol",
+          "file": "zeppelin-solidity/contracts/ownership/Ownable.sol",
+          "scope": 648,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 572,
+        "name": "ImportDirective",
+        "src": "160:59:3"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 839,
+          "absolutePath": "/home/cleduc/src/proven-eth/contracts/ProvenRegistry.sol",
+          "file": "./ProvenRegistry.sol",
+          "scope": 648,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 573,
+        "name": "ImportDirective",
+        "src": "220:30:3"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 805,
+          "absolutePath": "/home/cleduc/src/proven-eth/contracts/ProvenDB.sol",
+          "file": "./ProvenDB.sol",
+          "scope": 648,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 574,
+        "name": "ImportDirective",
+        "src": "251:24:3"
+      },
+      {
+        "attributes": {
+          "contractDependencies": [
+            2305
+          ],
+          "contractKind": "contract",
+          "documentation": "Proven\n Allows callers to prove the provenance of a chain of hashed files stored in IPFS.",
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            647,
+            2305
+          ],
+          "name": "Proven",
+          "scope": 648
+        },
+        "children": [
+          {
+            "attributes": {
+              "arguments": [
+                null
+              ]
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "Ownable",
+                  "referencedDeclaration": 2305,
+                  "type": "contract Ownable"
+                },
+                "id": 575,
+                "name": "UserDefinedTypeName",
+                "src": "394:7:3"
+              }
+            ],
+            "id": 576,
+            "name": "InheritanceSpecifier",
+            "src": "394:7:3"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "registry",
+              "scope": 647,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "contract ProvenRegistry",
+              "value": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "ProvenRegistry",
+                  "referencedDeclaration": 838,
+                  "type": "contract ProvenRegistry"
+                },
+                "id": 577,
+                "name": "UserDefinedTypeName",
+                "src": "407:14:3"
+              }
+            ],
+            "id": 578,
+            "name": "VariableDeclaration",
+            "src": "407:30:3"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "name": "DepositionPublished"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "_deposition",
+                      "scope": 586,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 579,
+                        "name": "ElementaryTypeName",
+                        "src": "498:7:3"
+                      }
+                    ],
+                    "id": 580,
+                    "name": "VariableDeclaration",
+                    "src": "498:19:3"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "_deponent",
+                      "scope": 586,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 581,
+                        "name": "ElementaryTypeName",
+                        "src": "519:7:3"
+                      }
+                    ],
+                    "id": 582,
+                    "name": "VariableDeclaration",
+                    "src": "519:17:3"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "_ipfsHash",
+                      "scope": 586,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes memory",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes",
+                          "type": "bytes storage pointer"
+                        },
+                        "id": 583,
+                        "name": "ElementaryTypeName",
+                        "src": "538:5:3"
+                      }
+                    ],
+                    "id": 584,
+                    "name": "VariableDeclaration",
+                    "src": "538:15:3"
+                  }
+                ],
+                "id": 585,
+                "name": "ParameterList",
+                "src": "497:57:3"
+              }
+            ],
+            "id": 586,
+            "name": "EventDefinition",
+            "src": "472:83:3"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "implemented": true,
+              "isConstructor": true,
+              "modifiers": [
+                null
+              ],
+              "name": "Proven",
+              "payable": false,
+              "scope": 647,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_registry",
+                      "scope": 598,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 587,
+                        "name": "ElementaryTypeName",
+                        "src": "618:7:3"
+                      }
+                    ],
+                    "id": 588,
+                    "name": "VariableDeclaration",
+                    "src": "618:17:3"
+                  }
+                ],
+                "id": 589,
+                "name": "ParameterList",
+                "src": "617:19:3"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 590,
+                "name": "ParameterList",
+                "src": "644:0:3"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "contract ProvenRegistry"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 578,
+                              "type": "contract ProvenRegistry",
+                              "value": "registry"
+                            },
+                            "id": 591,
+                            "name": "Identifier",
+                            "src": "650:8:3"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "type": "contract ProvenRegistry",
+                              "type_conversion": true
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_address",
+                                      "typeString": "address"
+                                    }
+                                  ],
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 838,
+                                  "type": "type(contract ProvenRegistry)",
+                                  "value": "ProvenRegistry"
+                                },
+                                "id": 592,
+                                "name": "Identifier",
+                                "src": "661:14:3"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 588,
+                                  "type": "address",
+                                  "value": "_registry"
+                                },
+                                "id": 593,
+                                "name": "Identifier",
+                                "src": "676:9:3"
+                              }
+                            ],
+                            "id": 594,
+                            "name": "FunctionCall",
+                            "src": "661:25:3"
+                          }
+                        ],
+                        "id": 595,
+                        "name": "Assignment",
+                        "src": "650:36:3"
+                      }
+                    ],
+                    "id": 596,
+                    "name": "ExpressionStatement",
+                    "src": "650:36:3"
+                  }
+                ],
+                "id": 597,
+                "name": "Block",
+                "src": "644:47:3"
+              }
+            ],
+            "id": 598,
+            "name": "FunctionDefinition",
+            "src": "602:89:3"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "publishDeposition",
+              "payable": false,
+              "scope": 647,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_ipfsHash",
+                      "scope": 612,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes memory",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes",
+                          "type": "bytes storage pointer"
+                        },
+                        "id": 599,
+                        "name": "ElementaryTypeName",
+                        "src": "749:5:3"
+                      }
+                    ],
+                    "id": 600,
+                    "name": "VariableDeclaration",
+                    "src": "749:15:3"
+                  }
+                ],
+                "id": 601,
+                "name": "ParameterList",
+                "src": "748:17:3"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 612,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 602,
+                        "name": "ElementaryTypeName",
+                        "src": "782:7:3"
+                      }
+                    ],
+                    "id": 603,
+                    "name": "VariableDeclaration",
+                    "src": "782:7:3"
+                  }
+                ],
+                "id": 604,
+                "name": "ParameterList",
+                "src": "781:9:3"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 604
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "bytes32",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                },
+                                {
+                                  "typeIdentifier": "t_bytes_memory_ptr",
+                                  "typeString": "bytes memory"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                612,
+                                646
+                              ],
+                              "referencedDeclaration": 646,
+                              "type": "function (address,bytes memory) returns (bytes32)",
+                              "value": "publishDeposition"
+                            },
+                            "id": 605,
+                            "name": "Identifier",
+                            "src": "804:17:3"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "sender",
+                              "referencedDeclaration": null,
+                              "type": "address"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 2317,
+                                  "type": "msg",
+                                  "value": "msg"
+                                },
+                                "id": 606,
+                                "name": "Identifier",
+                                "src": "822:3:3"
+                              }
+                            ],
+                            "id": 607,
+                            "name": "MemberAccess",
+                            "src": "822:10:3"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 600,
+                              "type": "bytes memory",
+                              "value": "_ipfsHash"
+                            },
+                            "id": 608,
+                            "name": "Identifier",
+                            "src": "834:9:3"
+                          }
+                        ],
+                        "id": 609,
+                        "name": "FunctionCall",
+                        "src": "804:40:3"
+                      }
+                    ],
+                    "id": 610,
+                    "name": "Return",
+                    "src": "797:47:3"
+                  }
+                ],
+                "id": 611,
+                "name": "Block",
+                "src": "791:58:3"
+              }
+            ],
+            "id": 612,
+            "name": "FunctionDefinition",
+            "src": "722:127:3"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "publishDeposition",
+              "payable": false,
+              "scope": 647,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_owner",
+                      "scope": 646,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 613,
+                        "name": "ElementaryTypeName",
+                        "src": "880:7:3"
+                      }
+                    ],
+                    "id": 614,
+                    "name": "VariableDeclaration",
+                    "src": "880:14:3"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_ipfsHash",
+                      "scope": 646,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes memory",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes",
+                          "type": "bytes storage pointer"
+                        },
+                        "id": 615,
+                        "name": "ElementaryTypeName",
+                        "src": "896:5:3"
+                      }
+                    ],
+                    "id": 616,
+                    "name": "VariableDeclaration",
+                    "src": "896:15:3"
+                  }
+                ],
+                "id": 617,
+                "name": "ParameterList",
+                "src": "879:33:3"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 646,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 618,
+                        "name": "ElementaryTypeName",
+                        "src": "929:7:3"
+                      }
+                    ],
+                    "id": 619,
+                    "name": "VariableDeclaration",
+                    "src": "929:7:3"
+                  }
+                ],
+                "id": 620,
+                "name": "ParameterList",
+                "src": "928:9:3"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "assignments": [
+                        622
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "name": "db",
+                          "scope": 646,
+                          "stateVariable": false,
+                          "storageLocation": "default",
+                          "type": "contract ProvenDB",
+                          "value": null,
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "contractScope": null,
+                              "name": "ProvenDB",
+                              "referencedDeclaration": 804,
+                              "type": "contract ProvenDB"
+                            },
+                            "id": 621,
+                            "name": "UserDefinedTypeName",
+                            "src": "945:8:3"
+                          }
+                        ],
+                        "id": 622,
+                        "name": "VariableDeclaration",
+                        "src": "945:11:3"
+                      },
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "contract ProvenDB",
+                          "type_conversion": true
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 804,
+                              "type": "type(contract ProvenDB)",
+                              "value": "ProvenDB"
+                            },
+                            "id": 623,
+                            "name": "Identifier",
+                            "src": "959:8:3"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "arguments": [
+                                null
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "type": "address",
+                              "type_conversion": false
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    null
+                                  ],
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "db",
+                                  "referencedDeclaration": 813,
+                                  "type": "function () view external returns (address)"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 578,
+                                      "type": "contract ProvenRegistry",
+                                      "value": "registry"
+                                    },
+                                    "id": 624,
+                                    "name": "Identifier",
+                                    "src": "968:8:3"
+                                  }
+                                ],
+                                "id": 625,
+                                "name": "MemberAccess",
+                                "src": "968:11:3"
+                              }
+                            ],
+                            "id": 626,
+                            "name": "FunctionCall",
+                            "src": "968:13:3"
+                          }
+                        ],
+                        "id": 627,
+                        "name": "FunctionCall",
+                        "src": "959:23:3"
+                      }
+                    ],
+                    "id": 628,
+                    "name": "VariableDeclarationStatement",
+                    "src": "945:37:3"
+                  },
+                  {
+                    "attributes": {
+                      "assignments": [
+                        630
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "name": "id",
+                          "scope": 646,
+                          "stateVariable": false,
+                          "storageLocation": "default",
+                          "type": "bytes32",
+                          "value": null,
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "bytes32",
+                              "type": "bytes32"
+                            },
+                            "id": 629,
+                            "name": "ElementaryTypeName",
+                            "src": "988:7:3"
+                          }
+                        ],
+                        "id": 630,
+                        "name": "VariableDeclaration",
+                        "src": "988:10:3"
+                      },
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "bytes32",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                },
+                                {
+                                  "typeIdentifier": "t_bytes_memory_ptr",
+                                  "typeString": "bytes memory"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "storeDeposition",
+                              "referencedDeclaration": 767,
+                              "type": "function (address,bytes memory) external returns (bytes32)"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 622,
+                                  "type": "contract ProvenDB",
+                                  "value": "db"
+                                },
+                                "id": 631,
+                                "name": "Identifier",
+                                "src": "1001:2:3"
+                              }
+                            ],
+                            "id": 632,
+                            "name": "MemberAccess",
+                            "src": "1001:18:3"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 614,
+                              "type": "address",
+                              "value": "_owner"
+                            },
+                            "id": 633,
+                            "name": "Identifier",
+                            "src": "1020:6:3"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 616,
+                              "type": "bytes memory",
+                              "value": "_ipfsHash"
+                            },
+                            "id": 634,
+                            "name": "Identifier",
+                            "src": "1028:9:3"
+                          }
+                        ],
+                        "id": 635,
+                        "name": "FunctionCall",
+                        "src": "1001:37:3"
+                      }
+                    ],
+                    "id": 636,
+                    "name": "VariableDeclarationStatement",
+                    "src": "988:50:3"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bytes32",
+                                  "typeString": "bytes32"
+                                },
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                },
+                                {
+                                  "typeIdentifier": "t_bytes_memory_ptr",
+                                  "typeString": "bytes memory"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 586,
+                              "type": "function (bytes32,address,bytes memory)",
+                              "value": "DepositionPublished"
+                            },
+                            "id": 637,
+                            "name": "Identifier",
+                            "src": "1045:19:3"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 630,
+                              "type": "bytes32",
+                              "value": "id"
+                            },
+                            "id": 638,
+                            "name": "Identifier",
+                            "src": "1065:2:3"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 614,
+                              "type": "address",
+                              "value": "_owner"
+                            },
+                            "id": 639,
+                            "name": "Identifier",
+                            "src": "1069:6:3"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 616,
+                              "type": "bytes memory",
+                              "value": "_ipfsHash"
+                            },
+                            "id": 640,
+                            "name": "Identifier",
+                            "src": "1077:9:3"
+                          }
+                        ],
+                        "id": 641,
+                        "name": "FunctionCall",
+                        "src": "1045:42:3"
+                      }
+                    ],
+                    "id": 642,
+                    "name": "ExpressionStatement",
+                    "src": "1045:42:3"
+                  },
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 620
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "overloadedDeclarations": [
+                            null
+                          ],
+                          "referencedDeclaration": 630,
+                          "type": "bytes32",
+                          "value": "id"
+                        },
+                        "id": 643,
+                        "name": "Identifier",
+                        "src": "1101:2:3"
+                      }
+                    ],
+                    "id": 644,
+                    "name": "Return",
+                    "src": "1094:9:3"
+                  }
+                ],
+                "id": 645,
+                "name": "Block",
+                "src": "938:170:3"
+              }
+            ],
+            "id": 646,
+            "name": "FunctionDefinition",
+            "src": "853:255:3"
+          }
+        ],
+        "id": 647,
+        "name": "ContractDefinition",
+        "src": "375:735:3"
+      }
+    ],
+    "id": 648,
+    "name": "SourceUnit",
+    "src": "134:977:3"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.18+commit.9cf6e910.Emscripten.clang"
+  },
+  "networks": {
+    "3": {
+      "events": {},
+      "links": {},
+      "address": "0xb7a690df9052bd962c2d2b649953bf6b0c5b49c9"
+    },
+    "4": {
+      "events": {},
+      "links": {},
+      "address": "0x31089c67f02f865984fe90a2ddebee742dccc6c4"
+    }
+  },
+  "schemaVersion": "1.0.1",
+  "updatedAt": "2017-12-18T14:21:44.088Z"
+}

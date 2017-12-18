@@ -1,0 +1,48 @@
+✘  15:13 ~/src/proven-eth [ ropsten L | ✔  ] $ truffle migrate --network ropsten
+Using network 'ropsten'.
+
+Running migration: 1_initial_migration.js
+  Deploying Migrations...
+  ... 0x2a6d7d450442dcbd1b97c4171debe5c7b3f55f59a2a114c5b9f837bcd9a707f4
+  Migrations: 0x379c2cc25268fcbcd0abc2281c117e13896300c0
+Saving successful migration to network...
+  ... 0x60413532133a5ea231d9c7f780e3fe5f3acc588ac0477c009dc5ee6a54c2a097
+Saving artifacts...
+Running migration: 2_initial_proven.js
+  Deploying Ownable...
+  ... 0xcd30e84937c68cc3a7f2e806c718ffb30749996412c1a4879c20fad16c4b9e07
+  Ownable: 0xcbda22eee1218ef7fdda99ce70c633707e883e44
+  Deploying ProvenRegistry...
+  ... 0x1ff92de8f41289bd34f0f1e4bbc9eb8268b38f3e5c4ea5e955410d7ba95b70ea
+  ProvenRegistry: 0xf5e5e716c1892ff2945e0246644a4c64a99afdf2
+  Deploying Proven...
+  ... 0x42b648d30adb151eb5dc0ff3c262c6cb4282ab43fd00281a80c29422da5e9283
+  Proven: 0xb7a690df9052bd962c2d2b649953bf6b0c5b49c9
+  Deploying ProvenDB...
+  ... 0xd84723454cffceb7fbacf5c2f890e412e7a842ed8d3205038c3aba4b6e57f927
+  ProvenDB: 0xedba918755ad954df4c0f1bcdca30437fe88c1ce
+  Deploying VerifierRegistry...
+  ... 0xbb5dba32bd0a1bab23c0090cd56ca096d2694668348b14a235ca21c2312e4c61
+  ... 0x90958bcf3bfc881466920330b405db7e0f334c277d2acc25dccf3254338551db
+  ... 0x31c29cceaadfc5a3e8a40ed39da3f29f7884f2708c1361eda856a31cebec7151
+  VerifierRegistry: 0xb48a5caf6ef39abb9abb2ed4066fcdce1bddb3a0
+  ... 0xc0e2909c94bbe42f3873111a5f6c6cd44853deb4b7ea508c39c9d66a29038f9b
+  Deploying VerifierDB...
+  ... 0xad42b674b0f2037e54bec77b15e61dae927b8fe578c1437d9c0a8d8feaf4dcd2
+  VerifierDB: 0x5acd0e5df96036e9a83a875b6f085f512cd1ce67
+  ... 0x495b0ed047c40afa8b9b28ce88f498f0ac0fb5ba34ad5ebe75bd452f4a1c9c97
+  Deploying Verifier...
+  ... 0x9653df6fa55c972da682d1e0ed9c4de9c1a5f8ed3e27c14fc065b91bc821f647
+  Verifier: 0x1f16f2ee071677cd7172ec2d31c94388264dc71e
+  ... 0xca789f81a81bff85507c7afa89a7e4c5cb5be4cce4cd65dfb474d96b39e5d7c7
+  Deploying BondHolderRegistry...
+  ... 0xd7f74cc39bca644df2990a2defbb6122c1f3604d42b3320e06f38b98b63ff2cd
+  BondHolderRegistry: 0x713da41d81e2614cc8ec769870b6a360782aa55b
+  Deploying BondHolder...
+  ... 0xf11ab2ad6f66fef3e425276aeb7b299f586e29c8b72dabb9af675f3b98696ca1
+  BondHolder: 0xfbe0129a84cf40bea35c2f24fbcf0c5bc1255c29
+Saving successful migration to network...
+  ... 0xf42d75d4f0b6f31f64f82088f148843bd3a9e3f131ba33ce869f1d0baf2dbe68
+  ... 0xcd16cf90bdc92b9d769b6350d37c16d87c03edc7e0118c667dce7d78cce42c6b
+  ... 0x1f014abf79b931b06efb48d83478c785156000aef2fa8bebeabeaff4d259ca85
+Saving artifacts...
