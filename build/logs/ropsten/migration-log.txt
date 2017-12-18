@@ -1,59 +1,48 @@
-✔  20:37 ~/src/proven-eth [ ropsten L | ✚ 10 ] $ truffle migrate --network ropstenCompiling ./contracts/BondHolder.sol...
-Compiling ./contracts/BondHolderRegistry.sol...
-Compiling ./contracts/Migrations.sol...
-Compiling ./contracts/Proven.sol...
-Compiling ./contracts/ProvenDB.sol...
-Compiling ./contracts/ProvenRegistry.sol...
-Compiling ./contracts/Verifier.sol...
-Compiling ./contracts/VerifierDB.sol...
-Compiling ./contracts/VerifierRegistry.sol...
-Compiling zeppelin-solidity/contracts/ownership/Ownable.sol...
-Writing artifacts to ./build/contracts
-
+✘  15:13 ~/src/proven-eth [ ropsten L | ✔  ] $ truffle migrate --network ropsten
 Using network 'ropsten'.
 
 Running migration: 1_initial_migration.js
   Deploying Migrations...
-  ... 0xa477080e2008efe365eaa345670753e3194a292ced450dfdf149e4e51ea2f8ab
-  Migrations: 0x31089c67f02f865984fe90a2ddebee742dccc6c4
+  ... 0x2a6d7d450442dcbd1b97c4171debe5c7b3f55f59a2a114c5b9f837bcd9a707f4
+  Migrations: 0x379c2cc25268fcbcd0abc2281c117e13896300c0
 Saving successful migration to network...
-  ... 0xe6ad016d54c623df336b200c158b903467576fc7bbdcfd96ff06cb975426423d
+  ... 0x60413532133a5ea231d9c7f780e3fe5f3acc588ac0477c009dc5ee6a54c2a097
 Saving artifacts...
 Running migration: 2_initial_proven.js
   Deploying Ownable...
-  ... 0x6719cd0bb91b06875358161359338aec4898f9b8bfb1773f7094ce4f849209c7
-  Ownable: 0x6c554f252a832bfb6e16e74e35079bc6bdfb75aa
-Saving successful migration to network...
+  ... 0xcd30e84937c68cc3a7f2e806c718ffb30749996412c1a4879c20fad16c4b9e07
+  Ownable: 0xcbda22eee1218ef7fdda99ce70c633707e883e44
   Deploying ProvenRegistry...
-  ... 0xa8ded1e246c7c2eb53ac80501bfbe448c399b6ee7486d5b8f9dea96c1f31429f
-  ... 0xe3fb288ed5191a99c7b2b2f254fb54b57bce6d0aab3a0d2f3a4861ab9dbf3ef4
-Saving artifacts...
-  ProvenRegistry: 0x54971ebe09eb98f305ba3c9592ee8911a0e87d71
+  ... 0x1ff92de8f41289bd34f0f1e4bbc9eb8268b38f3e5c4ea5e955410d7ba95b70ea
+  ProvenRegistry: 0xf5e5e716c1892ff2945e0246644a4c64a99afdf2
   Deploying Proven...
-  ... 0xc7ad1f1c453df1390dc737a4d8d44417c6538ebba2abddf96c18e1eeb3f4d184
-  Proven: 0x4f91cbd93308cafbff9935f0489c3fec6847307f
+  ... 0x42b648d30adb151eb5dc0ff3c262c6cb4282ab43fd00281a80c29422da5e9283
+  Proven: 0xb7a690df9052bd962c2d2b649953bf6b0c5b49c9
   Deploying ProvenDB...
-  ... 0xfa5eeaf538f3d0fa834c330a54b2473aed2fbb3d7ae4e6e46585037b5fcee528
-  ProvenDB: 0x539a892b16a77a99e6d39e10059ad3c9ca71bc49
-  ... 0xabe6909ab36c9655cbf7a0cbf63b4d64cd3fa39783dd2541f415f4ff322ec620
-  ... 0xb2879ceb4f1d13427a88b2e88cb1830ce88c0faab239837167201ee29e566e66
+  ... 0xd84723454cffceb7fbacf5c2f890e412e7a842ed8d3205038c3aba4b6e57f927
+  ProvenDB: 0xedba918755ad954df4c0f1bcdca30437fe88c1ce
   Deploying VerifierRegistry...
-  ... 0x1082bf7ee31cb9e92010d7c12d572dad1a39783c324416b64cd0a23a1fe1c88f
-  VerifierRegistry: 0xe5bc9e957557fd5ced8518ce0a7e3ec996e09bd5
+  ... 0xbb5dba32bd0a1bab23c0090cd56ca096d2694668348b14a235ca21c2312e4c61
+  ... 0x90958bcf3bfc881466920330b405db7e0f334c277d2acc25dccf3254338551db
+  ... 0x31c29cceaadfc5a3e8a40ed39da3f29f7884f2708c1361eda856a31cebec7151
+  VerifierRegistry: 0xb48a5caf6ef39abb9abb2ed4066fcdce1bddb3a0
+  ... 0xc0e2909c94bbe42f3873111a5f6c6cd44853deb4b7ea508c39c9d66a29038f9b
   Deploying VerifierDB...
-  ... 0xadf2782ce532515af284a21a03a7f7ee095a969c5e5ca2a88083271c418721bd
-  ... 0x6c584be71aeb4a753a91b14215dce3139cf3989aa691f45c9ba59c45c8d5c58d
-  VerifierDB: 0xde8c38f3093f7d10fed6db5b37f02484b48bd9a8
+  ... 0xad42b674b0f2037e54bec77b15e61dae927b8fe578c1437d9c0a8d8feaf4dcd2
+  VerifierDB: 0x5acd0e5df96036e9a83a875b6f085f512cd1ce67
+  ... 0x495b0ed047c40afa8b9b28ce88f498f0ac0fb5ba34ad5ebe75bd452f4a1c9c97
   Deploying Verifier...
-  ... 0x542677f0120bbc10f59035da2f19fc0c9f3121d46f0d3693de99f262fca27edb
-  ... 0xef9d6039070fb1b5afb761a49c332475c2236ae740fae678196e48629830ba5e
-  Verifier: 0xe973f8d2a3008db214316e8348d88cf04b950efa
+  ... 0x9653df6fa55c972da682d1e0ed9c4de9c1a5f8ed3e27c14fc065b91bc821f647
+  Verifier: 0x1f16f2ee071677cd7172ec2d31c94388264dc71e
+  ... 0xca789f81a81bff85507c7afa89a7e4c5cb5be4cce4cd65dfb474d96b39e5d7c7
   Deploying BondHolderRegistry...
-  ... 0x07432d28a838baae1210b278ec374223e3636cd939e43d877bb8b87175d352bb
-  ... 0xcbfd52e2e3b4f71aad843ae7ea0b803d5713c72a7d7ec7660d2ce44dc4850b1d
-  BondHolderRegistry: 0x8f984e0af6a79233b5b259c8993690eae5ded601
+  ... 0xd7f74cc39bca644df2990a2defbb6122c1f3604d42b3320e06f38b98b63ff2cd
+  BondHolderRegistry: 0x713da41d81e2614cc8ec769870b6a360782aa55b
   Deploying BondHolder...
-  ... 0xaa1c2088d206f6388db545c76fc468c2d88d28867116bb48a1478b2032a65065
-  BondHolder: 0x1779f3f34afe2e0876301ba7791b01a1b8d1fc5a
-  ... 0x427390326b9826b46b7f4dd3f3b830cb2aa989ace2a91ecf56f9a7f5b6fded53
-  ... 0x60e1a37037564f51b0cb38c67dc636658a3951b75911ea65de1630a4a035ed90
+  ... 0xf11ab2ad6f66fef3e425276aeb7b299f586e29c8b72dabb9af675f3b98696ca1
+  BondHolder: 0xfbe0129a84cf40bea35c2f24fbcf0c5bc1255c29
+Saving successful migration to network...
+  ... 0xf42d75d4f0b6f31f64f82088f148843bd3a9e3f131ba33ce869f1d0baf2dbe68
+  ... 0xcd16cf90bdc92b9d769b6350d37c16d87c03edc7e0118c667dce7d78cce42c6b
+  ... 0x1f014abf79b931b06efb48d83478c785156000aef2fa8bebeabeaff4d259ca85
+Saving artifacts...
