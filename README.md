@@ -13,7 +13,7 @@ This project uses the [Truffle](http://truffleframework.com/) framework and [ope
 
 # Deployment
 
-* Run your local Ethereum client synced to the Ropsten network, with RPC enabled, and run it with the deployment account unlocked.
+* Run your local Ethereum client synced to the appropriate network, with RPC enabled, and run it with the deployment account unlocked.
 * `truffle migrate --network ropsten`
 * Make sure to save the output of this script to `build\migration_log.txt` for reference, as it records the addresses at which each contract is deployed.
 * Verify the contract code on Etherscan ([work is underway to automate this!](https://github.com/trufflesuite/truffle/issues/564))
