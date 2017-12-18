@@ -9,11 +9,11 @@ module.exports = {
   },
   networks: {
 // for ganache-gui
-//    development: {
-//      host: "localhost",
-//      port: 7545,
-//      network_id: "5777" // match any network
-//    },
+    ganache: {
+      host: "localhost",
+      port: 7545,
+      network_id: "5777"
+    },
     localhost: {
       host: "localhost",
       port: 8546,
