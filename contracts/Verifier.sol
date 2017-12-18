@@ -178,12 +178,12 @@ contract Verifier is Ownable {
     DepositionDisproven(_deposition, msg.sender);
   }
 
-  function contestVerification(bytes32 _deposition) public {
+  function contestState(bytes32 _deposition, VerifierDB.State _state) internal { 
 
     VerifierDB db = VerifierDB(registry.db());
 
     var (state,,,,,,, bondAmount,) = db.getDetails(_deposition);
-    require(state == VerifierDB.State.Verified);
+    require(state == _state);
 
     BondHolder bondHolder = BondHolder(registry.bondHolder());
 
@@ -193,19 +193,12 @@ contract Verifier is Ownable {
     contest(db, bondHolder, bondAmount, _deposition, msg.sender);
   }
 
+  function contestVerification(bytes32 _deposition) public {
+    contestState(_deposition, VerifierDB.State.Verified);
+  }
+
   function contestChallenge(bytes32 _deposition) public {
-
-    VerifierDB db = VerifierDB(registry.db());
-
-    var (state,,,,,,, bondAmount,) = db.getDetails(_deposition);
-    require(state == VerifierDB.State.Challenged);
-
-    BondHolder bondHolder = BondHolder(registry.bondHolder());
-
-    // does the caller have enough bond on deposit?
-    require(bondHolder.availableBond(msg.sender) >= bondAmount);
-
-    contest(db, bondHolder, bondAmount, _deposition, msg.sender);
+    contestState(_deposition, VerifierDB.State.Challenged);
   }
 
   function decideChallenge(bytes32 _deposition, bool _proven) public {
