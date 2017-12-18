@@ -10,10 +10,12 @@
   },
   "license": "AGPL-3.0",
   "scripts": {
-    "build": "node build.js",
-    "build-contracts": "mkdir -p ./build/merged ; sol-merger './contracts/*.sol' ./build/merged",
-    "deploy": "node deploy.js",
-    "clean": "rm -rf output"
+    "build": "./node_modules/.bin/truffle compile",
+    "build-contracts": "mkdir -p ./build/merged ; ./node_modules/.bin/sol-merger './contracts/*.sol' ./build/merged",
+    "deploy-ropsten": "./node_modules/.bin/truffle migrate --network ropsten",
+    "deploy-ganache": "./node_modules/.bin/truffle migrate --network ganache",
+    "lint": "./node_modules/.bin/solium --dir contracts/",
+    "test": "./node_modules/.bin/truffle test"
   },
   "dependencies": {
     "solium": "^1.0.9",
