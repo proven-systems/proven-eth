@@ -11,7 +11,7 @@
   "license": "AGPL-3.0",
   "scripts": {
     "build": "node build.js",
-    "build-contracts": "sol-merger './contracts/*.sol' ./build",
+    "build-contracts": "mkdir -p ./build/merged ; sol-merger './contracts/*.sol' ./build/merged",
     "deploy": "node deploy.js",
     "clean": "rm -rf output"
   },
