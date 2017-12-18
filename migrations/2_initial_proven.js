@@ -10,7 +10,7 @@ var BondHolderRegistry = artifacts.require("BondHolderRegistry");
 
 module.exports = function(deployer) {
   deployer.deploy(Ownable).then(function() {
-    deployer.deploy(ProvenRegistry).then(function() {
+    return deployer.deploy(ProvenRegistry).then(function() {
       deployer.link(Ownable, ProvenRegistry);
       deployer.link(ProvenRegistry, Proven);
       return deployer.deploy(Proven, ProvenRegistry.address).then(function() {
