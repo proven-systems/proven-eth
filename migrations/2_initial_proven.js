@@ -41,6 +41,8 @@ module.exports = function(deployer) {
                     deployer.link(BondHolderRegistry, BondHolder);
                     BondHolderRegistry.at(BondHolderRegistry.address).setBondHolder(BondHolder.address);
                     VerifierRegistry.at(VerifierRegistry.address).setBondHolder(BondHolder.address);
+                  }).catch(function(err) {
+                    console.log(err);
                   })
                 })
               })
