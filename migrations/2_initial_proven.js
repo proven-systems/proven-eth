@@ -1,4 +1,4 @@
-var Ownable = artifacts.require("ownership/Ownable.sol");
+var Ownable = artifacts.require("Ownable");
 var Proven = artifacts.require("Proven");
 var ProvenDB = artifacts.require("ProvenDB");
 var ProvenRegistry = artifacts.require("ProvenRegistry");

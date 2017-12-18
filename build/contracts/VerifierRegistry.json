@@ -187,18 +187,18 @@
       "type": "event"
     }
   ],
-  "bytecode": "0x606060405260008054600160a060020a033316600160a060020a031990911617905561044d806100306000396000f3006060604052600436106100b95763ffffffff7c010000000000000000000000000000000000000000000000000000000060003504166322ed80e881146100be5780632b7ac3f3146100ed5780634d655aff146101005780634d94e7f3146101135780635437988d146101265780635cb6c4121461014757806365401882146101665780637adbf973146101855780637dc0d1d0146101a45780638da5cb5b146101b7578063b60e7877146101ca578063f2fde38b146101e9575b600080fd5b34156100c957600080fd5b6100d1610208565b604051600160a060020a03909116815260200160405180910390f35b34156100f857600080fd5b6100d1610217565b341561010b57600080fd5b6100d1610226565b341561011e57600080fd5b6100d1610235565b341561013157600080fd5b610145600160a060020a0360043516610244565b005b341561015257600080fd5b610145600160a060020a0360043516610281565b341561017157600080fd5b610145600160a060020a03600435166102be565b341561019057600080fd5b610145600160a060020a03600435166102fb565b34156101af57600080fd5b6100d1610338565b34156101c257600080fd5b6100d1610347565b34156101d557600080fd5b610145600160a060020a0360043516610356565b34156101f457600080fd5b610145600160a060020a0360043516610393565b600454600160a060020a031681565b600254600160a060020a031681565b600354600160a060020a031681565b600154600160a060020a031681565b60005433600160a060020a0390811691161461025f57600080fd5b60028054600160a060020a031916600160a060020a0392909216919091179055565b60005433600160a060020a0390811691161461029c57600080fd5b60018054600160a060020a031916600160a060020a0392909216919091179055565b60005433600160a060020a039081169116146102d957600080fd5b60038054600160a060020a031916600160a060020a0392909216919091179055565b60005433600160a060020a0390811691161461031657600080fd5b60058054600160a060020a031916600160a060020a0392909216919091179055565b600554600160a060020a031681565b600054600160a060020a031681565b60005433600160a060020a0390811691161461037157600080fd5b60048054600160a060020a031916600160a060020a0392909216919091179055565b60005433600160a060020a039081169116146103ae57600080fd5b600160a060020a03811615156103c357600080fd5b600054600160a060020a0380831691167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a360008054600160a060020a031916600160a060020a03929092169190911790555600a165627a7a723058200e7a59e926ac359ea496d93ad296ff513f136832ae724ed91877b011ec46c3ce0029",
-  "deployedBytecode": "0x6060604052600436106100b95763ffffffff7c010000000000000000000000000000000000000000000000000000000060003504166322ed80e881146100be5780632b7ac3f3146100ed5780634d655aff146101005780634d94e7f3146101135780635437988d146101265780635cb6c4121461014757806365401882146101665780637adbf973146101855780637dc0d1d0146101a45780638da5cb5b146101b7578063b60e7877146101ca578063f2fde38b146101e9575b600080fd5b34156100c957600080fd5b6100d1610208565b604051600160a060020a03909116815260200160405180910390f35b34156100f857600080fd5b6100d1610217565b341561010b57600080fd5b6100d1610226565b341561011e57600080fd5b6100d1610235565b341561013157600080fd5b610145600160a060020a0360043516610244565b005b341561015257600080fd5b610145600160a060020a0360043516610281565b341561017157600080fd5b610145600160a060020a03600435166102be565b341561019057600080fd5b610145600160a060020a03600435166102fb565b34156101af57600080fd5b6100d1610338565b34156101c257600080fd5b6100d1610347565b34156101d557600080fd5b610145600160a060020a0360043516610356565b34156101f457600080fd5b610145600160a060020a0360043516610393565b600454600160a060020a031681565b600254600160a060020a031681565b600354600160a060020a031681565b600154600160a060020a031681565b60005433600160a060020a0390811691161461025f57600080fd5b60028054600160a060020a031916600160a060020a0392909216919091179055565b60005433600160a060020a0390811691161461029c57600080fd5b60018054600160a060020a031916600160a060020a0392909216919091179055565b60005433600160a060020a039081169116146102d957600080fd5b60038054600160a060020a031916600160a060020a0392909216919091179055565b60005433600160a060020a0390811691161461031657600080fd5b60058054600160a060020a031916600160a060020a0392909216919091179055565b600554600160a060020a031681565b600054600160a060020a031681565b60005433600160a060020a0390811691161461037157600080fd5b60048054600160a060020a031916600160a060020a0392909216919091179055565b60005433600160a060020a039081169116146103ae57600080fd5b600160a060020a03811615156103c357600080fd5b600054600160a060020a0380831691167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a360008054600160a060020a031916600160a060020a03929092169190911790555600a165627a7a723058200e7a59e926ac359ea496d93ad296ff513f136832ae724ed91877b011ec46c3ce0029",
-  "sourceMap": "441:596:8:-;;;501:5:9;:18;;-1:-1:-1;;;;;509:10:9;501:18;-1:-1:-1;;;;;;501:18:9;;;;;;441:596:8;;;;;;",
-  "deployedSourceMap": "441:596:8:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;556:25;;;;;;;;;;;;;;;-1:-1:-1;;;;;556:25:8;;;;;;;;;;;;;;508:23;;;;;;;;;;;;535:17;;;;;;;;;;;;483:21;;;;;;;;;;;;695:88;;;;;;;;;;-1:-1:-1;;;;;695:88:8;;;;;;;611:80;;;;;;;;;;-1:-1:-1;;;;;611:80:8;;;;;787:64;;;;;;;;;;-1:-1:-1;;;;;787:64:8;;;;;955:80;;;;;;;;;;-1:-1:-1;;;;;955:80:8;;;;;585:21;;;;;;;;;;;;238:20:9;;;;;;;;;;;;855:96:8;;;;;;;;;;-1:-1:-1;;;;;855:96:8;;;;;834:169:9;;;;;;;;;;-1:-1:-1;;;;;834:169:9;;;;;556:25:8;;;-1:-1:-1;;;;;556:25:8;;:::o;508:23::-;;;-1:-1:-1;;;;;508:23:8;;:::o;535:17::-;;;-1:-1:-1;;;;;535:17:8;;:::o;483:21::-;;;-1:-1:-1;;;;;483:21:8;;:::o;695:88::-;654:5:9;;640:10;-1:-1:-1;;;;;640:19:9;;;654:5;;640:19;632:28;;;;;;758:8:8;:20;;-1:-1:-1;;;;;;758:20:8;-1:-1:-1;;;;;758:20:8;;;;;;;;;;695:88::o;611:80::-;654:5:9;;640:10;-1:-1:-1;;;;;640:19:9;;;654:5;;640:19;632:28;;;;;;670:6:8;:16;;-1:-1:-1;;;;;;670:16:8;-1:-1:-1;;;;;670:16:8;;;;;;;;;;611:80::o;787:64::-;654:5:9;;640:10;-1:-1:-1;;;;;640:19:9;;;654:5;;640:19;632:28;;;;;;838:2:8;:8;;-1:-1:-1;;;;;;838:8:8;-1:-1:-1;;;;;838:8:8;;;;;;;;;;787:64::o;955:80::-;654:5:9;;640:10;-1:-1:-1;;;;;640:19:9;;;654:5;;640:19;632:28;;;;;;1014:6:8;:16;;-1:-1:-1;;;;;;1014:16:8;-1:-1:-1;;;;;1014:16:8;;;;;;;;;;955:80::o;585:21::-;;;-1:-1:-1;;;;;585:21:8;;:::o;238:20:9:-;;;-1:-1:-1;;;;;238:20:9;;:::o;855:96:8:-;654:5:9;;640:10;-1:-1:-1;;;;;640:19:9;;;654:5;;640:19;632:28;;;;;;922:10:8;:24;;-1:-1:-1;;;;;;922:24:8;-1:-1:-1;;;;;922:24:8;;;;;;;;;;855:96::o;834:169:9:-;654:5;;640:10;-1:-1:-1;;;;;640:19:9;;;654:5;;640:19;632:28;;;;;;-1:-1:-1;;;;;910:22:9;;;;902:31;;;;;;960:5;;-1:-1:-1;;;;;939:37:9;;;;960:5;939:37;;;;;;;;;;982:5;:16;;-1:-1:-1;;;;;;982:16:9;-1:-1:-1;;;;;982:16:9;;;;;;;;;;834:169::o",
-  "source": "// Part of the Proven suite of software\n// Copyright © 2017 \"The Partnership\" (Ethereum 0x12B0621D90c69867957A836d677C64c46EC4291D)\n\npragma solidity ^0.4.18;\n\nimport \"zeppelin-solidity/contracts/ownership/Ownable.sol\";\n\n\n/// VerifierRegistry\n/// Allows separation of the contract implementation from the interface so\n/// things like mobile clients only need a single access point, and internal\n/// contracts don't need to store dependents.\ncontract VerifierRegistry is Ownable {\n\n  address public proven;\n  address public verifier;\n  address public db;\n  address public bondHolder;\n  address public oracle;\n\n  function setProven(address _proven) public onlyOwner {\n    proven = _proven;\n  }\n\n  function setVerifier(address _verifier) public onlyOwner {\n    verifier = _verifier;\n  }\n\n  function setDB(address _db) public onlyOwner {\n    db = _db;\n  }\n\n  function setBondHolder(address _bondHolder) public onlyOwner {\n    bondHolder = _bondHolder;\n  }\n\n  function setOracle(address _oracle) public onlyOwner {\n    oracle = _oracle;\n  }\n}\n",
+  "bytecode": "0x606060405260008054600160a060020a033316600160a060020a031990911617905561044d806100306000396000f3006060604052600436106100b95763ffffffff7c010000000000000000000000000000000000000000000000000000000060003504166322ed80e881146100be5780632b7ac3f3146100ed5780634d655aff146101005780634d94e7f3146101135780635437988d146101265780635cb6c4121461014757806365401882146101665780637adbf973146101855780637dc0d1d0146101a45780638da5cb5b146101b7578063b60e7877146101ca578063f2fde38b146101e9575b600080fd5b34156100c957600080fd5b6100d1610208565b604051600160a060020a03909116815260200160405180910390f35b34156100f857600080fd5b6100d1610217565b341561010b57600080fd5b6100d1610226565b341561011e57600080fd5b6100d1610235565b341561013157600080fd5b610145600160a060020a0360043516610244565b005b341561015257600080fd5b610145600160a060020a0360043516610281565b341561017157600080fd5b610145600160a060020a03600435166102be565b341561019057600080fd5b610145600160a060020a03600435166102fb565b34156101af57600080fd5b6100d1610338565b34156101c257600080fd5b6100d1610347565b34156101d557600080fd5b610145600160a060020a0360043516610356565b34156101f457600080fd5b610145600160a060020a0360043516610393565b600454600160a060020a031681565b600254600160a060020a031681565b600354600160a060020a031681565b600154600160a060020a031681565b60005433600160a060020a0390811691161461025f57600080fd5b60028054600160a060020a031916600160a060020a0392909216919091179055565b60005433600160a060020a0390811691161461029c57600080fd5b60018054600160a060020a031916600160a060020a0392909216919091179055565b60005433600160a060020a039081169116146102d957600080fd5b60038054600160a060020a031916600160a060020a0392909216919091179055565b60005433600160a060020a0390811691161461031657600080fd5b60058054600160a060020a031916600160a060020a0392909216919091179055565b600554600160a060020a031681565b600054600160a060020a031681565b60005433600160a060020a0390811691161461037157600080fd5b60048054600160a060020a031916600160a060020a0392909216919091179055565b60005433600160a060020a039081169116146103ae57600080fd5b600160a060020a03811615156103c357600080fd5b600054600160a060020a0380831691167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a360008054600160a060020a031916600160a060020a03929092169190911790555600a165627a7a72305820641477f40239fb905c89560ecc25bc07952ebda40912e8260e558884c69054ca0029",
+  "deployedBytecode": "0x6060604052600436106100b95763ffffffff7c010000000000000000000000000000000000000000000000000000000060003504166322ed80e881146100be5780632b7ac3f3146100ed5780634d655aff146101005780634d94e7f3146101135780635437988d146101265780635cb6c4121461014757806365401882146101665780637adbf973146101855780637dc0d1d0146101a45780638da5cb5b146101b7578063b60e7877146101ca578063f2fde38b146101e9575b600080fd5b34156100c957600080fd5b6100d1610208565b604051600160a060020a03909116815260200160405180910390f35b34156100f857600080fd5b6100d1610217565b341561010b57600080fd5b6100d1610226565b341561011e57600080fd5b6100d1610235565b341561013157600080fd5b610145600160a060020a0360043516610244565b005b341561015257600080fd5b610145600160a060020a0360043516610281565b341561017157600080fd5b610145600160a060020a03600435166102be565b341561019057600080fd5b610145600160a060020a03600435166102fb565b34156101af57600080fd5b6100d1610338565b34156101c257600080fd5b6100d1610347565b34156101d557600080fd5b610145600160a060020a0360043516610356565b34156101f457600080fd5b610145600160a060020a0360043516610393565b600454600160a060020a031681565b600254600160a060020a031681565b600354600160a060020a031681565b600154600160a060020a031681565b60005433600160a060020a0390811691161461025f57600080fd5b60028054600160a060020a031916600160a060020a0392909216919091179055565b60005433600160a060020a0390811691161461029c57600080fd5b60018054600160a060020a031916600160a060020a0392909216919091179055565b60005433600160a060020a039081169116146102d957600080fd5b60038054600160a060020a031916600160a060020a0392909216919091179055565b60005433600160a060020a0390811691161461031657600080fd5b60058054600160a060020a031916600160a060020a0392909216919091179055565b600554600160a060020a031681565b600054600160a060020a031681565b60005433600160a060020a0390811691161461037157600080fd5b60048054600160a060020a031916600160a060020a0392909216919091179055565b60005433600160a060020a039081169116146103ae57600080fd5b600160a060020a03811615156103c357600080fd5b600054600160a060020a0380831691167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a360008054600160a060020a031916600160a060020a03929092169190911790555600a165627a7a72305820641477f40239fb905c89560ecc25bc07952ebda40912e8260e558884c69054ca0029",
+  "sourceMap": "405:596:8:-;;;501:5:2;:18;;-1:-1:-1;;;;;509:10:2;501:18;-1:-1:-1;;;;;;501:18:2;;;;;;405:596:8;;;;;;",
+  "deployedSourceMap": "405:596:8:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;520:25;;;;;;;;;;;;;;;-1:-1:-1;;;;;520:25:8;;;;;;;;;;;;;;472:23;;;;;;;;;;;;499:17;;;;;;;;;;;;447:21;;;;;;;;;;;;659:88;;;;;;;;;;-1:-1:-1;;;;;659:88:8;;;;;;;575:80;;;;;;;;;;-1:-1:-1;;;;;575:80:8;;;;;751:64;;;;;;;;;;-1:-1:-1;;;;;751:64:8;;;;;919:80;;;;;;;;;;-1:-1:-1;;;;;919:80:8;;;;;549:21;;;;;;;;;;;;238:20:2;;;;;;;;;;;;819:96:8;;;;;;;;;;-1:-1:-1;;;;;819:96:8;;;;;834:169:2;;;;;;;;;;-1:-1:-1;;;;;834:169:2;;;;;520:25:8;;;-1:-1:-1;;;;;520:25:8;;:::o;472:23::-;;;-1:-1:-1;;;;;472:23:8;;:::o;499:17::-;;;-1:-1:-1;;;;;499:17:8;;:::o;447:21::-;;;-1:-1:-1;;;;;447:21:8;;:::o;659:88::-;654:5:2;;640:10;-1:-1:-1;;;;;640:19:2;;;654:5;;640:19;632:28;;;;;;722:8:8;:20;;-1:-1:-1;;;;;;722:20:8;-1:-1:-1;;;;;722:20:8;;;;;;;;;;659:88::o;575:80::-;654:5:2;;640:10;-1:-1:-1;;;;;640:19:2;;;654:5;;640:19;632:28;;;;;;634:6:8;:16;;-1:-1:-1;;;;;;634:16:8;-1:-1:-1;;;;;634:16:8;;;;;;;;;;575:80::o;751:64::-;654:5:2;;640:10;-1:-1:-1;;;;;640:19:2;;;654:5;;640:19;632:28;;;;;;802:2:8;:8;;-1:-1:-1;;;;;;802:8:8;-1:-1:-1;;;;;802:8:8;;;;;;;;;;751:64::o;919:80::-;654:5:2;;640:10;-1:-1:-1;;;;;640:19:2;;;654:5;;640:19;632:28;;;;;;978:6:8;:16;;-1:-1:-1;;;;;;978:16:8;-1:-1:-1;;;;;978:16:8;;;;;;;;;;919:80::o;549:21::-;;;-1:-1:-1;;;;;549:21:8;;:::o;238:20:2:-;;;-1:-1:-1;;;;;238:20:2;;:::o;819:96:8:-;654:5:2;;640:10;-1:-1:-1;;;;;640:19:2;;;654:5;;640:19;632:28;;;;;;886:10:8;:24;;-1:-1:-1;;;;;;886:24:8;-1:-1:-1;;;;;886:24:8;;;;;;;;;;819:96::o;834:169:2:-;654:5;;640:10;-1:-1:-1;;;;;640:19:2;;;654:5;;640:19;632:28;;;;;;-1:-1:-1;;;;;910:22:2;;;;902:31;;;;;;960:5;;-1:-1:-1;;;;;939:37:2;;;;960:5;939:37;;;;;;;;;;982:5;:16;;-1:-1:-1;;;;;;982:16:2;-1:-1:-1;;;;;982:16:2;;;;;;;;;;834:169::o",
+  "source": "// Part of the Proven suite of software\n// Copyright © 2017 \"The Partnership\" (Ethereum 0x12B0621D90c69867957A836d677C64c46EC4291D)\n\npragma solidity ^0.4.18;\n\nimport \"./Ownable.sol\";\n\n\n/// VerifierRegistry\n/// Allows separation of the contract implementation from the interface so\n/// things like mobile clients only need a single access point, and internal\n/// contracts don't need to store dependents.\ncontract VerifierRegistry is Ownable {\n\n  address public proven;\n  address public verifier;\n  address public db;\n  address public bondHolder;\n  address public oracle;\n\n  function setProven(address _proven) public onlyOwner {\n    proven = _proven;\n  }\n\n  function setVerifier(address _verifier) public onlyOwner {\n    verifier = _verifier;\n  }\n\n  function setDB(address _db) public onlyOwner {\n    db = _db;\n  }\n\n  function setBondHolder(address _bondHolder) public onlyOwner {\n    bondHolder = _bondHolder;\n  }\n\n  function setOracle(address _oracle) public onlyOwner {\n    oracle = _oracle;\n  }\n}\n",
   "sourcePath": "/home/cleduc/src/proven-eth/contracts/VerifierRegistry.sol",
   "ast": {
     "attributes": {
       "absolutePath": "/home/cleduc/src/proven-eth/contracts/VerifierRegistry.sol",
       "exportedSymbols": {
         "VerifierRegistry": [
-          2249
+          2217
         ]
       }
     },
@@ -212,39 +212,39 @@
             ".18"
           ]
         },
-        "id": 2175,
+        "id": 2143,
         "name": "PragmaDirective",
         "src": "134:24:8"
       },
       {
         "attributes": {
-          "SourceUnit": 2306,
-          "absolutePath": "zeppelin-solidity/contracts/ownership/Ownable.sol",
-          "file": "zeppelin-solidity/contracts/ownership/Ownable.sol",
-          "scope": 2250,
+          "SourceUnit": 568,
+          "absolutePath": "/home/cleduc/src/proven-eth/contracts/Ownable.sol",
+          "file": "./Ownable.sol",
+          "scope": 2218,
           "symbolAliases": [
             null
           ],
           "unitAlias": ""
         },
-        "id": 2176,
+        "id": 2144,
         "name": "ImportDirective",
-        "src": "160:59:8"
+        "src": "160:23:8"
       },
       {
         "attributes": {
           "contractDependencies": [
-            2305
+            567
           ],
           "contractKind": "contract",
           "documentation": "VerifierRegistry\n Allows separation of the contract implementation from the interface so\n things like mobile clients only need a single access point, and internal\n contracts don't need to store dependents.",
           "fullyImplemented": true,
           "linearizedBaseContracts": [
-            2249,
-            2305
+            2217,
+            567
           ],
           "name": "VerifierRegistry",
-          "scope": 2250
+          "scope": 2218
         },
         "children": [
           {
@@ -258,23 +258,23 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "Ownable",
-                  "referencedDeclaration": 2305,
+                  "referencedDeclaration": 567,
                   "type": "contract Ownable"
                 },
-                "id": 2177,
+                "id": 2145,
                 "name": "UserDefinedTypeName",
-                "src": "470:7:8"
+                "src": "434:7:8"
               }
             ],
-            "id": 2178,
+            "id": 2146,
             "name": "InheritanceSpecifier",
-            "src": "470:7:8"
+            "src": "434:7:8"
           },
           {
             "attributes": {
               "constant": false,
               "name": "proven",
-              "scope": 2249,
+              "scope": 2217,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "address",
@@ -287,20 +287,20 @@
                   "name": "address",
                   "type": "address"
                 },
-                "id": 2179,
+                "id": 2147,
                 "name": "ElementaryTypeName",
-                "src": "483:7:8"
+                "src": "447:7:8"
               }
             ],
-            "id": 2180,
+            "id": 2148,
             "name": "VariableDeclaration",
-            "src": "483:21:8"
+            "src": "447:21:8"
           },
           {
             "attributes": {
               "constant": false,
               "name": "verifier",
-              "scope": 2249,
+              "scope": 2217,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "address",
@@ -313,20 +313,20 @@
                   "name": "address",
                   "type": "address"
                 },
-                "id": 2181,
+                "id": 2149,
                 "name": "ElementaryTypeName",
-                "src": "508:7:8"
+                "src": "472:7:8"
               }
             ],
-            "id": 2182,
+            "id": 2150,
             "name": "VariableDeclaration",
-            "src": "508:23:8"
+            "src": "472:23:8"
           },
           {
             "attributes": {
               "constant": false,
               "name": "db",
-              "scope": 2249,
+              "scope": 2217,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "address",
@@ -339,20 +339,20 @@
                   "name": "address",
                   "type": "address"
                 },
-                "id": 2183,
+                "id": 2151,
                 "name": "ElementaryTypeName",
-                "src": "535:7:8"
+                "src": "499:7:8"
               }
             ],
-            "id": 2184,
+            "id": 2152,
             "name": "VariableDeclaration",
-            "src": "535:17:8"
+            "src": "499:17:8"
           },
           {
             "attributes": {
               "constant": false,
               "name": "bondHolder",
-              "scope": 2249,
+              "scope": 2217,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "address",
@@ -365,20 +365,20 @@
                   "name": "address",
                   "type": "address"
                 },
-                "id": 2185,
+                "id": 2153,
                 "name": "ElementaryTypeName",
-                "src": "556:7:8"
+                "src": "520:7:8"
               }
             ],
-            "id": 2186,
+            "id": 2154,
             "name": "VariableDeclaration",
-            "src": "556:25:8"
+            "src": "520:25:8"
           },
           {
             "attributes": {
               "constant": false,
               "name": "oracle",
-              "scope": 2249,
+              "scope": 2217,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "address",
@@ -391,14 +391,14 @@
                   "name": "address",
                   "type": "address"
                 },
-                "id": 2187,
+                "id": 2155,
                 "name": "ElementaryTypeName",
-                "src": "585:7:8"
+                "src": "549:7:8"
               }
             ],
-            "id": 2188,
+            "id": 2156,
             "name": "VariableDeclaration",
-            "src": "585:21:8"
+            "src": "549:21:8"
           },
           {
             "attributes": {
@@ -407,7 +407,7 @@
               "isConstructor": false,
               "name": "setProven",
               "payable": false,
-              "scope": 2249,
+              "scope": 2217,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "public"
@@ -419,7 +419,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_proven",
-                      "scope": 2200,
+                      "scope": 2168,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -432,19 +432,19 @@
                           "name": "address",
                           "type": "address"
                         },
-                        "id": 2189,
+                        "id": 2157,
                         "name": "ElementaryTypeName",
-                        "src": "630:7:8"
+                        "src": "594:7:8"
                       }
                     ],
-                    "id": 2190,
+                    "id": 2158,
                     "name": "VariableDeclaration",
-                    "src": "630:15:8"
+                    "src": "594:15:8"
                   }
                 ],
-                "id": 2191,
+                "id": 2159,
                 "name": "ParameterList",
-                "src": "629:17:8"
+                "src": "593:17:8"
               },
               {
                 "attributes": {
@@ -453,9 +453,9 @@
                   ]
                 },
                 "children": [],
-                "id": 2194,
+                "id": 2162,
                 "name": "ParameterList",
-                "src": "664:0:8"
+                "src": "628:0:8"
               },
               {
                 "attributes": {
@@ -470,18 +470,18 @@
                       "overloadedDeclarations": [
                         null
                       ],
-                      "referencedDeclaration": 2279,
+                      "referencedDeclaration": 541,
                       "type": "modifier ()",
                       "value": "onlyOwner"
                     },
-                    "id": 2192,
+                    "id": 2160,
                     "name": "Identifier",
-                    "src": "654:9:8"
+                    "src": "618:9:8"
                   }
                 ],
-                "id": 2193,
+                "id": 2161,
                 "name": "ModifierInvocation",
-                "src": "654:9:8"
+                "src": "618:9:8"
               },
               {
                 "children": [
@@ -504,13 +504,13 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 2180,
+                              "referencedDeclaration": 2148,
                               "type": "address",
                               "value": "proven"
                             },
-                            "id": 2195,
+                            "id": 2163,
                             "name": "Identifier",
-                            "src": "670:6:8"
+                            "src": "634:6:8"
                           },
                           {
                             "attributes": {
@@ -518,33 +518,33 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 2190,
+                              "referencedDeclaration": 2158,
                               "type": "address",
                               "value": "_proven"
                             },
-                            "id": 2196,
+                            "id": 2164,
                             "name": "Identifier",
-                            "src": "679:7:8"
+                            "src": "643:7:8"
                           }
                         ],
-                        "id": 2197,
+                        "id": 2165,
                         "name": "Assignment",
-                        "src": "670:16:8"
+                        "src": "634:16:8"
                       }
                     ],
-                    "id": 2198,
+                    "id": 2166,
                     "name": "ExpressionStatement",
-                    "src": "670:16:8"
+                    "src": "634:16:8"
                   }
                 ],
-                "id": 2199,
+                "id": 2167,
                 "name": "Block",
-                "src": "664:27:8"
+                "src": "628:27:8"
               }
             ],
-            "id": 2200,
+            "id": 2168,
             "name": "FunctionDefinition",
-            "src": "611:80:8"
+            "src": "575:80:8"
           },
           {
             "attributes": {
@@ -553,7 +553,7 @@
               "isConstructor": false,
               "name": "setVerifier",
               "payable": false,
-              "scope": 2249,
+              "scope": 2217,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "public"
@@ -565,7 +565,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_verifier",
-                      "scope": 2212,
+                      "scope": 2180,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -578,19 +578,19 @@
                           "name": "address",
                           "type": "address"
                         },
-                        "id": 2201,
+                        "id": 2169,
                         "name": "ElementaryTypeName",
-                        "src": "716:7:8"
+                        "src": "680:7:8"
                       }
                     ],
-                    "id": 2202,
+                    "id": 2170,
                     "name": "VariableDeclaration",
-                    "src": "716:17:8"
+                    "src": "680:17:8"
                   }
                 ],
-                "id": 2203,
+                "id": 2171,
                 "name": "ParameterList",
-                "src": "715:19:8"
+                "src": "679:19:8"
               },
               {
                 "attributes": {
@@ -599,9 +599,9 @@
                   ]
                 },
                 "children": [],
-                "id": 2206,
+                "id": 2174,
                 "name": "ParameterList",
-                "src": "752:0:8"
+                "src": "716:0:8"
               },
               {
                 "attributes": {
@@ -616,18 +616,18 @@
                       "overloadedDeclarations": [
                         null
                       ],
-                      "referencedDeclaration": 2279,
+                      "referencedDeclaration": 541,
                       "type": "modifier ()",
                       "value": "onlyOwner"
                     },
-                    "id": 2204,
+                    "id": 2172,
                     "name": "Identifier",
-                    "src": "742:9:8"
+                    "src": "706:9:8"
                   }
                 ],
-                "id": 2205,
+                "id": 2173,
                 "name": "ModifierInvocation",
-                "src": "742:9:8"
+                "src": "706:9:8"
               },
               {
                 "children": [
@@ -650,13 +650,13 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 2182,
+                              "referencedDeclaration": 2150,
                               "type": "address",
                               "value": "verifier"
                             },
-                            "id": 2207,
+                            "id": 2175,
                             "name": "Identifier",
-                            "src": "758:8:8"
+                            "src": "722:8:8"
                           },
                           {
                             "attributes": {
@@ -664,33 +664,33 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 2202,
+                              "referencedDeclaration": 2170,
                               "type": "address",
                               "value": "_verifier"
                             },
-                            "id": 2208,
+                            "id": 2176,
                             "name": "Identifier",
-                            "src": "769:9:8"
+                            "src": "733:9:8"
                           }
                         ],
-                        "id": 2209,
+                        "id": 2177,
                         "name": "Assignment",
-                        "src": "758:20:8"
+                        "src": "722:20:8"
                       }
                     ],
-                    "id": 2210,
+                    "id": 2178,
                     "name": "ExpressionStatement",
-                    "src": "758:20:8"
+                    "src": "722:20:8"
                   }
                 ],
-                "id": 2211,
+                "id": 2179,
                 "name": "Block",
-                "src": "752:31:8"
+                "src": "716:31:8"
               }
             ],
-            "id": 2212,
+            "id": 2180,
             "name": "FunctionDefinition",
-            "src": "695:88:8"
+            "src": "659:88:8"
           },
           {
             "attributes": {
@@ -699,7 +699,7 @@
               "isConstructor": false,
               "name": "setDB",
               "payable": false,
-              "scope": 2249,
+              "scope": 2217,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "public"
@@ -711,7 +711,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_db",
-                      "scope": 2224,
+                      "scope": 2192,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -724,19 +724,19 @@
                           "name": "address",
                           "type": "address"
                         },
-                        "id": 2213,
+                        "id": 2181,
                         "name": "ElementaryTypeName",
-                        "src": "802:7:8"
+                        "src": "766:7:8"
                       }
                     ],
-                    "id": 2214,
+                    "id": 2182,
                     "name": "VariableDeclaration",
-                    "src": "802:11:8"
+                    "src": "766:11:8"
                   }
                 ],
-                "id": 2215,
+                "id": 2183,
                 "name": "ParameterList",
-                "src": "801:13:8"
+                "src": "765:13:8"
               },
               {
                 "attributes": {
@@ -745,9 +745,9 @@
                   ]
                 },
                 "children": [],
-                "id": 2218,
+                "id": 2186,
                 "name": "ParameterList",
-                "src": "832:0:8"
+                "src": "796:0:8"
               },
               {
                 "attributes": {
@@ -762,18 +762,18 @@
                       "overloadedDeclarations": [
                         null
                       ],
-                      "referencedDeclaration": 2279,
+                      "referencedDeclaration": 541,
                       "type": "modifier ()",
                       "value": "onlyOwner"
                     },
-                    "id": 2216,
+                    "id": 2184,
                     "name": "Identifier",
-                    "src": "822:9:8"
+                    "src": "786:9:8"
                   }
                 ],
-                "id": 2217,
+                "id": 2185,
                 "name": "ModifierInvocation",
-                "src": "822:9:8"
+                "src": "786:9:8"
               },
               {
                 "children": [
@@ -796,13 +796,13 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 2184,
+                              "referencedDeclaration": 2152,
                               "type": "address",
                               "value": "db"
                             },
-                            "id": 2219,
+                            "id": 2187,
                             "name": "Identifier",
-                            "src": "838:2:8"
+                            "src": "802:2:8"
                           },
                           {
                             "attributes": {
@@ -810,33 +810,33 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 2214,
+                              "referencedDeclaration": 2182,
                               "type": "address",
                               "value": "_db"
                             },
-                            "id": 2220,
+                            "id": 2188,
                             "name": "Identifier",
-                            "src": "843:3:8"
+                            "src": "807:3:8"
                           }
                         ],
-                        "id": 2221,
+                        "id": 2189,
                         "name": "Assignment",
-                        "src": "838:8:8"
+                        "src": "802:8:8"
                       }
                     ],
-                    "id": 2222,
+                    "id": 2190,
                     "name": "ExpressionStatement",
-                    "src": "838:8:8"
+                    "src": "802:8:8"
                   }
                 ],
-                "id": 2223,
+                "id": 2191,
                 "name": "Block",
-                "src": "832:19:8"
+                "src": "796:19:8"
               }
             ],
-            "id": 2224,
+            "id": 2192,
             "name": "FunctionDefinition",
-            "src": "787:64:8"
+            "src": "751:64:8"
           },
           {
             "attributes": {
@@ -845,7 +845,7 @@
               "isConstructor": false,
               "name": "setBondHolder",
               "payable": false,
-              "scope": 2249,
+              "scope": 2217,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "public"
@@ -857,7 +857,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_bondHolder",
-                      "scope": 2236,
+                      "scope": 2204,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -870,19 +870,19 @@
                           "name": "address",
                           "type": "address"
                         },
-                        "id": 2225,
+                        "id": 2193,
                         "name": "ElementaryTypeName",
-                        "src": "878:7:8"
+                        "src": "842:7:8"
                       }
                     ],
-                    "id": 2226,
+                    "id": 2194,
                     "name": "VariableDeclaration",
-                    "src": "878:19:8"
+                    "src": "842:19:8"
                   }
                 ],
-                "id": 2227,
+                "id": 2195,
                 "name": "ParameterList",
-                "src": "877:21:8"
+                "src": "841:21:8"
               },
               {
                 "attributes": {
@@ -891,9 +891,9 @@
                   ]
                 },
                 "children": [],
-                "id": 2230,
+                "id": 2198,
                 "name": "ParameterList",
-                "src": "916:0:8"
+                "src": "880:0:8"
               },
               {
                 "attributes": {
@@ -908,18 +908,18 @@
                       "overloadedDeclarations": [
                         null
                       ],
-                      "referencedDeclaration": 2279,
+                      "referencedDeclaration": 541,
                       "type": "modifier ()",
                       "value": "onlyOwner"
                     },
-                    "id": 2228,
+                    "id": 2196,
                     "name": "Identifier",
-                    "src": "906:9:8"
+                    "src": "870:9:8"
                   }
                 ],
-                "id": 2229,
+                "id": 2197,
                 "name": "ModifierInvocation",
-                "src": "906:9:8"
+                "src": "870:9:8"
               },
               {
                 "children": [
@@ -942,13 +942,13 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 2186,
+                              "referencedDeclaration": 2154,
                               "type": "address",
                               "value": "bondHolder"
                             },
-                            "id": 2231,
+                            "id": 2199,
                             "name": "Identifier",
-                            "src": "922:10:8"
+                            "src": "886:10:8"
                           },
                           {
                             "attributes": {
@@ -956,33 +956,33 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 2226,
+                              "referencedDeclaration": 2194,
                               "type": "address",
                               "value": "_bondHolder"
                             },
-                            "id": 2232,
+                            "id": 2200,
                             "name": "Identifier",
-                            "src": "935:11:8"
+                            "src": "899:11:8"
                           }
                         ],
-                        "id": 2233,
+                        "id": 2201,
                         "name": "Assignment",
-                        "src": "922:24:8"
+                        "src": "886:24:8"
                       }
                     ],
-                    "id": 2234,
+                    "id": 2202,
                     "name": "ExpressionStatement",
-                    "src": "922:24:8"
+                    "src": "886:24:8"
                   }
                 ],
-                "id": 2235,
+                "id": 2203,
                 "name": "Block",
-                "src": "916:35:8"
+                "src": "880:35:8"
               }
             ],
-            "id": 2236,
+            "id": 2204,
             "name": "FunctionDefinition",
-            "src": "855:96:8"
+            "src": "819:96:8"
           },
           {
             "attributes": {
@@ -991,7 +991,7 @@
               "isConstructor": false,
               "name": "setOracle",
               "payable": false,
-              "scope": 2249,
+              "scope": 2217,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "public"
@@ -1003,7 +1003,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_oracle",
-                      "scope": 2248,
+                      "scope": 2216,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -1016,19 +1016,19 @@
                           "name": "address",
                           "type": "address"
                         },
-                        "id": 2237,
+                        "id": 2205,
                         "name": "ElementaryTypeName",
-                        "src": "974:7:8"
+                        "src": "938:7:8"
                       }
                     ],
-                    "id": 2238,
+                    "id": 2206,
                     "name": "VariableDeclaration",
-                    "src": "974:15:8"
+                    "src": "938:15:8"
                   }
                 ],
-                "id": 2239,
+                "id": 2207,
                 "name": "ParameterList",
-                "src": "973:17:8"
+                "src": "937:17:8"
               },
               {
                 "attributes": {
@@ -1037,9 +1037,9 @@
                   ]
                 },
                 "children": [],
-                "id": 2242,
+                "id": 2210,
                 "name": "ParameterList",
-                "src": "1008:0:8"
+                "src": "972:0:8"
               },
               {
                 "attributes": {
@@ -1054,18 +1054,18 @@
                       "overloadedDeclarations": [
                         null
                       ],
-                      "referencedDeclaration": 2279,
+                      "referencedDeclaration": 541,
                       "type": "modifier ()",
                       "value": "onlyOwner"
                     },
-                    "id": 2240,
+                    "id": 2208,
                     "name": "Identifier",
-                    "src": "998:9:8"
+                    "src": "962:9:8"
                   }
                 ],
-                "id": 2241,
+                "id": 2209,
                 "name": "ModifierInvocation",
-                "src": "998:9:8"
+                "src": "962:9:8"
               },
               {
                 "children": [
@@ -1088,13 +1088,13 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 2188,
+                              "referencedDeclaration": 2156,
                               "type": "address",
                               "value": "oracle"
                             },
-                            "id": 2243,
+                            "id": 2211,
                             "name": "Identifier",
-                            "src": "1014:6:8"
+                            "src": "978:6:8"
                           },
                           {
                             "attributes": {
@@ -1102,43 +1102,43 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 2238,
+                              "referencedDeclaration": 2206,
                               "type": "address",
                               "value": "_oracle"
                             },
-                            "id": 2244,
+                            "id": 2212,
                             "name": "Identifier",
-                            "src": "1023:7:8"
+                            "src": "987:7:8"
                           }
                         ],
-                        "id": 2245,
+                        "id": 2213,
                         "name": "Assignment",
-                        "src": "1014:16:8"
+                        "src": "978:16:8"
                       }
                     ],
-                    "id": 2246,
+                    "id": 2214,
                     "name": "ExpressionStatement",
-                    "src": "1014:16:8"
+                    "src": "978:16:8"
                   }
                 ],
-                "id": 2247,
+                "id": 2215,
                 "name": "Block",
-                "src": "1008:27:8"
+                "src": "972:27:8"
               }
             ],
-            "id": 2248,
+            "id": 2216,
             "name": "FunctionDefinition",
-            "src": "955:80:8"
+            "src": "919:80:8"
           }
         ],
-        "id": 2249,
+        "id": 2217,
         "name": "ContractDefinition",
-        "src": "441:596:8"
+        "src": "405:596:8"
       }
     ],
-    "id": 2250,
+    "id": 2218,
     "name": "SourceUnit",
-    "src": "134:904:8"
+    "src": "134:868:8"
   },
   "compiler": {
     "name": "solc",
@@ -1154,8 +1154,13 @@
       "events": {},
       "links": {},
       "address": "0x54971ebe09eb98f305ba3c9592ee8911a0e87d71"
+    },
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0xfb88de099e13c3ed21f80a7a1e49f8caecf10df6"
     }
   },
   "schemaVersion": "1.0.1",
-  "updatedAt": "2017-12-18T14:21:44.102Z"
+  "updatedAt": "2017-12-18T19:44:45.135Z"
 }
