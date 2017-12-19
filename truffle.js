@@ -19,7 +19,7 @@ module.exports = {
       host:'localhost',
       network_id: "42",
       port:8545
-    }
+    },
     localhost: {
       host: "localhost",
       port: 8546,

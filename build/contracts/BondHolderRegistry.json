@@ -134,7 +134,7 @@
       },
       {
         "attributes": {
-          "SourceUnit": 2306,
+          "SourceUnit": 2276,
           "absolutePath": "zeppelin-solidity/contracts/ownership/Ownable.sol",
           "file": "zeppelin-solidity/contracts/ownership/Ownable.sol",
           "scope": 512,
@@ -150,14 +150,14 @@
       {
         "attributes": {
           "contractDependencies": [
-            2305
+            2275
           ],
           "contractKind": "contract",
           "documentation": null,
           "fullyImplemented": true,
           "linearizedBaseContracts": [
             511,
-            2305
+            2275
           ],
           "name": "BondHolderRegistry",
           "scope": 512
@@ -174,7 +174,7 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "Ownable",
-                  "referencedDeclaration": 2305,
+                  "referencedDeclaration": 2275,
                   "type": "contract Ownable"
                 },
                 "id": 481,
@@ -308,7 +308,7 @@
                       "overloadedDeclarations": [
                         null
                       ],
-                      "referencedDeclaration": 2279,
+                      "referencedDeclaration": 2249,
                       "type": "modifier ()",
                       "value": "onlyOwner"
                     },
@@ -454,7 +454,7 @@
                       "overloadedDeclarations": [
                         null
                       ],
-                      "referencedDeclaration": 2279,
+                      "referencedDeclaration": 2249,
                       "type": "modifier ()",
                       "value": "onlyOwner"
                     },
@@ -554,8 +554,13 @@
       "events": {},
       "links": {},
       "address": "0x705e134b8cce73bbbdc14879c65a032bdacbd2ea"
+    },
+    "42": {
+      "events": {},
+      "links": {},
+      "address": "0x35e5fc2e5f8e8727f8abf3d671ae6e26afbed64b"
     }
   },
   "schemaVersion": "1.0.1",
-  "updatedAt": "2017-12-18T14:21:44.119Z"
+  "updatedAt": "2017-12-19T10:52:41.422Z"
 }

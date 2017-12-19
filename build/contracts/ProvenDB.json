@@ -209,7 +209,7 @@
       },
       {
         "attributes": {
-          "SourceUnit": 2306,
+          "SourceUnit": 2276,
           "absolutePath": "zeppelin-solidity/contracts/ownership/Ownable.sol",
           "file": "zeppelin-solidity/contracts/ownership/Ownable.sol",
           "scope": 805,
@@ -240,14 +240,14 @@
       {
         "attributes": {
           "contractDependencies": [
-            2305
+            2275
           ],
           "contractKind": "contract",
           "documentation": "ProvenDB\n Back-end storage contract for the Proven app.",
           "fullyImplemented": true,
           "linearizedBaseContracts": [
             804,
-            2305
+            2275
           ],
           "name": "ProvenDB",
           "scope": 805
@@ -264,7 +264,7 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "Ownable",
-                  "referencedDeclaration": 2305,
+                  "referencedDeclaration": 2275,
                   "type": "contract Ownable"
                 },
                 "id": 652,
@@ -562,7 +562,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 2320,
+                              "referencedDeclaration": 2290,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -603,7 +603,7 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 2317,
+                                      "referencedDeclaration": 2287,
                                       "type": "msg",
                                       "value": "msg"
                                     },
@@ -771,7 +771,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 2320,
+                              "referencedDeclaration": 2290,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -1587,7 +1587,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 2311,
+                              "referencedDeclaration": 2281,
                               "type": "function () pure returns (bytes32)",
                               "value": "keccak256"
                             },
@@ -1613,7 +1613,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 2317,
+                                  "referencedDeclaration": 2287,
                                   "type": "msg",
                                   "value": "msg"
                                 },
@@ -1644,7 +1644,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 2309,
+                                  "referencedDeclaration": 2279,
                                   "type": "block",
                                   "value": "block"
                                 },
@@ -2281,8 +2281,13 @@
       "events": {},
       "links": {},
       "address": "0xfef09a0923ef034d967d6c00352f7d039ec43076"
+    },
+    "42": {
+      "events": {},
+      "links": {},
+      "address": "0x0cf22aaab2d7652fcf578a4935bb8376add9245a"
     }
   },
   "schemaVersion": "1.0.1",
-  "updatedAt": "2017-12-18T14:21:44.098Z"
+  "updatedAt": "2017-12-19T10:52:41.387Z"
 }

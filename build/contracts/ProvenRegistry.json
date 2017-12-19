@@ -134,7 +134,7 @@
       },
       {
         "attributes": {
-          "SourceUnit": 2306,
+          "SourceUnit": 2276,
           "absolutePath": "zeppelin-solidity/contracts/ownership/Ownable.sol",
           "file": "zeppelin-solidity/contracts/ownership/Ownable.sol",
           "scope": 839,
@@ -150,14 +150,14 @@
       {
         "attributes": {
           "contractDependencies": [
-            2305
+            2275
           ],
           "contractKind": "contract",
           "documentation": "Registry\n Allows separation of the contract implementation from the interface so\n things like mobile clients only need a single access point, and internal\n contracts don't need to store dependents.",
           "fullyImplemented": true,
           "linearizedBaseContracts": [
             838,
-            2305
+            2275
           ],
           "name": "ProvenRegistry",
           "scope": 839
@@ -174,7 +174,7 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "Ownable",
-                  "referencedDeclaration": 2305,
+                  "referencedDeclaration": 2275,
                   "type": "contract Ownable"
                 },
                 "id": 808,
@@ -308,7 +308,7 @@
                       "overloadedDeclarations": [
                         null
                       ],
-                      "referencedDeclaration": 2279,
+                      "referencedDeclaration": 2249,
                       "type": "modifier ()",
                       "value": "onlyOwner"
                     },
@@ -454,7 +454,7 @@
                       "overloadedDeclarations": [
                         null
                       ],
-                      "referencedDeclaration": 2279,
+                      "referencedDeclaration": 2249,
                       "type": "modifier ()",
                       "value": "onlyOwner"
                     },
@@ -554,8 +554,13 @@
       "events": {},
       "links": {},
       "address": "0x7c22275eb027a7373c1e6d27779b3b7486c1f2dc"
+    },
+    "42": {
+      "events": {},
+      "links": {},
+      "address": "0x6defdf150128ecd067baa3ca05910865bbe75c4e"
     }
   },
   "schemaVersion": "1.0.1",
-  "updatedAt": "2017-12-18T14:21:44.090Z"
+  "updatedAt": "2017-12-19T10:52:41.383Z"
 }

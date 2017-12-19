@@ -167,7 +167,7 @@
       },
       {
         "attributes": {
-          "SourceUnit": 2306,
+          "SourceUnit": 2276,
           "absolutePath": "zeppelin-solidity/contracts/ownership/Ownable.sol",
           "file": "zeppelin-solidity/contracts/ownership/Ownable.sol",
           "scope": 648,
@@ -213,14 +213,14 @@
       {
         "attributes": {
           "contractDependencies": [
-            2305
+            2275
           ],
           "contractKind": "contract",
           "documentation": "Proven\n Allows callers to prove the provenance of a chain of hashed files stored in IPFS.",
           "fullyImplemented": true,
           "linearizedBaseContracts": [
             647,
-            2305
+            2275
           ],
           "name": "Proven",
           "scope": 648
@@ -237,7 +237,7 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "Ownable",
-                  "referencedDeclaration": 2305,
+                  "referencedDeclaration": 2275,
                   "type": "contract Ownable"
                 },
                 "id": 575,
@@ -684,7 +684,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 2317,
+                                  "referencedDeclaration": 2287,
                                   "type": "msg",
                                   "value": "msg"
                                 },
@@ -1256,8 +1256,13 @@
       "events": {},
       "links": {},
       "address": "0x31089c67f02f865984fe90a2ddebee742dccc6c4"
+    },
+    "42": {
+      "events": {},
+      "links": {},
+      "address": "0x0261bb1ef179f39121928d0747440ad7264cfd04"
     }
   },
   "schemaVersion": "1.0.1",
-  "updatedAt": "2017-12-18T14:21:44.088Z"
+  "updatedAt": "2017-12-19T10:52:41.380Z"
 }
