@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/proven-systems/proven-eth.svg?branch=master)](https://travis-ci.org/proven-systems/proven-eth)
+
 Proven Contracts
 
 This project uses the [Truffle](http://truffleframework.com/) framework and [openzeppelin](https://openzeppelin.org/) smart contracts.
