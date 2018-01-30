@@ -24,7 +24,7 @@ This project uses the [Truffle](http://truffleframework.com/) framework and [ope
   * for each of these files produced in `./build/merged/*.sol`, look up the contract address deployed in `build/ropsten/migration_log.txt`.
     * Navigate in the browser: https://ropsten.etherscan.io/verifyContract2?a=0x0contractadress
     * Enter the **ContractName**
-    * Select the compiler (currently **v0.4.18+commit.9cf6e910**)
+    * Select the compiler (currently **v0.4.19+commit.c4cbbb05**)
     * Paste the contents of the merged contract into the big text box `cat ./builds/merged/ContractName.sol | xclip -selection c`
     * If this constructor has an argument you'll have to figure it out by comparing `./build/contracts/ContractName.json` —> `"deployedBytecode"` with the input data of the contract hash for the transaction.  Go to https://ropsten.etherscan.io and search for the address deployed, then clck on the TxHash for the *Contract Creation* (earliest) event. Look at where the `deployedBytecode` ends, and whatever is in Etherscan's Tx `Input Data` after that is the constructor. Paste that into the "Constructor Arguments ABI-encoded on the Etherscan Verify Contract form.
     * Satisfy the reCAPTCHA and click **Verify and Publish**, cross your fingers
