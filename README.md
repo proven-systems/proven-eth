@@ -12,7 +12,11 @@ This project uses the [Truffle](http://truffleframework.com/) framework and [ope
 
 # Testing
 
-* `truffle test`
+* `npm test`
+
+For test coverage:
+
+* `npm run coverage`
 
 # Deployment
 
