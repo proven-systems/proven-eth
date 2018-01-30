@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/proven-systems/proven-eth.svg?branch=master)](https://travis-ci.org/proven-systems/proven-eth)
+[![Coverage Status](https://coveralls.io/repos/github/proven-systems/proven-eth/badge.svg)](https://coveralls.io/github/proven-systems/proven-eth)
 
 Proven Contracts
 
