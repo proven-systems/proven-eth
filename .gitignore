@@ -1,3 +1,5 @@
 node_modules
 **/*.swp
 build/merged
+coverage/
+coverage.json

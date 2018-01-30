@@ -3,8 +3,14 @@ node_js:
   - "7"
 install:
   - npm install -g truffle solium
+  - npm install -g ganache-cli
   - npm install
 script:
   - solium --dir contracts/
   - truffle compile
   - truffle test
+before_script:
+  - testrpc > /dev/null &
+  - sleep 5
+after_script:
+  - npm run coverage && cat coverage/lcov.info | coveralls
