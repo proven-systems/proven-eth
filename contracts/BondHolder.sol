@@ -57,7 +57,7 @@ contract BondHolder is Ownable {
 
     withdrawals[msg.sender] -= _amount;
 
-    assert(msg.sender.send(_amount));
+    msg.sender.transfer(_amount);
 
     BondWithdrawn(msg.sender, _amount);
 
