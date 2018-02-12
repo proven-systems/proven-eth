@@ -122,7 +122,7 @@ contract('Proven', function(accounts) {
   it('should verify an existing deposition', async function(){
     assert(await bondHolder.isBonded(verifier1));
     var depoID = deposition4.logs[0].args.deposition;
-    verification1 = await verifier.verifyDeposition(depoID, {from: verifier1});
+    verification1 = await verifier.verifyDeposition(depoID, '', {from: verifier1});
     assert(verification1.logs[0].event === 'DepositionVerified');
     assert(verification1.logs[0].args.deposition === depoID);
   });
@@ -142,7 +142,7 @@ contract('Proven', function(accounts) {
     // would be better to use OpenZeppelin's expectThrow but I can't figure out how
     // https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/test/helpers/expectThrow.js
     try {
-      await verifier.verifyDeposition(depoID, {from: verifier2});
+      await verifier.verifyDeposition(depoID, '', {from: verifier2});
     } catch (error) {
       failure = true;
     }
@@ -154,7 +154,7 @@ contract('Proven', function(accounts) {
   it('should allow verification by a different verifier', async function(){
     assert(await bondHolder.isBonded(verifier1));
     var depoID = deposition5.logs[0].args.deposition;
-    verification3 = await verifier.verifyDeposition(depoID, {from: verifier1});
+    verification3 = await verifier.verifyDeposition(depoID, '', {from: verifier1});
     assert(verification3.logs[0].event === 'DepositionVerified');
     assert(verification3.logs[0].args.deposition === depoID);
   });
@@ -242,7 +242,7 @@ contract('Proven', function(accounts) {
     assert(details.state === StateEnum.Initialized);
 
     // Now let's verify it
-    var verify = await verifier.verifyDeposition(depositionID1, {from: verifier1});
+    var verify = await verifier.verifyDeposition(depositionID1, '', {from: verifier1});
     assert(verify.logs[0].event === 'DepositionVerified');
     assert(verify.logs[0].args.deposition === depositionID1);
     details = parseDetails(await verifierDB.getDetails(depositionID1));
