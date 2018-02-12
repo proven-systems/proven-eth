@@ -35,12 +35,12 @@ contract('Proven', function(accounts) {
   let beneficiary = accounts[7];
   let challenger1 = accounts[8];
   let challenger2 = accounts[9];
-  let ipfsPic1 = "Qmb7Uwc39Q7YpPsfkWj54S2rMgdV6D845Sgr75GyxZfV4V";
-  let ipfsPic2 = "QmQE3gxEE1EaYK3Bi6rgXLTVHGKRZkai94eEABy7A9repJ";
-  let ipfsPic3 = "QmNjDm89By6jQRNwJ2idbCMWKzew2HAXHhbYKxK6Bn5VoW";
-  let ipfsPic4 = "QmVpYa8krJAdwDEcHcWVwyg2vznS3MoAXycaLHmqPWkn8j";
-  let ipfsPic5 = "QmTbhNNgnSzDnQj8mLELcxqZKwUwbzpnHj2iMeqscjpDEF";
-  let ipfsPic6 = "QmXd2t4WbhpDf643ija6byLE4q3L8GBQ3u773wWh5zVRT4";
+  let ipfsPic1 = 'Qmb7Uwc39Q7YpPsfkWj54S2rMgdV6D845Sgr75GyxZfV4V';
+  let ipfsPic2 = 'QmQE3gxEE1EaYK3Bi6rgXLTVHGKRZkai94eEABy7A9repJ';
+  let ipfsPic3 = 'QmNjDm89By6jQRNwJ2idbCMWKzew2HAXHhbYKxK6Bn5VoW';
+  let ipfsPic4 = 'QmVpYa8krJAdwDEcHcWVwyg2vznS3MoAXycaLHmqPWkn8j';
+  let ipfsPic5 = 'QmTbhNNgnSzDnQj8mLELcxqZKwUwbzpnHj2iMeqscjpDEF';
+  let ipfsPic6 = 'QmXd2t4WbhpDf643ija6byLE4q3L8GBQ3u773wWh5zVRT4';
   let fee = new web3.BigNumber(web3.toWei(.1, 'ether'));
 
   before(async function(){
@@ -161,20 +161,20 @@ contract('Proven', function(accounts) {
   });
 
   // Should be able to get the IFPS hash from the deposition ID
-  it("should return the IPFS hash from the deposition ID", async function(){
+  it('should return the IPFS hash from the deposition ID', async function(){
     var ipfsHash = await provenDB.getIPFSHash(deposition5.logs[0].args.deposition);
     assert(web3.toAscii(ipfsHash) === ipfsPic5);
   });
 
   // Should be able to get the deponent from the deposition ID
   // This is important because it is exercising a lot of integrations.
-  it("should return the deponent from the deposition ID", async function(){
+  it('should return the deponent from the deposition ID', async function(){
     var deponent = await provenDB.getDeponent(deposition5.logs[0].args.deposition);
     assert(deponent === verifier2);
   });
 
   // test onlyProven() modifier
-  it("should respect contract caller restriction", async function(){
+  it('should respect contract caller restriction', async function(){
     await expectThrow(provenDB.storeDeposition(depositor1, ''));
   });
 
@@ -206,7 +206,7 @@ contract('Proven', function(accounts) {
   };
 
   // claim verification reward and become proven
-  it("should claim the verification reward and become proven", async function(){
+  it('should claim the verification reward and become proven', async function(){
     var depoID = deposition4.logs[0].args.deposition;
     var detailsBefore = parseDetails(await verifierDB.getDetails(depoID));
     assert(detailsBefore.state === StateEnum.Verified);
@@ -221,7 +221,7 @@ contract('Proven', function(accounts) {
 
   // Scenario: mining. based on an IPFS hash, we want to verify the image.
   // It turns out that it has been published (but not verified). We want it verified.
-  it("should show a verified deposition as verified", async function(){
+  it('should show a verified deposition as verified', async function(){
     var depoID = await verifier.getDepositionFromIPFSHash(ipfsPic1);
     // it exists in the Proven log, but not in the VerifierDB nor on-chain.
     assert('0x0000000000000000000000000000000000000000000000000000000000000000' === depoID);
@@ -254,7 +254,7 @@ contract('Proven', function(accounts) {
   });
 
   // don't allow short-changing on fees
-  it("should not allow payment of a lower fee", async function(){
+  it('should not allow payment of a lower fee', async function(){
     var failure = false;
     try {
       var depositionID2 = deposition2.logs[0].args._deposition;
@@ -266,21 +266,21 @@ contract('Proven', function(accounts) {
   });
 
   // allow over-payment of fees
-  it("should allow payment of a higher fee", async function(){
+  it('should allow payment of a higher fee', async function(){
     var depositionID2 = deposition2.logs[0].args._deposition;
     var init = await verifier.initializeDeposition(depositionID2, ipfsPic2, deposition2.receipt.blockNumber, {from: verifier2, value: (fee*2)});
     assert(init.logs[0].event === 'DepositionPublished');
   });
   
   // Scenario: find out Proven status based only on IFPS hash, with no gas cost.
-  it("should determine whether an image is proven solely given the IPFS hash", async function(){
+  it('should determine whether an image is proven solely given the IPFS hash', async function(){
     var depoID = await verifier.getDepositionFromIPFSHash(ipfsPic4);
     var details = parseDetails(await verifierDB.getDetails(depoID));
     assert(details.state === StateEnum.Proven);
   });
 
   // Should be able to see when the IPFS asset was first deposed ("proven")
-  it("should record in which block the asset was first deposed", async function(){
+  it('should record in which block the asset was first deposed', async function(){
     var depositionID3 = deposition3.logs[0].args._deposition;
     // Pass in the block number from the original deposition.
     // The request is being made by the same account that made the deposition.
