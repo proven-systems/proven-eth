@@ -42,6 +42,8 @@ contract('Proven', function(accounts) {
   const ipfsPic5 = 'QmTbhNNgnSzDnQj8mLELcxqZKwUwbzpnHj2iMeqscjpDEF';
   const ipfsPic6 = 'QmXd2t4WbhpDf643ija6byLE4q3L8GBQ3u773wWh5zVRT4';
   const fee = new web3.BigNumber(web3.toWei(.1, 'ether'));
+  const timeoutBlocks = 3;
+  const requiredBond = 10;
 
   before(async function(){
     provenRegistry = await ProvenRegistry.new();
@@ -52,8 +54,6 @@ contract('Proven', function(accounts) {
     verifierRegistry = await VerifierRegistry.new();
     verifierDB = await VerifierDB.new(verifierRegistry.address);
     await verifierRegistry.setDB(verifierDB.address);
-    const timeoutBlocks = 3; 
-    const requiredBond = 10; 
     verifier = await Verifier.new(verifierRegistry.address, fee, timeoutBlocks, requiredBond);
     await verifierRegistry.setVerifier(verifier.address);
     await verifierRegistry.setOracle(oracle);
@@ -70,6 +70,14 @@ contract('Proven', function(accounts) {
     assert.isFalse(verifierRegistry.address === verifier.address);
     assert.isFalse(verifier.DB === verifier.address);
     assert.isFalse(bondHolderRegistry.address === bondHolder.address);
+  });
+
+  // Verifier tuning methods should have appropriate security: test modifiers
+  it('should enforce security on verifier tuning methods', async function(){
+    await expectThrow(verifier.setRegistry(VerifierRegistry.address, { from: verifier1 }));
+    await expectThrow(verifier.setFee(fee, { from: verifier1 }));
+    await expectThrow(verifier.setTimeoutBlockCount(timeoutBlocks, { from: verifier1 }));
+    await expectThrow(verifier.setRequiredBondAmount(requiredBond, { from: verifier1 }));
   });
 
   // Publish a deposition without specifying the depositor
@@ -263,7 +271,7 @@ contract('Proven', function(accounts) {
     const init = await verifier.initializeDeposition(depositionID2, ipfsPic2, deposition2.receipt.blockNumber, { from: verifier2, value: (fee * 2) });
     assert(init.logs[0].event === 'DepositionPublished');
   });
-  
+
   // Scenario: find out Proven status based only on IFPS hash, with no gas cost.
   it('should determine whether an image is proven solely given the IPFS hash', async function(){
     const depoID = await verifier.getDepositionFromIPFSHash(ipfsPic4);
