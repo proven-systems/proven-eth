@@ -55,7 +55,7 @@ contract Verifier is Ownable {
   function withdraw(uint _amount) public onlyOwner {
     require(_amount <= this.balance);
 
-    assert(msg.sender.send(_amount));
+    msg.sender.transfer(_amount);
   }
 
   // Called by the verifier when it is directly creating a new deposition,
@@ -135,7 +135,7 @@ contract Verifier is Ownable {
 
     bondHolder.unlockBond(msg.sender, bondAmount);
 
-    assert(msg.sender.send(bounty));
+    msg.sender.transfer(bounty);
 
     DepositionProven(_deposition, msg.sender);
   }
@@ -173,24 +173,9 @@ contract Verifier is Ownable {
 
     bondHolder.unlockBond(msg.sender, bondAmount);
 
-    assert(msg.sender.send(bounty));
+    msg.sender.transfer(bounty);
 
     DepositionDisproven(_deposition, msg.sender);
-  }
-
-  function contestState(bytes32 _deposition, VerifierDB.State _state) internal { 
-
-    VerifierDB db = VerifierDB(registry.db());
-
-    var (state,,,,,,, bondAmount,) = db.getDetails(_deposition);
-    require(state == _state);
-
-    BondHolder bondHolder = BondHolder(registry.bondHolder());
-
-    // does the caller have enough bond on deposit?
-    require(bondHolder.availableBond(msg.sender) >= bondAmount);
-
-    contest(db, bondHolder, bondAmount, _deposition, msg.sender);
   }
 
   function contestVerification(bytes32 _deposition) public {
@@ -219,6 +204,21 @@ contract Verifier is Ownable {
       distributeContestReward(contestor, bondAmount, verifier, oracle);
       DepositionDisproven(_deposition, contestor);
     }
+  }
+
+  function contestState(bytes32 _deposition, VerifierDB.State _state) internal { 
+
+    VerifierDB db = VerifierDB(registry.db());
+
+    var (state,,,,,,, bondAmount,) = db.getDetails(_deposition);
+    require(state == _state);
+
+    BondHolder bondHolder = BondHolder(registry.bondHolder());
+
+    // does the caller have enough bond on deposit?
+    require(bondHolder.availableBond(msg.sender) >= bondAmount);
+
+    contest(db, bondHolder, bondAmount, _deposition, msg.sender);
   }
 
   function contest(VerifierDB _db, BondHolder _bondHolder, uint bondAmount, bytes32 _deposition, address _contestor) internal {
