@@ -83,19 +83,13 @@ contract Verifier is Ownable {
     DepositionPublished(_deposition, msg.sender, _ipfsHash, msg.value);
   }
 
-  // This is called to verify a published deposition that already exists.
+  // This is called to verify a published deposition that already exists, either
+  // from publishDeposition() above or the combination of
+  // Proven.publishDeposition + initizializeDepositon().
   // If the IPFS hash is not provided the verification won't be retrievable
   // by a smart contract or by a user who wants to check its verification without
   // downloading the full blockchain and scanning the logs, etc. It's not a great
   // idea but it does save some gas.
-  function verifyDeposition(bytes32 _deposition) public {
-
-    verifyDeposition(_deposition, "");
-  }
-
-  // This is called to verify a published deposition that already exists, either
-  // from publishDeposition() above or the combination of
-  // Proven.publishDeposition + initizializeDepositon().
   function verifyDeposition(bytes32 _deposition, bytes _ipfsHash) public {
 
     BondHolder bondHolder = BondHolder(registry.bondHolder());
