@@ -171,6 +171,12 @@ contract('Proven', function(accounts) {
     assert(verification3.logs[0].args.deposition === depoID);
   });
 
+  // allow bond withdrawal
+  it('should allow bondholder to withdraw', async function(){
+    // apparently zero is legit
+    await bondHolder.withdraw(0);
+  });
+
   // the depositor should be able to look up the verification:
   // based on the IPFS hash
   it('should retrieve the deposition ID from the IPFS hash', async function(){
