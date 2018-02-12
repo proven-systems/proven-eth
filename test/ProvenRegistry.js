@@ -116,6 +116,8 @@ contract('Proven', function(accounts) {
     // there should be no bond to start
     assert(!(await bondHolder.isBonded(verifier1)));
     const amount = new web3.BigNumber(web3.toWei(5, 'ether'));
+    // must be non-zero
+    await expectThrow(bondHolder.depositBond({ from: verifier1, to: bondHolder.address, value: 0 }));
     let result = await bondHolder.depositBond({ from: verifier1, to: bondHolder.address, value: amount });
     assert(verifier1.address === result.logs[0].args['address']);
     assert('BondDeposited' === result.logs[0].event);
