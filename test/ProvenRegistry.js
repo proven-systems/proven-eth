@@ -74,10 +74,15 @@ contract('Proven', function(accounts) {
 
   // Verifier tuning methods should have appropriate security: test modifiers
   it('should enforce security on verifier tuning methods', async function(){
-    await expectThrow(verifier.setRegistry(VerifierRegistry.address, { from: verifier1 }));
-    await expectThrow(verifier.setFee(fee, { from: verifier1 }));
-    await expectThrow(verifier.setTimeoutBlockCount(timeoutBlocks, { from: verifier1 }));
-    await expectThrow(verifier.setRequiredBondAmount(requiredBond, { from: verifier1 }));
+    const verifier2 = await Verifier.new(verifierRegistry.address, fee, timeoutBlocks, requiredBond);
+    await verifier2.setRegistry(verifierRegistry.address);
+    await verifier2.setFee(fee);
+    await verifier2.setTimeoutBlockCount(timeoutBlocks);
+    await verifier2.setRequiredBondAmount(requiredBond);
+    await expectThrow(verifier2.setRegistry(VerifierRegistry.address, { from: verifier1 }));
+    await expectThrow(verifier2.setFee(fee, { from: verifier1 }));
+    await expectThrow(verifier2.setTimeoutBlockCount(timeoutBlocks, { from: verifier1 }));
+    await expectThrow(verifier2.setRequiredBondAmount(requiredBond, { from: verifier1 }));
   });
 
   // Publish a deposition without specifying the depositor
