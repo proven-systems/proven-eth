@@ -80,6 +80,9 @@ contract('Proven', function(accounts) {
     await verifier2.setTimeoutBlockCount(timeoutBlocks);
     await verifier2.setRequiredBondAmount(requiredBond);
     await verifier2.withdraw(0);
+    // insufficient funds
+    await expectThrow(verifier2.withdraw(fee));
+    // should not be callable by others
     await expectThrow(verifier2.setRegistry(VerifierRegistry.address, { from: verifier1 }));
     await expectThrow(verifier2.setFee(fee, { from: verifier1 }));
     await expectThrow(verifier2.setTimeoutBlockCount(timeoutBlocks, { from: verifier1 }));
