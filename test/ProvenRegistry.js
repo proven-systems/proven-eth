@@ -1,13 +1,14 @@
-'use strict';
+require('babel-register');
 
-var Proven = artifacts.require('../contracts/Proven.sol');
-var ProvenDB = artifacts.require('../contracts/ProvenDB.sol');
-var ProvenRegistry = artifacts.require('../contracts/ProvenRegistry.sol');
-var Verifier = artifacts.require('../contracts/Verifier.sol');
-var VerifierDB = artifacts.require('../contracts/VerifierDB.sol');
-var VerifierRegistry = artifacts.require('../contracts/VerifierRegistry.sol');
-var BondHolder = artifacts.require('../contracts/BondHolder.sol');
-var BondHolderRegistry = artifacts.require('../contracts/BondHolderRegistry.sol');
+const Proven = artifacts.require('../contracts/Proven.sol');
+const ProvenDB = artifacts.require('../contracts/ProvenDB.sol');
+const ProvenRegistry = artifacts.require('../contracts/ProvenRegistry.sol');
+const Verifier = artifacts.require('../contracts/Verifier.sol');
+const VerifierDB = artifacts.require('../contracts/VerifierDB.sol');
+const VerifierRegistry = artifacts.require('../contracts/VerifierRegistry.sol');
+const BondHolder = artifacts.require('../contracts/BondHolder.sol');
+const BondHolderRegistry = artifacts.require('../contracts/BondHolderRegistry.sol');
+const expectThrow = require('./helpers/expectThrow.js');
 
 
 contract('Proven', function(accounts) {
@@ -139,14 +140,7 @@ contract('Proven', function(accounts) {
     assert(!(await bondHolder.isBonded(verifier2)));
     var failure = false;
     var depoID = deposition5.logs[0].args.deposition;
-    // would be better to use OpenZeppelin's expectThrow but I can't figure out how
-    // https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/test/helpers/expectThrow.js
-    try {
-      await verifier.verifyDeposition(depoID, '', {from: verifier2});
-    } catch (error) {
-      failure = true;
-    }
-    assert(failure);
+    await expectThrow(verifier.verifyDeposition(depoID, '', {from: verifier2}));
   });
 
   // a bonded verifier should be able to verify the deposition
@@ -177,6 +171,11 @@ contract('Proven', function(accounts) {
   it("should return the deponent from the deposition ID", async function(){
     var deponent = await provenDB.getDeponent(deposition5.logs[0].args.deposition);
     assert(deponent === verifier2);
+  });
+
+  // test onlyProven() modifier
+  it("should respect contract caller restriction", async function(){
+    await expectThrow(provenDB.storeDeposition(depositor1, ''));
   });
 
   // See ../contracts/VerifierDB.sol

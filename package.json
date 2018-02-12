@@ -23,6 +23,7 @@
     "test": "./node_modules/.bin/truffle test"
   },
   "dependencies": {
+    "babel-register": "^6.26.0",
     "web3": "^1.0.0-beta.29"
   }
 }
