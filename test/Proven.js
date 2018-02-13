@@ -41,6 +41,7 @@ contract('Proven', function(accounts) {
   const ipfsPic4 = 'QmVpYa8krJAdwDEcHcWVwyg2vznS3MoAXycaLHmqPWkn8j';
   const ipfsPic5 = 'QmTbhNNgnSzDnQj8mLELcxqZKwUwbzpnHj2iMeqscjpDEF';
   const ipfsPic6 = 'QmXd2t4WbhpDf643ija6byLE4q3L8GBQ3u773wWh5zVRT4';
+  const bondAmount = new web3.BigNumber(web3.toWei(5, 'ether'));
   const fee = new web3.BigNumber(web3.toWei(.1, 'ether'));
   const timeoutBlocks = 3;
   const requiredBond = 10;
@@ -115,21 +116,15 @@ contract('Proven', function(accounts) {
   it('should let a verifier set up a bond', async function(){
     // there should be no bond to start
     assert(!(await bondHolder.isBonded(verifier1)));
-    const amount = new web3.BigNumber(web3.toWei(5, 'ether'));
     // must be non-zero
     await expectThrow(bondHolder.depositBond({ from: verifier1, to: bondHolder.address, value: 0 }));
-    let result = await bondHolder.depositBond({ from: verifier1, to: bondHolder.address, value: amount });
+    let result = await bondHolder.depositBond({ from: verifier1, to: bondHolder.address, value: bondAmount });
     assert(verifier1.address === result.logs[0].args['address']);
     assert('BondDeposited' === result.logs[0].event);
     // there should now be a bond
     assert(await bondHolder.isBonded(verifier1));
     // The bond should be what we set it to
-    //    { [String: '11000000000000000000'] s: 1, e: 19, c: [ 110000 ] }
-    result = await bondHolder.availableBond(verifier1);
-    assert(amount[0] === result[0]);
-    assert(amount.s === result.s);
-    assert(amount.e === result.e);
-    assert(amount.c[0] === result.c[0]);
+    assert.deepEqual(bondAmount, await bondHolder.availableBond(verifier1));
   });
 
   // a verifier should be able to publish a deposition through the verifier
@@ -307,6 +302,27 @@ contract('Proven', function(accounts) {
     const details = parseDetails(await verifierDB.getDetails(depositionID3));
     assert(details.state === StateEnum.Initialized);
     assert(details.deposedInBlock === deposition3.receipt.blockNumber);
+  });
+
+  // exercise the complete bond lifecycle
+  it('should allow pay-in and cash-out of a bond', async function(){
+    // test insufficient unlocked balance.
+    assert(await bondHolder.isBonded(verifier1));
+    await bondHolder.depositBond({ from: verifier1, to: bondHolder.address, value: bondAmount });
+    await expectThrow(bondHolder.releaseBond(bondAmount * 2, { from: verifier1, to: bondHolder.address }));
+    await bondHolder.releaseBond(bondAmount, { from: verifier1, to: bondHolder.address });
+
+    // test full withdrawal
+    // starts out unbonded
+    assert(!(await bondHolder.isBonded(verifier2)));
+    await bondHolder.depositBond({ from: verifier2, to: bondHolder.address, value: bondAmount });
+    // now should be bonded
+    assert(await bondHolder.isBonded(verifier2));
+    await bondHolder.releaseBond(bondAmount, { from: verifier2, to: bondHolder.address });
+    // now unbonded
+    assert(!(await bondHolder.isBonded(verifier2)));
+    // can't withdraw again
+    await expectThrow(bondHolder.releaseBond(bondAmount, { from: verifier2, to: bondHolder.address }));
   });
 
 
