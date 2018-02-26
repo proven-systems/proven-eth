@@ -1,5 +1,5 @@
-var Migrations = artifacts.require("./Migrations.sol");
+const Migrations = artifacts.require('./Migrations.sol');
 
-module.exports = function(deployer) {
+module.exports = function (deployer) { // eslint-disable-line func-names
   deployer.deploy(Migrations);
 };

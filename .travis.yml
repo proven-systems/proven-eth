@@ -6,8 +6,8 @@ install:
   - npm install -g ganache-cli
   - npm install
 script:
-  - solium --dir contracts/
-  - truffle compile
-  - truffle test
+  - npm run lint
+  - npm run solium
+  - npm test
 after_script:
   - npm run coverage && cat coverage/lcov.info | coveralls

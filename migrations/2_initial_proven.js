@@ -1,29 +1,25 @@
-var Ownable = artifacts.require("ownership/Ownable.sol");
-var Proven = artifacts.require("Proven");
-var ProvenDB = artifacts.require("ProvenDB");
-var ProvenRegistry = artifacts.require("ProvenRegistry");
-var Verifier = artifacts.require("Verifier");
-var VerifierDB = artifacts.require("VerifierDB");
-var VerifierRegistry = artifacts.require("VerifierRegistry");
-var BondHolder = artifacts.require("BondHolder");
-var BondHolderRegistry = artifacts.require("BondHolderRegistry");
+const Ownable = artifacts.require('ownership/Ownable.sol');
+const Proven = artifacts.require('Proven');
+const ProvenDB = artifacts.require('ProvenDB');
+const ProvenRegistry = artifacts.require('ProvenRegistry');
+const Verifier = artifacts.require('Verifier');
+const VerifierDB = artifacts.require('VerifierDB');
+const VerifierRegistry = artifacts.require('VerifierRegistry');
+const BondHolder = artifacts.require('BondHolder');
+const BondHolderRegistry = artifacts.require('BondHolderRegistry');
 
-module.exports = function (deployer) {
+module.exports = function (deployer) { // eslint-disable-line func-names
   deployer.deploy([
     Ownable,
     ProvenRegistry,
     VerifierRegistry,
-    BondHolderRegistry
-  ]).then(() => {
-    return deployer.deploy([
-      [Proven, ProvenRegistry.address],
-      [ProvenDB, ProvenRegistry.address],
-      [VerifierDB, VerifierRegistry.address],
-      [Verifier, VerifierRegistry.address, 0.1, 100, 1]
-    ]);
-  }).then(() => {
-    return deployer.deploy(BondHolder, BondHolderRegistry.address, Verifier.address);
-  }).then(() => {
+    BondHolderRegistry,
+  ]).then(() => deployer.deploy([
+    [Proven, ProvenRegistry.address],
+    [ProvenDB, ProvenRegistry.address],
+    [VerifierDB, VerifierRegistry.address],
+    [Verifier, VerifierRegistry.address, 0.1, 100, 1],
+  ])).then(() => deployer.deploy(BondHolder, BondHolderRegistry.address, Verifier.address)).then(() => {
     deployer.then(() => {
       ProvenRegistry.at(ProvenRegistry.address).setProven(Proven.address);
       ProvenRegistry.at(ProvenRegistry.address).setDB(ProvenDB.address);
@@ -35,4 +31,4 @@ module.exports = function (deployer) {
       BondHolderRegistry.at(BondHolderRegistry.address).setBondHolder(BondHolder.address);
     });
   });
-}
+};

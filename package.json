@@ -5,6 +5,9 @@
   "description": "Proven Suite",
   "devDependencies": {
     "coveralls": "^3.0.0",
+    "eslint": "^4.18.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
     "mkdirp": "^0.5.1",
     "sol-merger": "^0.1.2",
     "solc": "^0.4.19",
@@ -19,7 +22,8 @@
     "coverage": "./node_modules/.bin/solidity-coverage",
     "deploy-ropsten": "./node_modules/.bin/truffle migrate --network ropsten",
     "deploy-ganache": "./node_modules/.bin/truffle migrate --network ganache",
-    "lint": "./node_modules/.bin/solium --dir contracts/",
+    "lint": "./node_modules/.bin/eslint .",
+    "solium": "./node_modules/.bin/solium --dir contracts/",
     "test": "./node_modules/.bin/truffle test"
   },
   "dependencies": {
