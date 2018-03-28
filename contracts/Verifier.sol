@@ -1,7 +1,7 @@
 // Part of the Proven suite of software
 // Copyright © 2017 "The Partnership" (Ethereum 0x12B0621D90c69867957A836d677C64c46EC4291D)
 
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.21;
 
 import "./Ownable.sol";
 import "./VerifierRegistry.sol";
@@ -80,7 +80,7 @@ contract Verifier is Ownable {
 
     db.initialize(_deposition, _ipfsHash, msg.value, _deposedInBlock);
 
-    DepositionPublished(_deposition, msg.sender, _ipfsHash, msg.value);
+    emit DepositionPublished(_deposition, msg.sender, _ipfsHash, msg.value);
   }
 
   // This is called to verify a published deposition that already exists, either
@@ -106,7 +106,7 @@ contract Verifier is Ownable {
 
     bondHolder.lockBond(msg.sender, requiredBondAmount);
 
-    DepositionVerified(_deposition, msg.sender);
+    emit DepositionVerified(_deposition, msg.sender);
   }
 
   function getDepositionFromIPFSHash(bytes _ipfsHash) public view returns (bytes32) {
@@ -131,7 +131,7 @@ contract Verifier is Ownable {
 
     msg.sender.transfer(bounty);
 
-    DepositionProven(_deposition, msg.sender);
+    emit DepositionProven(_deposition, msg.sender);
   }
 
   function challengeDeposition(bytes32 _deposition) public {
@@ -149,7 +149,7 @@ contract Verifier is Ownable {
 
     bondHolder.lockBond(msg.sender, requiredBondAmount);
 
-    DepositionChallenged(_deposition, msg.sender);
+    emit DepositionChallenged(_deposition, msg.sender);
   }
 
   function claimChallengeReward(bytes32 _deposition) public {
@@ -169,7 +169,7 @@ contract Verifier is Ownable {
 
     msg.sender.transfer(bounty);
 
-    DepositionDisproven(_deposition, msg.sender);
+    emit DepositionDisproven(_deposition, msg.sender);
   }
 
   function contestVerification(bytes32 _deposition) public {
@@ -192,11 +192,11 @@ contract Verifier is Ownable {
     if (_proven) {
       db.prove(_deposition);
       distributeContestReward(verifier, bondAmount, contestor, oracle);
-      DepositionProven(_deposition, verifier);
+      emit DepositionProven(_deposition, verifier);
     } else {
       db.disprove(_deposition);
       distributeContestReward(contestor, bondAmount, verifier, oracle);
-      DepositionDisproven(_deposition, contestor);
+      emit DepositionDisproven(_deposition, contestor);
     }
   }
 
@@ -221,7 +221,7 @@ contract Verifier is Ownable {
 
     _bondHolder.lockBond(_contestor, bondAmount);
 
-    DepositionContested(_deposition, _contestor);
+    emit DepositionContested(_deposition, _contestor);
   }
 
   function distributeContestReward(address _winner, uint _bondAmount, address _loser, address _oracle) internal {

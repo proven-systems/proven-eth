@@ -1,7 +1,7 @@
 // Part of the Proven suite of software
 // Copyright © 2017 "The Partnership" (Ethereum 0x12B0621D90c69867957A836d677C64c46EC4291D)
 
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.21;
 
 import "./Ownable.sol";
 import "./VerifierRegistry.sol";
@@ -92,7 +92,7 @@ contract VerifierDB is Ownable {
     verifications[_deposition] = v;
     depositionsFromIPFSHash[_ipfsHash] = _deposition;
 
-    Stored(_deposition, _bounty);
+    emit Stored(_deposition, _bounty);
   }
 
   // This is called to verify a published deposition that already exists either
@@ -115,7 +115,7 @@ contract VerifierDB is Ownable {
       depositionsFromIPFSHash[_ipfsHash] = _deposition;
     }
 
-    Verified(_deposition, _verifier);
+    emit Verified(_deposition, _verifier);
   }
 
   function prove(bytes32 _deposition) public onlyVerifier {
@@ -126,7 +126,7 @@ contract VerifierDB is Ownable {
 
     verifications[_deposition] = v;
 
-    Proven(_deposition);
+    emit Proven(_deposition);
   }
 
   function challenge(bytes32 _deposition, address _challenger, uint _bondAmount) public onlyVerifier {
@@ -140,7 +140,7 @@ contract VerifierDB is Ownable {
 
     verifications[_deposition] = v;
 
-    Challenged(_deposition, _challenger);
+    emit Challenged(_deposition, _challenger);
   }
 
   function disprove(bytes32 _deposition) public onlyVerifier {
@@ -151,7 +151,7 @@ contract VerifierDB is Ownable {
 
     verifications[_deposition] = v;
 
-    Disproven(_deposition);
+    emit Disproven(_deposition);
   }
 
   function contest(bytes32 _deposition, address _contestor) public onlyVerifier {
@@ -163,6 +163,6 @@ contract VerifierDB is Ownable {
 
     verifications[_deposition] = v;
 
-    Contested(_deposition, _contestor);
+    emit Contested(_deposition, _contestor);
   }
 }

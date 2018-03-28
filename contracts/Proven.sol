@@ -1,7 +1,7 @@
 // Part of the Proven suite of software
 // Copyright © 2017 "The Partnership" (Ethereum 0x12B0621D90c69867957A836d677C64c46EC4291D)
 
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.21;
 
 import "./Ownable.sol";
 import "./ProvenRegistry.sol";
@@ -32,7 +32,7 @@ contract Proven is Ownable {
     ProvenDB db = ProvenDB(registry.db());
     bytes32 id = db.storeDeposition(_owner, _ipfsHash);
 
-    DepositionPublished(id, _owner, _ipfsHash);
+    emit DepositionPublished(id, _owner, _ipfsHash);
 
     return id;
   }
