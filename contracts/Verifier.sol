@@ -53,7 +53,7 @@ contract Verifier is Ownable {
   }
 
   function withdraw(uint _amount) public onlyOwner {
-    require(_amount <= this.balance);
+    require(_amount <= address(this).balance);
 
     msg.sender.transfer(_amount);
   }
@@ -99,7 +99,8 @@ contract Verifier is Ownable {
 
     VerifierDB db = VerifierDB(registry.db());
 
-    var (state,,,,,,,,) = db.getDetails(_deposition);
+    VerifierDB.State state;
+    (state,,,,,,,,) = db.getDetails(_deposition);
     require(state == VerifierDB.State.Initialized);
 
     db.verify(_deposition, _ipfsHash, msg.sender, requiredBondAmount);
@@ -118,7 +119,12 @@ contract Verifier is Ownable {
 
     VerifierDB db = VerifierDB(registry.db());
 
-    var (state, bounty,, verifier, verifiedInBlock,,, bondAmount,) = db.getDetails(_deposition);
+    VerifierDB.State state;
+    uint bounty;
+    address verifier;
+    uint verifiedInBlock;
+    uint bondAmount;
+    (state, bounty,, verifier, verifiedInBlock,,, bondAmount,) = db.getDetails(_deposition);
     require(state == VerifierDB.State.Verified);
     require(block.number >= verifiedInBlock + timeoutBlockCount);
     require(verifier == msg.sender);
@@ -142,7 +148,8 @@ contract Verifier is Ownable {
 
     VerifierDB db = VerifierDB(registry.db());
 
-    var (state,,,,,,,,) = db.getDetails(_deposition);
+    VerifierDB.State state;
+    (state,,,,,,,,) = db.getDetails(_deposition);
     require(state == VerifierDB.State.Initialized);
 
     db.challenge(_deposition, msg.sender, requiredBondAmount);
@@ -156,7 +163,12 @@ contract Verifier is Ownable {
 
     VerifierDB db = VerifierDB(registry.db());
 
-    var (state, bounty,,,, challenger, challengedInBlock, bondAmount,) = db.getDetails(_deposition);
+    VerifierDB.State state;
+    uint bounty;
+    address challenger;
+    uint challengedInBlock;
+    uint bondAmount;
+    (state, bounty,,,, challenger, challengedInBlock, bondAmount,) = db.getDetails(_deposition);
     require(state == VerifierDB.State.Challenged);
     require(block.number >= challengedInBlock + timeoutBlockCount);
     require(challenger == msg.sender);
@@ -186,7 +198,12 @@ contract Verifier is Ownable {
     require(msg.sender == oracle);
 
     VerifierDB db = VerifierDB(registry.db());
-    var (state,,, verifier,,,, bondAmount, contestor) = db.getDetails(_deposition);
+
+    VerifierDB.State state;
+    address verifier;
+    uint bondAmount;
+    address contestor;
+    (state,,, verifier,,,, bondAmount, contestor) = db.getDetails(_deposition);
     require(state == VerifierDB.State.Contested);
 
     if (_proven) {
@@ -204,7 +221,9 @@ contract Verifier is Ownable {
 
     VerifierDB db = VerifierDB(registry.db());
 
-    var (state,,,,,,, bondAmount,) = db.getDetails(_deposition);
+    VerifierDB.State state;
+    uint bondAmount;
+    (state,,,,,,, bondAmount,) = db.getDetails(_deposition);
     require(state == _state);
 
     BondHolder bondHolder = BondHolder(registry.bondHolder());

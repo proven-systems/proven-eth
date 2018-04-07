@@ -59,10 +59,8 @@ contract ProvenDB is Ownable {
 
   function store(bytes32 _id, address _deponent, bytes _ipfsHash) internal onlyNewReceipt(_id) {
 
-    var deposition = depositions[_id];
-
-    deposition.deponent = _deponent;
-    deposition.ipfsHash = _ipfsHash;
+    depositions[_id].deponent = _deponent;
+    depositions[_id].ipfsHash = _ipfsHash;
 
     emit DepositionStored(_id, _deponent, _ipfsHash);
   }

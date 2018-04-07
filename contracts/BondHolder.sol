@@ -78,8 +78,8 @@ contract BondHolder is Ownable {
 
   function releaseBond(uint _amount) public onlyBonded {
 
-    var lockedAmount = bonds[msg.sender].lockedAmount;
-    var balance = bonds[msg.sender].balance;
+    uint lockedAmount = bonds[msg.sender].lockedAmount;
+    uint balance = bonds[msg.sender].balance;
     uint available = 0;
     if (lockedAmount < balance) {
       available = balance - lockedAmount;
