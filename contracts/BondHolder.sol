@@ -1,7 +1,7 @@
 // Part of the Proven suite of software
 // Copyright © 2017 "The Partnership" (Ethereum 0x12B0621D90c69867957A836d677C64c46EC4291D)
 
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.21;
 
 import "./Ownable.sol";
 import "./BondHolderRegistry.sol";
@@ -59,7 +59,7 @@ contract BondHolder is Ownable {
 
     msg.sender.transfer(_amount);
 
-    BondWithdrawn(msg.sender, _amount);
+    emit BondWithdrawn(msg.sender, _amount);
 
     if (withdrawals[msg.sender] == 0)
       delete withdrawals[msg.sender];
@@ -73,13 +73,13 @@ contract BondHolder is Ownable {
 
     bonds[msg.sender].balance += msg.value;
 
-    BondDeposited(msg.sender, msg.value);
+    emit BondDeposited(msg.sender, msg.value);
   }
 
   function releaseBond(uint _amount) public onlyBonded {
 
-    var lockedAmount = bonds[msg.sender].lockedAmount;
-    var balance = bonds[msg.sender].balance;
+    uint lockedAmount = bonds[msg.sender].lockedAmount;
+    uint balance = bonds[msg.sender].balance;
     uint available = 0;
     if (lockedAmount < balance) {
       available = balance - lockedAmount;
@@ -90,7 +90,7 @@ contract BondHolder is Ownable {
     bonds[msg.sender].balance -= _amount;
     withdrawals[msg.sender] += _amount;
 
-    BondReleased(msg.sender, _amount);
+    emit BondReleased(msg.sender, _amount);
 
     if (bonds[msg.sender].balance == 0) {
       delete bonds[msg.sender];
@@ -105,7 +105,7 @@ contract BondHolder is Ownable {
 
     bonds[_bonded].lockedAmount += _amount;
 
-    BondLocked(_bonded, _amount);
+    emit BondLocked(_bonded, _amount);
   }
 
   function unlockBond(address _bonded, uint _amount) public onlyBeneficiary {
@@ -116,7 +116,7 @@ contract BondHolder is Ownable {
       bonds[_bonded].lockedAmount -= _amount;
     }
 
-    BondUnlocked(_bonded, _amount);
+    emit BondUnlocked(_bonded, _amount);
   }
 
   /// Distributes an amount from a bondee account to 2 recipients, split evenly
@@ -139,7 +139,7 @@ contract BondHolder is Ownable {
     withdrawals[_recipient1] += amountToDistribute;
     withdrawals[_recipient2] += amountToDistribute;
 
-    BondDistributed(_from, _amount, _recipient1, _recipient2);
+    emit BondDistributed(_from, _amount, _recipient1, _recipient2);
   }
 
   function availableBond(address _bonded) public view returns (uint) {

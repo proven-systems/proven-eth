@@ -1,7 +1,7 @@
 // Part of the Proven suite of software
 // Copyright © 2017 "The Partnership" (Ethereum 0x12B0621D90c69867957A836d677C64c46EC4291D)
 
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.21;
 
 import "./Ownable.sol";
 import "./VerifierRegistry.sol";
@@ -53,7 +53,7 @@ contract Verifier is Ownable {
   }
 
   function withdraw(uint _amount) public onlyOwner {
-    require(_amount <= this.balance);
+    require(_amount <= address(this).balance);
 
     msg.sender.transfer(_amount);
   }
@@ -80,7 +80,7 @@ contract Verifier is Ownable {
 
     db.initialize(_deposition, _ipfsHash, msg.value, _deposedInBlock);
 
-    DepositionPublished(_deposition, msg.sender, _ipfsHash, msg.value);
+    emit DepositionPublished(_deposition, msg.sender, _ipfsHash, msg.value);
   }
 
   // This is called to verify a published deposition that already exists, either
@@ -99,14 +99,15 @@ contract Verifier is Ownable {
 
     VerifierDB db = VerifierDB(registry.db());
 
-    var (state,,,,,,,,) = db.getDetails(_deposition);
+    VerifierDB.State state;
+    (state,,,,,,,,) = db.getDetails(_deposition);
     require(state == VerifierDB.State.Initialized);
 
     db.verify(_deposition, _ipfsHash, msg.sender, requiredBondAmount);
 
     bondHolder.lockBond(msg.sender, requiredBondAmount);
 
-    DepositionVerified(_deposition, msg.sender);
+    emit DepositionVerified(_deposition, msg.sender);
   }
 
   function getDepositionFromIPFSHash(bytes _ipfsHash) public view returns (bytes32) {
@@ -118,7 +119,12 @@ contract Verifier is Ownable {
 
     VerifierDB db = VerifierDB(registry.db());
 
-    var (state, bounty,, verifier, verifiedInBlock,,, bondAmount,) = db.getDetails(_deposition);
+    VerifierDB.State state;
+    uint bounty;
+    address verifier;
+    uint verifiedInBlock;
+    uint bondAmount;
+    (state, bounty,, verifier, verifiedInBlock,,, bondAmount,) = db.getDetails(_deposition);
     require(state == VerifierDB.State.Verified);
     require(block.number >= verifiedInBlock + timeoutBlockCount);
     require(verifier == msg.sender);
@@ -131,7 +137,7 @@ contract Verifier is Ownable {
 
     msg.sender.transfer(bounty);
 
-    DepositionProven(_deposition, msg.sender);
+    emit DepositionProven(_deposition, msg.sender);
   }
 
   function challengeDeposition(bytes32 _deposition) public {
@@ -142,21 +148,27 @@ contract Verifier is Ownable {
 
     VerifierDB db = VerifierDB(registry.db());
 
-    var (state,,,,,,,,) = db.getDetails(_deposition);
+    VerifierDB.State state;
+    (state,,,,,,,,) = db.getDetails(_deposition);
     require(state == VerifierDB.State.Initialized);
 
     db.challenge(_deposition, msg.sender, requiredBondAmount);
 
     bondHolder.lockBond(msg.sender, requiredBondAmount);
 
-    DepositionChallenged(_deposition, msg.sender);
+    emit DepositionChallenged(_deposition, msg.sender);
   }
 
   function claimChallengeReward(bytes32 _deposition) public {
 
     VerifierDB db = VerifierDB(registry.db());
 
-    var (state, bounty,,,, challenger, challengedInBlock, bondAmount,) = db.getDetails(_deposition);
+    VerifierDB.State state;
+    uint bounty;
+    address challenger;
+    uint challengedInBlock;
+    uint bondAmount;
+    (state, bounty,,,, challenger, challengedInBlock, bondAmount,) = db.getDetails(_deposition);
     require(state == VerifierDB.State.Challenged);
     require(block.number >= challengedInBlock + timeoutBlockCount);
     require(challenger == msg.sender);
@@ -169,7 +181,7 @@ contract Verifier is Ownable {
 
     msg.sender.transfer(bounty);
 
-    DepositionDisproven(_deposition, msg.sender);
+    emit DepositionDisproven(_deposition, msg.sender);
   }
 
   function contestVerification(bytes32 _deposition) public {
@@ -186,17 +198,22 @@ contract Verifier is Ownable {
     require(msg.sender == oracle);
 
     VerifierDB db = VerifierDB(registry.db());
-    var (state,,, verifier,,,, bondAmount, contestor) = db.getDetails(_deposition);
+
+    VerifierDB.State state;
+    address verifier;
+    uint bondAmount;
+    address contestor;
+    (state,,, verifier,,,, bondAmount, contestor) = db.getDetails(_deposition);
     require(state == VerifierDB.State.Contested);
 
     if (_proven) {
       db.prove(_deposition);
       distributeContestReward(verifier, bondAmount, contestor, oracle);
-      DepositionProven(_deposition, verifier);
+      emit DepositionProven(_deposition, verifier);
     } else {
       db.disprove(_deposition);
       distributeContestReward(contestor, bondAmount, verifier, oracle);
-      DepositionDisproven(_deposition, contestor);
+      emit DepositionDisproven(_deposition, contestor);
     }
   }
 
@@ -204,7 +221,9 @@ contract Verifier is Ownable {
 
     VerifierDB db = VerifierDB(registry.db());
 
-    var (state,,,,,,, bondAmount,) = db.getDetails(_deposition);
+    VerifierDB.State state;
+    uint bondAmount;
+    (state,,,,,,, bondAmount,) = db.getDetails(_deposition);
     require(state == _state);
 
     BondHolder bondHolder = BondHolder(registry.bondHolder());
@@ -221,7 +240,7 @@ contract Verifier is Ownable {
 
     _bondHolder.lockBond(_contestor, bondAmount);
 
-    DepositionContested(_deposition, _contestor);
+    emit DepositionContested(_deposition, _contestor);
   }
 
   function distributeContestReward(address _winner, uint _bondAmount, address _loser, address _oracle) internal {
