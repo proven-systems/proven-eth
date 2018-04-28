@@ -12,7 +12,7 @@ import "./ProvenRegistry.sol";
 
 contract ProvenDB is Ownable {
 
-  event DepositionStored(bytes32 _deposition, address _deponent, bytes _ipfsHash);
+  event DepositionStored(bytes32 indexed _deposition, address indexed _deponent, bytes _ipfsHash);
 
   ProvenRegistry public registry;
 

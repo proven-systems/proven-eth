@@ -24,12 +24,12 @@ contract BondHolder is Ownable {
     uint lockedAmount;
   }
 
-  event BondDeposited(address bonded, uint amount);
-  event BondReleased(address bonded, uint amount);
-  event BondWithdrawn(address bonded, uint amount);
-  event BondLocked(address bonded, uint amount);
-  event BondUnlocked(address bonded, uint amount);
-  event BondDistributed(address bonded, uint amount, address recipient1, address recipient2);
+  event BondDeposited(address indexed bonded, uint amount);
+  event BondReleased(address indexed bonded, uint amount);
+  event BondWithdrawn(address indexed bonded, uint amount);
+  event BondLocked(address indexed bonded, uint amount);
+  event BondUnlocked(address indexed bonded, uint amount);
+  event BondDistributed(address indexed bonded, uint amount, address recipient1, address recipient2);
 
   modifier onlyBeneficiary() {
     require(msg.sender == beneficiary);

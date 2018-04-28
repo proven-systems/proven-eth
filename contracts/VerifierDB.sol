@@ -38,12 +38,12 @@ contract VerifierDB is Ownable {
     address contestor;
   }
 
-  event Stored(bytes32 deposition, uint bounty);
-  event Verified(bytes32 deposition, address verifier);
-  event Proven(bytes32 deposition);
-  event Challenged(bytes32 deposition, address challenger);
-  event Disproven(bytes32 deposition);
-  event Contested(bytes32 deposition, address contestor);
+  event Stored(bytes32 indexed deposition, uint bounty);
+  event Verified(bytes32 indexed deposition, address indexed verifier);
+  event Proven(bytes32 indexed deposition);
+  event Challenged(bytes32 indexed deposition, address indexed challenger);
+  event Disproven(bytes32 indexed deposition);
+  event Contested(bytes32 indexed deposition, address indexed contestor);
 
   modifier onlyVerifier() {
     require (msg.sender == registry.verifier());

@@ -17,12 +17,12 @@ contract Verifier is Ownable {
   uint public timeoutBlockCount;
   uint public requiredBondAmount;
 
-  event DepositionPublished(bytes32 deposition, address deponent, bytes ipfsHash, uint bounty);
-  event DepositionVerified(bytes32 deposition, address verifier);
-  event DepositionProven(bytes32 deposition, address verifier);
-  event DepositionChallenged(bytes32 deposition, address challenger);
-  event DepositionDisproven(bytes32 deposition, address challenger);
-  event DepositionContested(bytes32 deposition, address contestor);
+  event DepositionPublished(bytes32 indexed deposition, address indexed deponent, bytes ipfsHash, uint bounty);
+  event DepositionVerified(bytes32 indexed deposition, address indexed verifier);
+  event DepositionProven(bytes32 indexed deposition, address indexed verifier);
+  event DepositionChallenged(bytes32 indexed deposition, address indexed challenger);
+  event DepositionDisproven(bytes32 indexed deposition, address indexed challenger);
+  event DepositionContested(bytes32 indexed deposition, address indexed contestor);
 
   modifier onlyWithFee() {
     require(msg.value >= fee);
@@ -98,7 +98,6 @@ contract Verifier is Ownable {
     require((bondHolder.availableBond(msg.sender) - requiredBondAmount) >= 0);
 
     VerifierDB db = VerifierDB(registry.db());
-
     VerifierDB.State state;
     (state,,,,,,,,) = db.getDetails(_deposition);
     require(state == VerifierDB.State.Initialized);
