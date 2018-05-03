@@ -51,7 +51,7 @@ contract VerifierDB is Ownable {
   }
 
   // Constructor
-  function VerifierDB(address _registry) public {
+  constructor(address _registry) public {
     registry = VerifierRegistry(_registry);
   }
 
@@ -61,7 +61,9 @@ contract VerifierDB is Ownable {
     return(depositionsFromIPFSHash[_ipfsHash]);
   }
 
-  function getDetails(bytes32 _deposition) public view returns(State state, uint bounty, uint deposedInBlock, address verifier, uint verifiedInBlock, address challenger, uint challengedInBlock, uint bondAmount, address contestor) {
+  function getDetails(bytes32 _deposition) public view
+    returns(State state, uint bounty, uint deposedInBlock, address verifier, uint verifiedInBlock, address challenger, uint challengedInBlock, uint bondAmount, address contestor)
+  {
 
     Verification memory v = verifications[_deposition];
 

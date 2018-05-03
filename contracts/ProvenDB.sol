@@ -35,7 +35,7 @@ contract ProvenDB is Ownable {
   }
 
   /// Constructor
-  function ProvenDB(address _registry) public {
+  constructor(address _registry) public {
     registry = ProvenRegistry(_registry);
   }
 

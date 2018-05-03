@@ -46,7 +46,7 @@ contract BondHolder is Ownable {
     _;
   }
 
-  function BondHolder(address _registry, address _beneficiary) public {
+  constructor(address _registry, address _beneficiary) public {
     registry = BondHolderRegistry(_registry);
     beneficiary = _beneficiary;
   }

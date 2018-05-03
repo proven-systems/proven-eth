@@ -29,7 +29,7 @@ contract Verifier is Ownable {
     _;
   }
 
-  function Verifier(address _registry, uint _fee, uint _timeoutBlockCount, uint _requiredBondAmount) public {
+  constructor(address _registry, uint _fee, uint _timeoutBlockCount, uint _requiredBondAmount) public {
     registry = VerifierRegistry(_registry);
     fee = _fee;
     timeoutBlockCount = _timeoutBlockCount;
