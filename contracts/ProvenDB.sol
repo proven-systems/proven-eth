@@ -50,7 +50,7 @@ contract ProvenDB is Ownable {
   function storeDeposition(address _deponent, bytes _ipfsHash) public onlyProven returns (bytes32) {
 
     // generate hash to send back to caller
-    bytes32 id = keccak256(msg.data, block.number);
+    bytes32 id = keccak256(abi.encodePacked(msg.data, block.number));
 
     store(id, _deponent, _ipfsHash);
 
